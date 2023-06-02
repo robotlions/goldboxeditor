@@ -28,10 +28,11 @@ function App() {
   }
 
   function loadFile(file) {
-    if (document.querySelector("#fileSelect").value == '') {
+    if (document.querySelector("#fileSelect").value === '') {
       alert('No file selected');
       return;
     }
+    
     var reader = new FileReader();
     reader.onload = function (e) {
       // binary data
@@ -46,6 +47,7 @@ function App() {
       console.log('Error : ' + e.type);
     };
     reader.readAsArrayBuffer(file)
+    console.log(file)
 
   }
 
@@ -59,10 +61,12 @@ function App() {
 
   function ScoreModule(props) {
 
-    const [editing, setEditing] = useState(false);
 
-    const defaultDisplay = <>{dataArray[props.dataArrayIndex]} <button onClick={()=>setEditing(!editing)}>Edit</button></>
-    const editDisplay = <>{<input type="text" value={dataArray[props.dataArrayIndex]}/>} <button onClick={()=>setEditing(!editing)}>Done</button></>
+    const [editing, setEditing] = useState(false);
+    const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex])
+
+    const defaultDisplay = <>{inputText} <button onClick={()=>setEditing(!editing)}>Edit</button></>
+    const editDisplay = <>{<input type="text" value={inputText} onChange={(e)=>setInputText(e.target.value)}/>} <button onClick={()=>{setEditing(!editing);dataArray[props.dataArrayIndex]=inputText}}>Done</button></>
 
     return (
     
@@ -73,7 +77,7 @@ function App() {
 
   return (
     <div className="container">
-      <input id="fileSelect" type="file" onChange={(e) => {setSelectedFile(e.target.files[0]);loadFile(e.target.files[0])}} />
+      <input id="fileSelect" type="file" accept=".who, .sav" onChange={(e) => {setSelectedFile(e.target.files[0]);loadFile(e.target.files[0])}} />
       {/* {selectedFile ? <button className="btn btn-primary" onClick={() => loadFile()}>Load Save File</button> : null} */}
       <p></p>
       <p>Character Name: {dataArray ? <BuildName /> : null}</p> <br />
