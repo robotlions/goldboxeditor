@@ -1,7 +1,12 @@
-import { useState } from 'react';
-
+import { useState, Fragment } from 'react';
+import { Container, Image, Form, Button } from "react-bootstrap";
+import { Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
+import Nav from "./Components/Nav";
+import CharEdit from './Components/CharEdit';
+import ItemEdit from './Components/ItemEdit';
+
 
 
 
@@ -76,42 +81,17 @@ function App() {
 
 
   return (
-    <div className="container">
-      <input id="fileSelect" type="file" accept=".who, .sav" onChange={(e) => {setSelectedFile(e.target.files[0]);loadFile(e.target.files[0])}} />
-      {/* {selectedFile ? <button className="btn btn-primary" onClick={() => loadFile()}>Load Save File</button> : null} */}
-      <p></p>
-      <p>Character Name: {dataArray ? <BuildName /> : null}</p> <br />
-      <p>
-      {/* The commented out scores are - I think - the in-game modified score after effects */}
-        Strength: {dataArray ? <ScoreModule dataArrayIndex={16} /> : null} ({dataArray ? <ScoreModule dataArrayIndex={28} /> : null}) <br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={17} /> : null}</p> */}
-        Intelligence: {dataArray ? <ScoreModule dataArrayIndex={18} /> : null}<br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={19} /> : null}</p> */}
-        Wisdom: {dataArray ? <ScoreModule dataArrayIndex={20} /> : null}<br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={21} /> : null}</p> */}
-        Dexterity: {dataArray ? <ScoreModule dataArrayIndex={22} /> : null}<br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={23} /> : null}</p> */}
-        Constitution: {dataArray ? <ScoreModule dataArrayIndex={24} /> : null}<br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={25} /> : null}</p> */}
-        Charisma: {dataArray ? <ScoreModule dataArrayIndex={26} /> : null}<br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={27} /> : null}</p> */}
-      </p>
-
-
-
-
-
-
-
-
-
-
-
-      <p>Level: {dataArray ? dataArray[275] : null}</p>
-      <p>Experience: {dataArray ? parseInt(((0 + dataArray[303].toString(16)).slice(-2) + (0 + dataArray[302].toString(16)).slice(-2) + (0 + dataArray[301].toString(16)).slice(-2) + (0 + dataArray[300].toString(16)).slice(-2)), 16) : null}</p>
-      <button className="btn btn-primary" onClick={() => exportSaveFile()}>Test Download</button><br />
-      <button className="btn btn-primary" onClick={() => updateLevel()}>Update Level</button>
-    </div>
+    <Container>
+      <div className="row">
+          <Nav />
+        </div>   
+      <Fragment>
+          <Routes>
+            <Route path="/" element={<CharEdit />} />
+<Route path="/itemedit/" element={<ItemEdit/>} />
+          </Routes>
+        </Fragment>
+    </Container>
   );
 }
 
