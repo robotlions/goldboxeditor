@@ -26,3 +26,5 @@ yarn-error.log*
 #Character files
 .WHO
 .SAV
+.SFX
+.STF
