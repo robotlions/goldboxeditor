@@ -40,7 +40,7 @@ export default function CharEdit() {
       // binary data
       let data = e.target.result
       let dataArray = new Uint8Array(data)
-      console.log(dataArray);
+      // console.log(dataArray);
       // console.log(selectedFile)
       setDataArray(dataArray)
     };
@@ -49,7 +49,7 @@ export default function CharEdit() {
       console.log('Error : ' + e.type);
     };
     reader.readAsArrayBuffer(file)
-    console.log(file)
+    // console.log(file)
 
   }
 
@@ -76,6 +76,42 @@ export default function CharEdit() {
    
   )}
 
+  function ExperienceModule(props){
+
+    let tempArray = dataArray
+
+
+    const [editing, setEditing] = useState(false);
+    const [inputText, setInputText] = useState(parseInt(((0 + dataArray[303].toString(16)).slice(-2) + (0 + dataArray[302].toString(16)).slice(-2) + (0 + dataArray[301].toString(16)).slice(-2) + (0 + dataArray[300].toString(16)).slice(-2)), 16))
+
+    const defaultDisplay = <>{inputText} <button onClick={()=>setEditing(!editing)}>Edit</button></>
+    const editDisplay = <>{<input type="text" value={inputText} onChange={(e)=>setInputText(e.target.value)}/>} <button onClick={()=>{setEditing(!editing);convertDecimaltoBinary()}}>Done</button></>
+    
+    function convertDecimaltoBinary(){
+      let eightBit = ('00000000' + parseInt(inputText).toString(16).toUpperCase()).slice(-8);
+      let eightBitSplit = eightBit.match(/.{1,2}/g) ?? [];
+      for(let i = 0; i<3;i++){
+        if(eightBitSplit[i]=='00'){
+          eightBitSplit[i]='0'
+        }
+        else if((eightBitSplit[i]).charAt(0)==='0'){
+          eightBitSplit[i] = (eightBitSplit[i]).charAt(1)
+        }
+      }
+     
+      tempArray[303] = parseInt(eightBitSplit[0], 16);
+      tempArray[302] = parseInt(eightBitSplit[1], 16);
+      tempArray[301] = parseInt(eightBitSplit[2], 16);
+      tempArray[300] = parseInt(eightBitSplit[3], 16);
+      setDataArray(tempArray);
+     
+    }
+
+    return(
+      editing===false ? defaultDisplay : editDisplay
+    )
+  }
+
 
   return (
     <Container>
@@ -85,6 +121,8 @@ export default function CharEdit() {
       <p></p>
       <p>Character Name: {dataArray ? <BuildName /> : null}</p> <br />
       <p>
+      Max Hit Points: {dataArray ? <ScoreModule dataArrayIndex={112} /> : null}</p>
+<p>
       {/* The commented out scores are - I think - the in-game modified score after effects */}
         Strength: {dataArray ? <ScoreModule dataArrayIndex={16} /> : null} ({dataArray ? <ScoreModule dataArrayIndex={28} /> : null}) <br />
         {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={17} /> : null}</p> */}
@@ -108,9 +146,18 @@ export default function CharEdit() {
 
 
 
+      <h4>Levels</h4>
+      <p>Cleric: {dataArray ? <ScoreModule dataArrayIndex={273} /> : null}<br/>
+      Fighter: {dataArray ? <ScoreModule dataArrayIndex={275} /> : null}<br/>
+      Paladin: {dataArray ? <ScoreModule dataArrayIndex={276} /> : null}<br />
+      Ranger: {dataArray ? <ScoreModule dataArrayIndex={277} /> : null}<br/>
+      Magic-User: {dataArray ? <ScoreModule dataArrayIndex={278} /> : null}<br/>
+      Thief: {dataArray ? <ScoreModule dataArrayIndex={279} /> : null}<br/>
+      </p>
 
-      <p>Level: {dataArray ? dataArray[275] : null}</p>
-      <p>Experience: {dataArray ? parseInt(((0 + dataArray[303].toString(16)).slice(-2) + (0 + dataArray[302].toString(16)).slice(-2) + (0 + dataArray[301].toString(16)).slice(-2) + (0 + dataArray[300].toString(16)).slice(-2)), 16) : null}</p>
+      {/* <p>Experience: {dataArray ? parseInt(((0 + dataArray[303].toString(16)).slice(-2) + (0 + dataArray[302].toString(16)).slice(-2) + (0 + dataArray[301].toString(16)).slice(-2) + (0 + dataArray[300].toString(16)).slice(-2)), 16) : null}</p> */}
+      <p>Experience: {dataArray ? <ExperienceModule /> : null}</p>
+      
       <button className="btn btn-primary" onClick={() => exportSaveFile()}>Download</button><br />
       {/* <button className="btn btn-primary" onClick={() => updateLevel()}>Update Level</button> */}
     
