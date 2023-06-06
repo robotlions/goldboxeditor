@@ -42,13 +42,42 @@ export default function CharEdit() {
 
   }
 
-  function BuildName() {
-    let assembledName = ''
-    for (let i = 1; i <= dataArray[0]; i++) {
-      assembledName = assembledName + String.fromCharCode(dataArray[i])
+  function NameModule(){
+
+    let tempArray = dataArray;
+
+    let defaultName = assembleName();
+
+    const [editing, setEditing] = useState(false);
+    const [inputText, setInputText] = useState(defaultName);
+    const editDisplay = <><input value={inputText} maxLength={15} onChange={(e)=>setInputText(e.target.value)} type="text"/> <button onClick={()=>{setEditing(!editing);saveName()}}>Done</button></>
+
+    const defaultDisplay = <>{defaultName} <button onClick={()=>setEditing(!editing)}>Edit</button></>
+    function assembleName() {
+      let assembledName = ''
+      for (let i = 1; i <= dataArray[0]; i++) {
+        assembledName = assembledName + String.fromCharCode(dataArray[i])
+      }
+      return assembledName
     }
-    return assembledName
+
+    function saveName(){
+      tempArray[0] = inputText.length
+      for(let i=0; i<= inputText.length;i++){
+        tempArray[i+1] = inputText.toUpperCase().charCodeAt(i)
+      }
+      setDataArray(tempArray)
+    }
+
+    
+
+    return(
+      editing === false ? defaultDisplay : editDisplay
+    )
+
+    
   }
+
 
   function ScoreModule(props) {
 
@@ -117,7 +146,7 @@ export default function CharEdit() {
       <input id="fileSelect" type="file" accept=".who, .sav" onChange={(e) => { setSelectedFile(e.target.files[0]); loadFile(e.target.files[0]) }} />
       {/* {selectedFile ? <button className="btn btn-primary" onClick={() => loadFile()}>Load Save File</button> : null} */}
       <p></p>
-      <p>Character Name: {dataArray ? <BuildName /> : null}</p> <br />
+      <p>Character Name: {dataArray ? <NameModule /> : null}</p> <br />
       <p>
         Max Hit Points: {dataArray ? <ScoreModule dataArrayIndex={112} /> : null}</p>
       <p>
