@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.css';
+import { spellList } from '../Data/Spells';
 
 
 
@@ -34,15 +35,15 @@ export default function CharEdit() {
       let data = e.target.result
       let dataArray = new Uint8Array(data)
       setDataArray(dataArray)
+      // console.log(dataArray)
     };
     reader.onerror = function (e) {
       console.log('Error : ' + e.type);
     };
     reader.readAsArrayBuffer(file)
-
   }
 
-  function NameModule(){
+  function NameModule() {
 
     let tempArray = dataArray;
 
@@ -50,9 +51,11 @@ export default function CharEdit() {
 
     const [editing, setEditing] = useState(false);
     const [inputText, setInputText] = useState(defaultName);
-    const editDisplay = <><input value={inputText} maxLength={15} onChange={(e)=>setInputText(e.target.value)} type="text"/> <button onClick={()=>{setEditing(!editing);saveName()}}>Done</button></>
+    const editDisplay = <>
+      <input value={inputText} maxLength={15} onChange={(e) => setInputText(e.target.value)} type="text" />
+      <button onClick={() => { setEditing(!editing); saveName() }}>Done</button></>
 
-    const defaultDisplay = <>{defaultName} <button onClick={()=>setEditing(!editing)}>Edit</button></>
+    const defaultDisplay = <>{defaultName} <button onClick={() => setEditing(!editing)}>Edit</button></>
     function assembleName() {
       let assembledName = ''
       for (let i = 1; i <= dataArray[0]; i++) {
@@ -61,21 +64,20 @@ export default function CharEdit() {
       return assembledName
     }
 
-    function saveName(){
+    function saveName() {
       tempArray[0] = inputText.length
-      for(let i=0; i<= inputText.length;i++){
-        tempArray[i+1] = inputText.toUpperCase().charCodeAt(i)
+      for (let i = 0; i <= inputText.length; i++) {
+        tempArray[i + 1] = inputText.toUpperCase().charCodeAt(i)
       }
-      setDataArray(tempArray)
+      setDataArray(tempArray[113])
     }
 
-    
 
-    return(
+    return (
       editing === false ? defaultDisplay : editDisplay
     )
 
-    
+
   }
 
 
@@ -139,6 +141,34 @@ export default function CharEdit() {
     )
   }
 
+  function SpellCheckBox(props) {
+
+    let tempArray = dataArray;
+
+    const [checked, setChecked] = useState(props.item===1 ? true : false)
+
+    function updateChecked(){
+      let checkValue = checked===true ? 0 : 1;
+      tempArray[props.index] = parseInt(checkValue, 16);
+      setDataArray(tempArray)
+    }
+
+    return (
+      <span><input type="checkbox" checked={checked} onChange={() => {setChecked(!checked);updateChecked()}} />{props.index}:{spellList[props.index]}  </span>
+    )
+  }
+
+  function SpellModule() {
+
+    let tempArray = Array.from(dataArray)
+    let spellDisplay = tempArray.map((item, index) => index > 112 && index < 230 ? <SpellCheckBox item={item} index={index} key={index} /> : null)
+
+    return (
+      spellDisplay
+    )
+  }
+
+
 
   return (
     <Container>
@@ -165,14 +195,6 @@ export default function CharEdit() {
         {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={27} /> : null}</p> */}
       </p>
 
-
-
-
-
-
-
-
-
       <h4>Levels</h4>
       <p>Cleric: {dataArray ? <ScoreModule dataArrayIndex={273} /> : null}<br />
         Fighter: {dataArray ? <ScoreModule dataArrayIndex={275} /> : null}<br />
@@ -183,7 +205,9 @@ export default function CharEdit() {
       </p>
 
       <p>Experience: {dataArray ? <ExperienceModule /> : null}</p>
-
+      <div className="row">
+        <h4>Spells:</h4> <p>{dataArray ? <SpellModule /> : null} </p>
+      </div>
       <button className="btn btn-primary" onClick={() => exportSaveFile()}>Download</button><br />
 
 
