@@ -79,7 +79,7 @@ export default function CharEdit() {
       for (let i = 0; i <= inputText.length; i++) {
         tempArray[i + 1] = inputText.toUpperCase().charCodeAt(i);
       }
-      setDataArray(tempArray[113]);
+      setDataArray(tempArray);
     }
 
     return editing === false ? defaultDisplay : editDisplay;
