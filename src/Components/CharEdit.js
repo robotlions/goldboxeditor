@@ -126,6 +126,46 @@ export default function CharEdit() {
     return editing === false ? defaultDisplay : editDisplay;
   }
 
+  function LevelModule(props) {
+    let tempArray = dataArray;
+
+    const [editing, setEditing] = useState(false);
+    const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
+
+    function submitChange() {
+      tempArray[props.dataArrayIndex] = inputText;
+      setDataArray(tempArray);
+    }
+
+    const defaultDisplay = (
+      <>
+        {inputText} <button onClick={() => setEditing(!editing)}>Edit</button>
+      </>
+    );
+    const editDisplay = (
+      <>
+        {
+          <input
+            type="number"
+            max="99"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+          />
+        }{" "}
+        <button
+          onClick={() => {
+            setEditing(!editing);
+            submitChange();
+          }}
+        >
+          Done
+        </button>
+      </>
+    );
+
+    return editing === false ? defaultDisplay : editDisplay;
+  }
+
   function HitPointModule(props) {
     let tempArray = dataArray;
 
@@ -241,7 +281,7 @@ export default function CharEdit() {
     }
 
     return (
-      <span style={{ marginLeft: 10 }}>
+      <span className="col-3">
         <input
           type="checkbox"
           checked={checked}
@@ -255,15 +295,15 @@ export default function CharEdit() {
     );
   }
 
-  function SpellModule() {
+  function SpellModule(props) {
     let tempArray = Array.from(dataArray);
     let spellDisplay = tempArray.map((item, index) =>
-      index > 112 && index < 230 ? (
+      index > 112 && index < 232 && spellList[index].class===props.filter ? (
         <SpellCheckBox item={item} index={index} key={index} />
       ) : null
     );
 
-    return spellDisplay;
+    return <div className="d-flex flex-wrap">{spellDisplay}</div >
   }
 
   return (
@@ -304,23 +344,23 @@ export default function CharEdit() {
       </p>
       <h4>Levels</h4>
       <p>
-        Cleric: {dataArray ? <ScoreModule dataArrayIndex={273} /> : null}
+        Cleric: {dataArray ? <LevelModule dataArrayIndex={273} /> : null}
         <br />
-        Fighter: {dataArray ? <ScoreModule dataArrayIndex={275} /> : null}
+        Fighter: {dataArray ? <LevelModule dataArrayIndex={275} /> : null}
         <br />
-        Paladin: {dataArray ? <ScoreModule dataArrayIndex={276} /> : null}
+        Paladin: {dataArray ? <LevelModule dataArrayIndex={276} /> : null}
         <br />
-        Ranger: {dataArray ? <ScoreModule dataArrayIndex={277} /> : null}
+        Ranger: {dataArray ? <LevelModule dataArrayIndex={277} /> : null}
         <br />
-        Magic-User: {dataArray ? <ScoreModule dataArrayIndex={278} /> : null}
+        Magic-User: {dataArray ? <LevelModule dataArrayIndex={278} /> : null}
         <br />
-        Thief: {dataArray ? <ScoreModule dataArrayIndex={279} /> : null}
+        Thief: {dataArray ? <LevelModule dataArrayIndex={279} /> : null}
         <br />
       </p>
       <p>Experience: {dataArray ? <ExperienceModule /> : null}</p>
-      <div className="row">
-        <h4>Spells:</h4> <p>{dataArray ? <SpellModule /> : null} </p>
-      </div>
+        <h4>Mage Spells:</h4> <p>{dataArray ? <SpellModule filter="Mage"/> : null} </p>
+        <h4>Cleric Spells:</h4> <p>{dataArray ? <SpellModule filter="Cleric"/> : null} </p>
+        <h4>Druid Spells:</h4> <p>{dataArray ? <SpellModule filter="Druid"/> : null} </p>
       <button className="btn btn-primary" onClick={() => exportSaveFile()}>
         Download
       </button>
