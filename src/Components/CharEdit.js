@@ -303,11 +303,11 @@ export default function CharEdit() {
       ) : null
     );
 
-    return <div className="d-flex flex-wrap">{spellDisplay}</div >
+    return <div style={{marginBottom: 20}} className="d-flex flex-wrap">{spellDisplay}</div >
   }
 
   return (
-    <Container>
+    <div className="charEditBody">
       <input
         id="fileSelect"
         type="file"
@@ -319,9 +319,17 @@ export default function CharEdit() {
       />
       {/* {selectedFile ? <button className="btn btn-primary" onClick={() => loadFile()}>Load Save File</button> : null} */}
       <p></p>
-      <p>Character Name: {dataArray ? <NameModule /> : null}</p> <br />
-      <p>Max Hit Points: {dataArray ? <HitPointModule /> : null}</p>
-      <p>
+      <div className="row">
+      <div className="col-md-4">Character Name: {dataArray ? <NameModule /> : null}</div>
+      <div className="col-md-4">Max Hit Points: {dataArray ? <HitPointModule /> : null}</div>
+      <div className="col-md-4">Experience: {dataArray ? <ExperienceModule /> : null}</div>
+      </div>
+      <div className="row">
+      <div className="col-md-6">
+
+      
+        <h4>Ability Scores</h4>
+        <p>
         {/* The commented out scores are - I think - the in-game modified score after effects */}
         Strength: {dataArray ? <ScoreModule dataArrayIndex={16} /> : null} (
         {dataArray ? <ScoreModule dataArrayIndex={28} /> : null}) <br />
@@ -342,6 +350,9 @@ export default function CharEdit() {
         <br />
         {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={27} /> : null}</p> */}
       </p>
+      </div>
+      <div className="col-md-6">
+
       <h4>Levels</h4>
       <p>
         Cleric: {dataArray ? <LevelModule dataArrayIndex={273} /> : null}
@@ -357,14 +368,15 @@ export default function CharEdit() {
         Thief: {dataArray ? <LevelModule dataArrayIndex={279} /> : null}
         <br />
       </p>
-      <p>Experience: {dataArray ? <ExperienceModule /> : null}</p>
-        <h4>Mage Spells:</h4> <p>{dataArray ? <SpellModule filter="Mage"/> : null} </p>
-        <h4>Cleric Spells:</h4> <p>{dataArray ? <SpellModule filter="Cleric"/> : null} </p>
-        <h4>Druid Spells:</h4> <p>{dataArray ? <SpellModule filter="Druid"/> : null} </p>
+      </div>
+      </div>
+        <h4>Mage Spells:</h4> <div>{dataArray ? <SpellModule filter="Mage"/> : null} </div>
+        <h4>Cleric Spells:</h4> <div>{dataArray ? <SpellModule filter="Cleric"/> : null} </div>
+        <h4>Druid Spells:</h4> <div>{dataArray ? <SpellModule filter="Druid"/> : null} </div>
       <button className="btn btn-primary" onClick={() => exportSaveFile()}>
         Download
       </button>
       <br />
-    </Container>
+    </div>
   );
 }
