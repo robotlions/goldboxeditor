@@ -21,27 +21,25 @@ export default function ItemEdit() {
     };
     reader.readAsArrayBuffer(file);
   }
-  
-  
-  function ItemListModule() {
 
+  function ItemListModule() {
     const [itemListArray, setItemListArray] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
-      if(loading===true){
+    useEffect(() => {
+      if (loading === true) {
         assembleList();
         setLoading(false);
       }
-    },[setItemListArray, itemListArray]);
+    }, [setItemListArray, itemListArray]);
 
-    
-    // const defaultDisplay =
-    // itemListArray.map((item, index)=><ItemEditModule key={index} item={item} index={index} />)
-    // ;
-
-const defaultDisplay = itemListArray.map((item, index) => <ItemEditModule key={index} item={Object.values(item)} index={Object.keys(item)} />);
-   
+    const defaultDisplay = itemListArray.map((item, index) => (
+      <ItemEditModule
+        key={index}
+        item={Object.values(item)}
+        index={Object.keys(item)}
+      />
+    ));
 
     function assembleList() {
       let nameArray = [];
@@ -56,34 +54,44 @@ const defaultDisplay = itemListArray.map((item, index) => <ItemEditModule key={i
     function assembleName(ind) {
       let assembledName = "";
       for (let i = 1; i <= dataArray[ind]; i++) {
-        assembledName =
-          assembledName + String.fromCharCode(dataArray[i + ind]);
+        assembledName = assembledName + String.fromCharCode(dataArray[i + ind]);
       }
-      return (
-        {[ind]:assembledName}
-      )
+      return { [ind]: assembledName };
     }
-
-
 
     return defaultDisplay;
   }
 
-  function ItemEditModule(props){
-
+  function ItemEditModule(props) {
     let tempArray = dataArray;
+
+    
 
     const [editing, setEditing] = useState(false);
     const [inputText, setInputText] = useState(String(props.item));
 
+    function ValueModule(props){
+      const [valueState, setValueState] = useState(tempArray[props.value]);
+
+      return(
+        <input value={valueState} onChange={(e)=>setValueState(e.target.value)}/>
+      )
+    }
+
     const editDisplay = (
-      <p>
+      <div className="row">
+        <div className="col">
         <input
           value={inputText}
           maxLength={25}
           onChange={(e) => setInputText(e.target.value)}
           type="text"
         />
+        </div>
+        <div className="col">
+          Bonus: <ValueModule value={parseInt(props.index)+50}/>
+        </div>
+        <div className="col">
         <button
           onClick={() => {
             setEditing(!editing);
@@ -92,27 +100,36 @@ const defaultDisplay = itemListArray.map((item, index) => <ItemEditModule key={i
         >
           Done
         </button>
-      </p>
+        </div>
+      </div>
     );
 
     function saveName() {
-      let j=parseInt(props.index)
+      let j = parseInt(props.index);
       tempArray[j] = inputText.length;
       for (let i = 1; i <= inputText.length; i++) {
-        tempArray[i + j] = inputText.charCodeAt(i-1);
+        tempArray[i + j] = inputText.charCodeAt(i - 1);
       }
       console.log(tempArray);
-      console.log(inputText.length)
+      console.log(inputText.length);
       // setDataArray(tempArray);
     }
 
-    const defaultDisplay = <p>{props.index} {inputText} <button onClick={()=>setEditing(true)}>Edit</button></p>
+    const defaultDisplay = (
+      <div className="row">
+        <div className="col">
+        {inputText}
+        </div>
+        <div className="col">
+          Bonus: {tempArray[parseInt(props.index)+50]}
+        </div>
+        <div className="col">
+        <button onClick={() => setEditing(true)}>Edit</button>
+        </div>
+      </div>
+    );
 
-    return(
-      editing ? editDisplay : defaultDisplay
-    )
-
-
+    return editing ? editDisplay : defaultDisplay;
   }
 
   function exportSaveFile() {
@@ -126,6 +143,8 @@ const defaultDisplay = itemListArray.map((item, index) => <ItemEditModule key={i
 
   return (
     <div>
+      <div className="row">
+        <div className="col">
       <input
         id="fileSelect"
         type="file"
@@ -135,8 +154,15 @@ const defaultDisplay = itemListArray.map((item, index) => <ItemEditModule key={i
           loadFile(e.target.files[0]);
         }}
       />
+      
+      <button className="btn btn-primary" onClick={() => exportSaveFile()}>
+        Download Item File
+      </button>
+      </div>
+      </div>
+      <div className="row">
       {dataArray ? <ItemListModule /> : null}
-      <div className="btn btn-primary" onClick={()=>exportSaveFile()}>Download Item File</div>
+      </div>
     </div>
   );
 }
