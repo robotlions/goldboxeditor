@@ -14,6 +14,7 @@ export default function ItemEdit() {
     reader.onload = function (e) {
       let data = e.target.result;
       let dataArray = new Uint8Array(data);
+      console.log(dataArray)
       setDataArray(dataArray);
     };
     reader.onerror = function (e) {
@@ -73,8 +74,14 @@ export default function ItemEdit() {
     function ValueModule(props){
       const [valueState, setValueState] = useState(tempArray[props.value]);
 
+      function saveValue(){
+        tempArray[props.value] = valueState;
+      }
+
       return(
-        <input value={valueState} onChange={(e)=>setValueState(e.target.value)}/>
+        <>
+        <input value={valueState} onChange={(e)=>setValueState(e.target.value)} /><button onClick={()=>saveValue()}>Save</button>
+        </>
       )
     }
 
@@ -110,9 +117,9 @@ export default function ItemEdit() {
       for (let i = 1; i <= inputText.length; i++) {
         tempArray[i + j] = inputText.charCodeAt(i - 1);
       }
-      console.log(tempArray);
-      console.log(inputText.length);
-      // setDataArray(tempArray);
+      // console.log(tempArray);
+      // console.log(inputText.length);
+      setDataArray(tempArray);
     }
 
     const defaultDisplay = (
