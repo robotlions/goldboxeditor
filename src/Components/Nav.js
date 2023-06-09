@@ -16,6 +16,8 @@ export default function Nav() {
             <MyNav className="me-auto">
         <MyNav.Link href="/">Character Editor</MyNav.Link>
         <MyNav.Link href="/inventoryedit/">Inventory Editor</MyNav.Link>
+        <MyNav.Link href="/newinventoryedit/">New Inventory Editor</MyNav.Link>
+
         {/* <MyNav.Link href="/recipes/">Recipes</MyNav.Link>
         <MyNav.Link href="/methods/">Methods</MyNav.Link> */}
         </MyNav>

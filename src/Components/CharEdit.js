@@ -371,8 +371,8 @@ export default function CharEdit() {
       </div>
       </div>
         <h4>Mage Spells:</h4> <div>{dataArray ? <SpellModule filter="Mage"/> : null} </div>
-        <h4>Cleric Spells:</h4> <div>{dataArray ? <SpellModule filter="Cleric"/> : null} </div>
-        <h4>Druid Spells:</h4> <div>{dataArray ? <SpellModule filter="Druid"/> : null} </div>
+        {/* <h4>Cleric Spells:</h4> <div>{dataArray ? <SpellModule filter="Cleric"/> : null} </div> */}
+        {/* <h4>Druid Spells:</h4> <div>{dataArray ? <SpellModule filter="Druid"/> : null} </div> */}
       <button className="btn btn-primary" onClick={() => exportSaveFile()}>
         Download
       </button>
