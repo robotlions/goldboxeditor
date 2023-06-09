@@ -15,7 +15,8 @@ export const itemValues = {
     20: "Two-handed sword",
     21: "Trident",
     22: "Composite Long Bow",
-    26: "Long Bow",
+    24: "Long Bow",
+    26: "26",
     27: "Light Crossbow",
     29: "Sling?",
     30: "Arrows",
@@ -35,6 +36,7 @@ export const itemValues = {
     50: "Bracers",
     51: "Wand",
     52: "52",
+    53: "Potion",
     58: "Cloak",
     62: "Ice Storm",
     70: "Flail",
@@ -42,10 +44,13 @@ export const itemValues = {
     72: "Gauntlets",
     78: "Ogre Power",
     90: "of",
+    92: "Speed",
     102: "3 Spells",
     107: "AC 6",
+    108: "AC 4",
     111: "+1",
     112: "+2",
+    115: "+5",
 
 
 }
