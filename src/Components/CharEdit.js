@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { spellList } from "../Data/Spells";
+import { alignments, statusCodes } from "../Data/DataLists";
 
 export default function CharEdit() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -298,12 +299,47 @@ export default function CharEdit() {
   function SpellModule(props) {
     let tempArray = Array.from(dataArray);
     let spellDisplay = tempArray.map((item, index) =>
-      index > 112 && index < 232 && spellList[index].class===props.filter ? (
+      index > 112 && index < 232 && spellList[index].class === props.filter ? (
         <SpellCheckBox item={item} index={index} key={index} />
       ) : null
     );
 
-    return <div style={{marginBottom: 20}} className="d-flex flex-wrap">{spellDisplay}</div >
+    return (
+      <div style={{ marginBottom: 20 }} className="d-flex flex-wrap">
+        {spellDisplay}
+      </div>
+    );
+  }
+
+  function SelectModule(props) {
+    let tempArray = dataArray;
+
+    let dropList = Object.entries(props.dataList).map((item, index) => (
+      <option key={index} value={item[0]}>
+        {item[1]}
+      </option>
+    ));
+
+    let defaultDisplay = tempArray[props.index];
+
+    return (
+      <div className="d-flex">
+        <select
+          className="form-select"
+          defaultValue={defaultDisplay}
+          aria-label="Item value dropdown"
+          onChange={(e) => {
+            tempArray[props.index] = e.target.value;
+            setDataArray(tempArray);
+          }}
+        >
+          <option disabled value={-1}>
+            Status options
+          </option>
+          {dropList}
+        </select>
+      </div>
+    );
   }
 
   return (
@@ -320,59 +356,75 @@ export default function CharEdit() {
       {/* {selectedFile ? <button className="btn btn-primary" onClick={() => loadFile()}>Load Save File</button> : null} */}
       <p></p>
       <div className="row">
-      <div className="col-md-4">Character Name: {dataArray ? <NameModule /> : null}</div>
-      <div className="col-md-4">Max Hit Points: {dataArray ? <HitPointModule /> : null}</div>
-      <div className="col-md-4">Experience: {dataArray ? <ExperienceModule /> : null}</div>
+        <div className="col-md-3">
+          Character Name: {dataArray ? <NameModule /> : null}
+        </div>
+        <div className="col-md-3">
+          Max Hit Points: {dataArray ? <HitPointModule /> : null}
+        </div>
+        <div className="col-md-3">
+          Experience: {dataArray ? <ExperienceModule /> : null}
+        </div>
+        
       </div>
       <div className="row">
-      <div className="col-md-6">
-
-      
-        <h4>Ability Scores</h4>
-        <p>
-        {/* The commented out scores are - I think - the in-game modified score after effects */}
-        Strength: {dataArray ? <ScoreModule dataArrayIndex={16} /> : null} (
-        {dataArray ? <ScoreModule dataArrayIndex={28} /> : null}) <br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={17} /> : null}</p> */}
-        Intelligence: {dataArray ? <ScoreModule dataArrayIndex={18} /> : null}
-        <br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={19} /> : null}</p> */}
-        Wisdom: {dataArray ? <ScoreModule dataArrayIndex={20} /> : null}
-        <br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={21} /> : null}</p> */}
-        Dexterity: {dataArray ? <ScoreModule dataArrayIndex={22} /> : null}
-        <br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={23} /> : null}</p> */}
-        Constitution: {dataArray ? <ScoreModule dataArrayIndex={24} /> : null}
-        <br />
-        {/* Score: {dataArray ? <ScoreModule dataArrayIndex={25} /> : null}<br /> */}
-        Charisma: {dataArray ? <ScoreModule dataArrayIndex={26} /> : null}
-        <br />
-        {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={27} /> : null}</p> */}
-      </p>
+      <div className="col-md-3">
+          Status: {dataArray ? <SelectModule index={422} dataList={statusCodes} /> : null}
+        </div>
+        <div className="col-md-3">
+          Alignment: {dataArray ? <SelectModule index={288} dataList={alignments} /> : null}
+        </div>
       </div>
-      <div className="col-md-6">
-
-      <h4>Levels</h4>
-      <p>
-        Cleric: {dataArray ? <LevelModule dataArrayIndex={273} /> : null}
-        <br />
-        Fighter: {dataArray ? <LevelModule dataArrayIndex={275} /> : null}
-        <br />
-        Paladin: {dataArray ? <LevelModule dataArrayIndex={276} /> : null}
-        <br />
-        Ranger: {dataArray ? <LevelModule dataArrayIndex={277} /> : null}
-        <br />
-        Magic-User: {dataArray ? <LevelModule dataArrayIndex={278} /> : null}
-        <br />
-        Thief: {dataArray ? <LevelModule dataArrayIndex={279} /> : null}
-        <br />
-      </p>
+      <div className="row">
+        <div className="col-md-6">
+          <h4>Ability Scores</h4>
+          <p>
+            {/* The commented out scores are - I think - the in-game modified score after effects */}
+            Strength: {dataArray ? <ScoreModule dataArrayIndex={16} /> : null} (
+            {dataArray ? <ScoreModule dataArrayIndex={28} /> : null}) <br />
+            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={17} /> : null}</p> */}
+            Intelligence:{" "}
+            {dataArray ? <ScoreModule dataArrayIndex={18} /> : null}
+            <br />
+            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={19} /> : null}</p> */}
+            Wisdom: {dataArray ? <ScoreModule dataArrayIndex={20} /> : null}
+            <br />
+            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={21} /> : null}</p> */}
+            Dexterity: {dataArray ? <ScoreModule dataArrayIndex={22} /> : null}
+            <br />
+            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={23} /> : null}</p> */}
+            Constitution:{" "}
+            {dataArray ? <ScoreModule dataArrayIndex={24} /> : null}
+            <br />
+            {/* Score: {dataArray ? <ScoreModule dataArrayIndex={25} /> : null}<br /> */}
+            Charisma: {dataArray ? <ScoreModule dataArrayIndex={26} /> : null}
+            <br />
+            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={27} /> : null}</p> */}
+          </p>
+        </div>
+        <div className="col-md-6">
+          <h4>Levels</h4>
+          <p>
+            Cleric: {dataArray ? <LevelModule dataArrayIndex={273} /> : null}
+            <br />
+            Fighter: {dataArray ? <LevelModule dataArrayIndex={275} /> : null}
+            <br />
+            Paladin: {dataArray ? <LevelModule dataArrayIndex={276} /> : null}
+            <br />
+            Ranger: {dataArray ? <LevelModule dataArrayIndex={277} /> : null}
+            <br />
+            Magic-User:{" "}
+            {dataArray ? <LevelModule dataArrayIndex={278} /> : null}
+            <br />
+            Thief: {dataArray ? <LevelModule dataArrayIndex={279} /> : null}
+            <br />
+          </p>
+        </div>
       </div>
-      </div>
-        <h4>Mage Spells:</h4> <div>{dataArray ? <SpellModule filter="Mage"/> : null} </div>
-        {/* <h4>Cleric Spells:</h4> <div>{dataArray ? <SpellModule filter="Cleric"/> : null} </div> */}
-        {/* <h4>Druid Spells:</h4> <div>{dataArray ? <SpellModule filter="Druid"/> : null} </div> */}
+      <h4>Mage Spells:</h4>{" "}
+      <div>{dataArray ? <SpellModule filter="Mage" /> : null} </div>
+      {/* <h4>Cleric Spells:</h4> <div>{dataArray ? <SpellModule filter="Cleric"/> : null} </div> */}
+      {/* <h4>Druid Spells:</h4> <div>{dataArray ? <SpellModule filter="Druid"/> : null} </div> */}
       <button className="btn btn-primary" onClick={() => exportSaveFile()}>
         Download
       </button>

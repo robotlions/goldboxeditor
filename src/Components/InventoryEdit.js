@@ -4,6 +4,7 @@ import { itemValues } from "../Data/ItemValues";
 export default function InventoryEdit() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
+  const [loadedItem, setLoadedItem] = useState(null);
 
   function loadFile(file) {
     if (document.querySelector("#fileSelect").value === "") {
@@ -24,41 +25,31 @@ export default function InventoryEdit() {
     reader.readAsArrayBuffer(file);
   }
 
-  function ItemListModule() {
+  function ItemEditModule(props) {
     let tempArray = dataArray;
-    const [loading, setLoading] = useState(true);
-    const [itemListArray, setItemListArray] = useState([]);
+
+    const [displayName1, setDisplayName1] = useState(
+      itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 49]]
+    );
+    const [displayName2, setDisplayName2] = useState(
+      itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 48]]
+    );
+    const [displayName3, setDisplayName3] = useState(
+      itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 47]]
+    );
+    const [updated, setUpdated] = useState(true);
 
     useEffect(() => {
-      if (loading === true) {
-        assembleList();
-        setLoading(false);
-      }
-    }, [setItemListArray, itemListArray, loading]);
-
-    const defaultDisplay = itemListArray.map((item, index) => (
-      <div key={index} className="row">
-        <div className="col-2">{Object.values(item)}</div>
-        <div className="col-1">
-          <ValueModule value={parseInt(Object.keys(item)) + 46} />
-        </div>
-        <div className="col-1">
-          <ValueModule value={parseInt(Object.keys(item)) + 50} />
-        </div>
-        <div className="col-1">
-          <ValueModule value={parseInt(Object.keys(item)) + 60} />
-        </div>
-        <div className="col-2">
-          <NameSelect value={parseInt(Object.keys(item)) + 49} />
-        </div>
-        <div className="col-2">
-          <NameSelect value={parseInt(Object.keys(item)) + 48} />
-        </div>
-        <div className="col-2">
-          <NameSelect value={parseInt(Object.keys(item)) + 47} />
-        </div>
-      </div>
-    ));
+      setDisplayName1(
+        itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 49]]
+      );
+      setDisplayName2(
+        itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 48]]
+      );
+      setDisplayName3(
+        itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 47]]
+      );
+    }, [tempArray, updated]);
 
     function ValueModule(props) {
       const [valueState, setValueState] = useState(tempArray[props.value]);
@@ -83,28 +74,101 @@ export default function InventoryEdit() {
     }
 
     function NameSelect(props) {
-
       let dropList = Object.entries(itemValues).map((item, index) => (
-        
         <option key={index} value={item[0]}>
           {item[1]}
         </option>
       ));
 
+      let defaultDisplay = tempArray[props.value];
+
       return (
         <>
           <select
             className="form-select"
-            defaultValue={-1}
+            defaultValue={defaultDisplay}
             aria-label="Item value dropdown"
-            onChange={(e) => {tempArray[props.value] = e.target.value;setDataArray(tempArray)}}
+            onChange={(e) => {
+              tempArray[props.value] = e.target.value;
+              setUpdated(!updated);
+              setDataArray(tempArray);
+            }}
           >
-            <option disabled value={-1}>Select name</option>
+            <option disabled value={-1}>
+              Select name
+            </option>
             {dropList}
           </select>
         </>
       );
     }
+
+    const mainDisplay =
+      loadedItem != null ? (
+        <>
+          <div className="row">
+            <div className="col">
+           <h5>{displayName1} {displayName2} {displayName3}</h5>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-3">
+              Type:{" "}
+              <ValueModule value={parseInt(Object.keys(loadedItem)) + 46} />
+            </div>
+            <div className="col-3">
+              Bonus:{" "}
+              <ValueModule value={parseInt(Object.keys(loadedItem)) + 50} />
+            </div>
+            <div className="col-3">
+              Charges:{" "}
+              <ValueModule value={parseInt(Object.keys(loadedItem)) + 60} />
+            </div>
+            <div className="col-3">
+              Ammo:{" "}
+              <ValueModule value={parseInt(Object.keys(loadedItem)) + 57} />
+            </div>
+          </div>
+          <div style={{marginTop: 20}} className="row">
+            <h5>Rename</h5>
+          </div>
+
+          <div className="row">
+            <div className="col-4">
+              <NameSelect value={parseInt(Object.keys(loadedItem)) + 49} />
+            </div>
+            <div className="col-4">
+              <NameSelect value={parseInt(Object.keys(loadedItem)) + 48} />
+            </div>
+            <div className="col-4">
+              <NameSelect value={parseInt(Object.keys(loadedItem)) + 47} />
+            </div>
+          </div>
+        </>
+      ) : null;
+
+    return mainDisplay;
+  }
+
+  function ItemListModule() {
+    const [loading, setLoading] = useState(true);
+    const [itemListArray, setItemListArray] = useState([]);
+
+    useEffect(() => {
+      if (loading === true) {
+        assembleList();
+        setLoading(false);
+      }
+    }, [setItemListArray, itemListArray, loading]);
+
+    const defaultDisplay = itemListArray.map((item, index) => (
+      <div key={index} className="row d-flex">
+        <div className="col-12">
+          {Object.values(item)}{" "}
+          <button onClick={() => setLoadedItem(item)}>Edit</button>
+        </div>
+      </div>
+    ));
 
     function assembleList() {
       let nameArray = [];
@@ -123,6 +187,15 @@ export default function InventoryEdit() {
 
     return defaultDisplay;
   }
+
+  const mainDisplay = (
+    <div className="row">
+      <div className="col-4">
+        <ItemListModule />
+      </div>
+      <div className="col-8">{loadedItem ? <ItemEditModule /> : null}</div>
+    </div>
+  );
 
   function exportSaveFile() {
     const blob = new Blob([dataArray], { type: "application/octet-stream" });
@@ -153,30 +226,13 @@ export default function InventoryEdit() {
         </div>
       </div>
       <div className="row">
-        <div className="col-2">
+        <div className="col-4">
           <h5>Items</h5>
         </div>
-        <div className="col-1">
-          <h5>Type</h5>
-        </div>
-        <div className="col-1">
-          <h5>Bonus</h5>
-        </div>
-        <div className="col-1">
-          <h5>Charges</h5>
-        </div>
-        <div className="col-6 d-flex justify-content-center">
-          <h5>Name Select</h5>
+        <div className="col-8">
         </div>
       </div>
-      {dataArray ? (
-        <ItemListModule />
-      ) : (
-        <h5 className="col-5">
-          Upload an inventory file. It will end in .STF and will look something
-          like this: CHRDATB1.STF
-        </h5>
-      )}
+      {dataArray ? mainDisplay : null}
     </div>
   );
 }
