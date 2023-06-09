@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Nav from "./Components/Nav";
 import CharEdit from './Components/CharEdit';
-import ItemEdit from './Components/ItemEdit';
+import InventoryEdit from './Components/InventoryEdit';
 
 
 
@@ -25,7 +25,7 @@ function App() {
       <Fragment>
           <Routes>
             <Route path="/" element={<CharEdit />} />
-<Route path="/itemedit/" element={<ItemEdit/>} />
+<Route path="/inventoryedit/" element={<InventoryEdit/>} />
           </Routes>
         </Fragment>
     </Container>

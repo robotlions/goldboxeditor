@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Navbar, Container } from "react-bootstrap";
+import { Navbar, Container } from "react-bootstrap";
 import {Nav as MyNav} from "react-bootstrap"
 
 
@@ -15,7 +15,7 @@ export default function Nav() {
           <Navbar.Collapse className="justify-content-evenly"id="basic-navbar-nav">
             <MyNav className="me-auto">
         <MyNav.Link href="/">Character Editor</MyNav.Link>
-        <MyNav.Link href="/itemedit/">Item Editor</MyNav.Link>
+        <MyNav.Link href="/inventoryedit/">Inventory Editor</MyNav.Link>
         {/* <MyNav.Link href="/recipes/">Recipes</MyNav.Link>
         <MyNav.Link href="/methods/">Methods</MyNav.Link> */}
         </MyNav>
