@@ -65,10 +65,11 @@ export default function InventoryEdit() {
             onChange={(e) => setValueState(e.target.value)}
             type="text"
             style={{ maxWidth: "30%" }}
+            onBlur={()=>saveValue()}
           />
-          <button style={{ fontSize: 12 }} onClick={() => saveValue()}>
+          {/* <button style={{ fontSize: 12 }} onClick={() => saveValue()}>
             Save
-          </button>
+          </button> */}
         </div>
       );
     }
@@ -144,6 +145,7 @@ export default function InventoryEdit() {
               <NameSelect value={parseInt(Object.keys(loadedItem)) + 47} />
             </div>
           </div>
+          <button onClick={()=>setLoadedItem(null)}>Save Changes</button>
         </>
       ) : null;
 
@@ -193,7 +195,8 @@ export default function InventoryEdit() {
       <div className="col-4">
         <ItemListModule />
       </div>
-      <div className="col-8">{loadedItem ? <ItemEditModule /> : null}</div>
+      <div className="col-8">{loadedItem ? <ItemEditModule /> : <h4>Select item to edit</h4>}</div>
+      
     </div>
   );
 
@@ -220,9 +223,9 @@ export default function InventoryEdit() {
             }}
           />
 
-          <button className="btn btn-primary" onClick={() => exportSaveFile()}>
-            Download Item File
-          </button>
+          {dataArray ? <button className="btn btn-primary" onClick={() => exportSaveFile()}>
+            Save and Download
+          </button> : null }
         </div>
       </div>
       <div className="row">
