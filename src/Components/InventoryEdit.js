@@ -14,6 +14,7 @@ export default function InventoryEdit() {
 
     var reader = new FileReader();
     reader.onload = function (e) {
+      setLoadedItem(null);
       let data = e.target.result;
       let dataArray = new Uint8Array(data);
       console.log(dataArray);
@@ -145,7 +146,7 @@ export default function InventoryEdit() {
               <NameSelect value={parseInt(Object.keys(loadedItem)) + 47} />
             </div>
           </div>
-          <button onClick={()=>setLoadedItem(null)}>Save Changes</button>
+          <button className="btn btn-primary shadow" onClick={()=>setLoadedItem(null)}>Save this item</button>
         </>
       ) : null;
 
@@ -164,10 +165,10 @@ export default function InventoryEdit() {
     }, [setItemListArray, itemListArray, loading]);
 
     const defaultDisplay = itemListArray.map((item, index) => (
-      <div key={index} className="row d-flex">
+      <div key={index} className="row d-flex inventoryItem">
         <div className="col-12">
           {Object.values(item)}{" "}
-          <button onClick={() => setLoadedItem(item)}>Edit</button>
+          {!loadedItem ? <button className="btn btn-primary shadow editButton" onClick={() => setLoadedItem(item)}>Edit</button> : null}
         </div>
       </div>
     ));
@@ -212,7 +213,7 @@ export default function InventoryEdit() {
   return (
     <div>
       <div className="row">
-        <div className="col">
+        <div className="col-4">
           <input
             id="fileSelect"
             type="file"
@@ -223,19 +224,23 @@ export default function InventoryEdit() {
             }}
           />
 
-          {dataArray ? <button className="btn btn-primary" onClick={() => exportSaveFile()}>
+          
+        </div>
+        <div className="col-8">
+        {dataArray && loadedItem===null ? <button className="btn btn-success shadow" onClick={() => exportSaveFile()}>
             Save and Download
           </button> : null }
         </div>
       </div>
-      <div className="row">
+      <div className="row headlineRow">
         <div className="col-4">
-          <h5>Items</h5>
+          <h3>Character Inventory</h3>
         </div>
         <div className="col-8">
         </div>
       </div>
       {dataArray ? mainDisplay : null}
+     
     </div>
   );
 }

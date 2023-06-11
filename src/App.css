@@ -1,3 +1,16 @@
 .charEditBody{
     margin-bottom: 20vh;
 }
+
+.editButton{
+    font-size: 10px;
+}
+
+.headlineRow{
+    margin-bottom: 20px;
+}
+
+.inventoryItem{
+    margin-bottom: 10px;
+    font-size: 20px;
+}

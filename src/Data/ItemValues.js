@@ -1,6 +1,6 @@
 export const itemValues = {
 
-    0: "0",
+    0: "",
     1: "Battle Axe",
     2: "Hand Axe",
     3: "Club",
