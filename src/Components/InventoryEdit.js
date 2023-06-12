@@ -53,7 +53,7 @@ export default function InventoryEdit() {
     }, [tempArray, updated]);
 
     function ValueModule(props) {
-      const [valueState, setValueState] = useState(tempArray[props.value]);
+      const [valueState, setValueState] = useState(tempArray[props.value] || null);
 
       function saveValue() {
         tempArray[props.value] = valueState;
@@ -107,7 +107,7 @@ export default function InventoryEdit() {
     const mainDisplay =
       loadedItem != null ? (
         <div className="card">
-          <div className="card-header">
+          <div className="card-header row">
             <div className="card-title">
               <h5>
                 {displayName1} {displayName2} {displayName3}
@@ -156,13 +156,16 @@ export default function InventoryEdit() {
               <NameSelect value={parseInt(Object.keys(loadedItem)) + 47} />
             </div>
           </div>
-          <div className="card-footer d-flex flex-row-reverse">
+          <div className="card-footer row d-flex flex-row-reverse">
+           
             <button
+            style={{maxWidth: 200}}
               className="btn btn-primary shadow"
               onClick={() => setLoadedItem(null)}
             >
               Done Editing
             </button>
+           
           </div>
         </div>
       ) : null;
