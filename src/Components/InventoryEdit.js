@@ -60,18 +60,17 @@ export default function InventoryEdit() {
       }
 
       return (
-        <div className="d-flex">
-          <input
-            value={valueState}
-            onChange={(e) => setValueState(e.target.value)}
-            type="text"
-            style={{ maxWidth: "30%" }}
-            onBlur={()=>saveValue()}
-          />
-          {/* <button style={{ fontSize: 12 }} onClick={() => saveValue()}>
-            Save
-          </button> */}
-        </div>
+        <>
+          {
+            <input
+              value={valueState}
+              onChange={(e) => setValueState(e.target.value)}
+              type="text"
+              style={{ maxWidth: "30%" }}
+              onBlur={() => saveValue()}
+            />
+          }
+        </>
       );
     }
 
@@ -107,12 +106,15 @@ export default function InventoryEdit() {
 
     const mainDisplay =
       loadedItem != null ? (
-        <>
-          <div className="row">
-            <div className="col">
-           <h5>{displayName1} {displayName2} {displayName3}</h5>
+        <div className="card">
+          <div className="card-header">
+            <div className="card-title">
+              <h5>
+                {displayName1} {displayName2} {displayName3}
+              </h5>
             </div>
           </div>
+          <div className="card-body"></div>
           <div className="row">
             <div className="col-3">
               Type:{" "}
@@ -131,7 +133,15 @@ export default function InventoryEdit() {
               <ValueModule value={parseInt(Object.keys(loadedItem)) + 57} />
             </div>
           </div>
-          <div style={{marginTop: 20}} className="row">
+          <div style={{ marginTop: 20 }} className="row">
+            <div className="col-3">
+              Weight:{" "}
+              <ItemWeightModule
+                value={parseInt(Object.keys(loadedItem)) + 55}
+              />
+            </div>
+          </div>
+          <div style={{ marginTop: 20 }} className="row">
             <h5>Rename</h5>
           </div>
 
@@ -146,8 +156,15 @@ export default function InventoryEdit() {
               <NameSelect value={parseInt(Object.keys(loadedItem)) + 47} />
             </div>
           </div>
-          <button className="btn btn-primary shadow" onClick={()=>setLoadedItem(null)}>Save this item</button>
-        </>
+          <div className="card-footer d-flex flex-row-reverse">
+            <button
+              className="btn btn-primary shadow"
+              onClick={() => setLoadedItem(null)}
+            >
+              Done Editing
+            </button>
+          </div>
+        </div>
       ) : null;
 
     return mainDisplay;
@@ -168,7 +185,14 @@ export default function InventoryEdit() {
       <div key={index} className="row d-flex inventoryItem">
         <div className="col-12">
           {Object.values(item)}{" "}
-          {!loadedItem ? <button className="btn btn-primary shadow editButton" onClick={() => setLoadedItem(item)}>Edit</button> : null}
+          {!loadedItem ? (
+            <button
+              className="btn btn-primary shadow editButton"
+              onClick={() => setLoadedItem(item)}
+            >
+              Edit
+            </button>
+          ) : null}
         </div>
       </div>
     ));
@@ -191,14 +215,62 @@ export default function InventoryEdit() {
     return defaultDisplay;
   }
 
+  function ItemWeightModule(props) {
+    let tempArray = dataArray;
+
+    const [inputText, setInputText] = useState(
+      parseInt(
+        (0 + dataArray[props.value + 1].toString(16)).slice(-2) +
+          (0 + dataArray[props.value].toString(16)).slice(-2),
+        16
+      )
+    );
+
+    const editDisplay = (
+      <>
+        {
+          <input
+            type="text"
+            style={{ maxWidth: "30%" }}
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onBlur={() => convertDecimaltoBinary()}
+          />
+        }
+      </>
+    );
+
+    function convertDecimaltoBinary() {
+      let eightBit = (
+        "0000" + parseInt(inputText).toString(16).toUpperCase()
+      ).slice(-4);
+      let eightBitSplit = eightBit.match(/.{1,2}/g) ?? [];
+      for (let i = 0; i < 1; i++) {
+        if (eightBitSplit[i] === "00") {
+          eightBitSplit[i] = "0";
+        } else if (eightBitSplit[i].charAt(0) === "0") {
+          eightBitSplit[i] = eightBitSplit[i].charAt(1);
+        }
+      }
+
+      tempArray[props.value + 1] = parseInt(eightBitSplit[0], 16);
+      tempArray[props.value] = parseInt(eightBitSplit[1], 16);
+      setDataArray(tempArray);
+    }
+
+    return editDisplay;
+  }
+
   const mainDisplay = (
-    <div className="row">
-      <div className="col-4">
+    <>
+      <div className="row">
         <ItemListModule />
       </div>
-      <div className="col-8">{loadedItem ? <ItemEditModule /> : <h4>Select item to edit</h4>}</div>
-      
-    </div>
+
+      <div className="row">
+        {loadedItem ? <ItemEditModule /> : <h4>Select item to edit</h4>}
+      </div>
+    </>
   );
 
   function exportSaveFile() {
@@ -212,8 +284,8 @@ export default function InventoryEdit() {
 
   return (
     <div>
-      <div className="row">
-        <div className="col-4">
+      <div className="row" style={{ minHeight: 40 }}>
+        <div className="col-md">
           <input
             id="fileSelect"
             type="file"
@@ -223,24 +295,21 @@ export default function InventoryEdit() {
               loadFile(e.target.files[0]);
             }}
           />
+          {dataArray && loadedItem === null ? (
+            <button
+              className="btn btn-success shadow"
+              onClick={() => exportSaveFile()}
+            >
+              Save and Download
+            </button>
+          ) : null}
+        </div>
+      </div>
+      <div className="row">
+        <h3>Character Inventory</h3>
 
-          
-        </div>
-        <div className="col-8">
-        {dataArray && loadedItem===null ? <button className="btn btn-success shadow" onClick={() => exportSaveFile()}>
-            Save and Download
-          </button> : null }
-        </div>
+        {dataArray ? mainDisplay : null}
       </div>
-      <div className="row headlineRow">
-        <div className="col-4">
-          <h3>Character Inventory</h3>
-        </div>
-        <div className="col-8">
-        </div>
-      </div>
-      {dataArray ? mainDisplay : null}
-     
     </div>
   );
 }
