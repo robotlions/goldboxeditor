@@ -1,9 +1,28 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;700;900&display=swap');
+
+
+
+
+body{
+    font-family: "Geologica";
+}
+
+p {
+    font-weight: 300;
+    font-size: large;
+}
+
 .charEditBody{
     margin-bottom: 20vh;
 }
 
 .editButton{
     font-size: 10px;
+}
+
+.form-control{
+    font-weight: 300;
 }
 
 .headlineRow{
@@ -13,6 +32,10 @@
 .inventoryItem{
     margin-bottom: 10px;
     font-size: 20px;
+}
+
+.spellEntry{
+    font-weight: 300;
 }
 
 #fileSelect::file-selector-button{

@@ -43,6 +43,7 @@ export default function CharEdit() {
     const [inputText, setInputText] = useState(defaultName);
     const editDisplay = (
       <input
+      className="form-control"
         value={inputText}
         maxLength={15}
         onChange={(e) => setInputText(e.target.value)}
@@ -109,7 +110,7 @@ export default function CharEdit() {
     const editDisplay = (
       
           <input
-            style={{maxWidth:"10%"}}
+          style={{maxWidth:"10%"}}
             type="number"
             max="99"
             value={inputText}
@@ -134,33 +135,22 @@ export default function CharEdit() {
       setDataArray(tempArray);
     }
 
-    const defaultDisplay = (
-      <>
-        {inputText} <button onClick={() => setEditing(!editing)}>Edit</button>
-      </>
-    );
+   
     const editDisplay = (
-      <>
-        {
+   
           <input
+          className="form-control"
             type="number"
             max="255"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
+            onBlur={()=>{setEditing(!editing);
+              submitChange();}}
           />
-        }{" "}
-        <button
-          onClick={() => {
-            setEditing(!editing);
-            submitChange();
-          }}
-        >
-          Done
-        </button>
-      </>
+        
     );
 
-    return editing === false ? defaultDisplay : editDisplay;
+    return editDisplay;
   }
 
   function ExperienceModule(props) {
@@ -177,29 +167,18 @@ export default function CharEdit() {
       )
     );
 
-    const defaultDisplay = (
-      <>
-        {inputText} <button onClick={() => setEditing(!editing)}>Edit</button>
-      </>
-    );
+
     const editDisplay = (
-      <>
-        {
+     
           <input
+          className="form-control"
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
+            onBlur={()=> {setEditing(!editing);
+              convertDecimaltoBinary();}}
           />
-        }{" "}
-        <button
-          onClick={() => {
-            setEditing(!editing);
-            convertDecimaltoBinary();
-          }}
-        >
-          Done
-        </button>
-      </>
+      
     );
 
     function convertDecimaltoBinary() {
@@ -222,7 +201,7 @@ export default function CharEdit() {
       setDataArray(tempArray);
     }
 
-    return editing === false ? defaultDisplay : editDisplay;
+    return editDisplay;
   }
 
   function SpellCheckBox(props) {
@@ -237,8 +216,10 @@ export default function CharEdit() {
     }
 
     return (
-      <span className="col-3">
+      <div className="col-6 col-md-3 spellEntry">
         <input
+        style={{marginRight: 10}}
+        className="form-check-input"
           type="checkbox"
           checked={checked}
           onChange={() => {
@@ -246,8 +227,8 @@ export default function CharEdit() {
             updateChecked();
           }}
         />
-        {props.index}:{spellList[props.index].spellName}{" "}
-      </span>
+        {spellList[props.index].spellName}
+      </div>
     );
   }
 
@@ -260,7 +241,7 @@ export default function CharEdit() {
     );
 
     return (
-      <div style={{ marginBottom: 20 }} className="d-flex flex-wrap">
+      <div style={{ marginBottom: 20}} className="d-flex flex-wrap">
         {spellDisplay}
       </div>
     );
@@ -299,16 +280,19 @@ export default function CharEdit() {
 
   return (
     <div className="charEditBody">
-      <input
-        id="fileSelect"
-        type="file"
-        accept=".who, .sav"
-        onChange={(e) => {
-          setSelectedFile(e.target.files[0]);
-          loadFile(e.target.files[0]);
-        }}
-      />
-      {/* {selectedFile ? <button className="btn btn-primary" onClick={() => loadFile()}>Load Save File</button> : null} */}
+      <div className="mb-3">
+            <input
+              className="form-control"
+              type="file"
+              id="fileSelect"
+              accept=".sav"
+              onChange={(e) => {
+                setSelectedFile(e.target.files[0]);
+                loadFile(e.target.files[0]);
+              }}
+            />
+          </div>
+      
       <p></p>
       <div className="row">
         <div className="col-md-3">
@@ -335,9 +319,10 @@ export default function CharEdit() {
           ) : null}
         </div>
       </div>
+      <br/>
       <div className="row">
         <div className="col-md-6">
-          <h4>Ability Scores</h4>
+          <h4 style={{textAlign:"center"}}>Ability Scores</h4>
           <p>
             {/* The commented out scores are - I think - the in-game modified score after effects */}
             Strength: {dataArray ? <ScoreModule dataArrayIndex={16} /> : null} (
@@ -363,7 +348,7 @@ export default function CharEdit() {
           </p>
         </div>
         <div className="col-md-6">
-          <h4>Levels</h4>
+          <h4 style={{textAlign:"center"}}>Levels</h4>
           <p>
             Cleric: {dataArray ? <LevelModule dataArrayIndex={273} /> : null}
             <br />

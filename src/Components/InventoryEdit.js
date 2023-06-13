@@ -240,7 +240,7 @@ export default function InventoryEdit() {
 
     const defaultDisplay = itemListArray.map((item, index) => (
       <div key={index} className="row d-flex inventoryItem">
-        <div className="col-12">
+        <p className="col-12">
           {Object.values(item)}{" "}
           {!loadedItem ? (
             <button
@@ -250,7 +250,7 @@ export default function InventoryEdit() {
               Edit
             </button>
           ) : null}
-        </div>
+        </p>
       </div>
     ));
 
@@ -344,9 +344,9 @@ export default function InventoryEdit() {
     <div>
       <div className="row" style={{ minHeight: 40 }}>
         <div className="col-md">
-          <div class="mb-3">
+          <div className="mb-3">
             <input
-              class="form-control"
+              className="form-control"
               type="file"
               id="fileSelect"
               accept=".stf"
