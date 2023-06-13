@@ -43,7 +43,7 @@ export default function CharEdit() {
     const [inputText, setInputText] = useState(defaultName);
     const editDisplay = (
       <input
-      className="form-control"
+        className="form-control"
         value={inputText}
         maxLength={15}
         onChange={(e) => setInputText(e.target.value)}
@@ -89,7 +89,7 @@ export default function CharEdit() {
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
         onBlur={() => submitChange()}
-        style={{ maxWidth: "10%" }}
+        style={{ maxWidth: "60%", textAlign: "center" }}
       />
     );
 
@@ -106,18 +106,15 @@ export default function CharEdit() {
       setDataArray(tempArray);
     }
 
-    
     const editDisplay = (
-      
-          <input
-          style={{maxWidth:"10%"}}
-            type="number"
-            max="99"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            onBlur={()=>submitChange()}
-          />
-       
+      <input
+        style={{ maxWidth: "60%", textAlign: "center" }}
+        type="number"
+        max="99"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        onBlur={() => submitChange()}
+      />
     );
 
     return editDisplay;
@@ -135,19 +132,18 @@ export default function CharEdit() {
       setDataArray(tempArray);
     }
 
-   
     const editDisplay = (
-   
-          <input
-          className="form-control"
-            type="number"
-            max="255"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            onBlur={()=>{setEditing(!editing);
-              submitChange();}}
-          />
-        
+      <input
+        className="form-control"
+        type="number"
+        max="255"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        onBlur={() => {
+          setEditing(!editing);
+          submitChange();
+        }}
+      />
     );
 
     return editDisplay;
@@ -167,18 +163,17 @@ export default function CharEdit() {
       )
     );
 
-
     const editDisplay = (
-     
-          <input
-          className="form-control"
-            type="text"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            onBlur={()=> {setEditing(!editing);
-              convertDecimaltoBinary();}}
-          />
-      
+      <input
+        className="form-control"
+        type="text"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        onBlur={() => {
+          setEditing(!editing);
+          convertDecimaltoBinary();
+        }}
+      />
     );
 
     function convertDecimaltoBinary() {
@@ -218,8 +213,8 @@ export default function CharEdit() {
     return (
       <div className="col-6 col-md-3 spellEntry">
         <input
-        style={{marginRight: 10}}
-        className="form-check-input"
+          style={{ marginRight: 10 }}
+          className="form-check-input"
           type="checkbox"
           checked={checked}
           onChange={() => {
@@ -241,7 +236,7 @@ export default function CharEdit() {
     );
 
     return (
-      <div style={{ marginBottom: 20}} className="d-flex flex-wrap">
+      <div style={{ marginBottom: 20 }} className="d-flex flex-wrap">
         {spellDisplay}
       </div>
     );
@@ -281,18 +276,17 @@ export default function CharEdit() {
   return (
     <div className="charEditBody">
       <div className="mb-3">
-            <input
-              className="form-control"
-              type="file"
-              id="fileSelect"
-              accept=".sav"
-              onChange={(e) => {
-                setSelectedFile(e.target.files[0]);
-                loadFile(e.target.files[0]);
-              }}
-            />
-          </div>
-      
+        <input
+          className="form-control"
+          type="file"
+          id="fileSelect"
+          accept=".sav"
+          onChange={(e) => {
+            setSelectedFile(e.target.files[0]);
+            loadFile(e.target.files[0]);
+          }}
+        />
+      </div>
       <p></p>
       <div className="row">
         <div className="col-md-3">
@@ -319,51 +313,95 @@ export default function CharEdit() {
           ) : null}
         </div>
       </div>
-      <br/>
+      <br />
       <div className="row">
         <div className="col-md-6">
-          <h4 style={{textAlign:"center"}}>Ability Scores</h4>
-          <p>
+          <h4 style={{ textAlign: "center" }}>Ability Scores</h4>
+          <div className="row">
             {/* The commented out scores are - I think - the in-game modified score after effects */}
-            Strength: {dataArray ? <ScoreModule dataArrayIndex={16} /> : null} (
-            {dataArray ? <ScoreModule dataArrayIndex={28} /> : null}) <br />
-            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={17} /> : null}</p> */}
-            Intelligence:{" "}
-            {dataArray ? <ScoreModule dataArrayIndex={18} /> : null}
-            <br />
-            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={19} /> : null}</p> */}
-            Wisdom: {dataArray ? <ScoreModule dataArrayIndex={20} /> : null}
-            <br />
-            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={21} /> : null}</p> */}
-            Dexterity: {dataArray ? <ScoreModule dataArrayIndex={22} /> : null}
-            <br />
-            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={23} /> : null}</p> */}
-            Constitution:{" "}
-            {dataArray ? <ScoreModule dataArrayIndex={24} /> : null}
-            <br />
-            {/* Score: {dataArray ? <ScoreModule dataArrayIndex={25} /> : null}<br /> */}
-            Charisma: {dataArray ? <ScoreModule dataArrayIndex={26} /> : null}
-            <br />
-            {/* <p>Score: {dataArray ? <ScoreModule dataArrayIndex={27} /> : null}</p> */}
-          </p>
+            <div className="col-4">Strength:</div>
+            <div className="col-4">
+              {dataArray ? <ScoreModule dataArrayIndex={16} /> : null}
+            </div>
+
+            <div className="col-4">
+              ({dataArray ? <ScoreModule dataArrayIndex={28} /> : null}) <br />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-4">Intelligence:</div>
+            <div className="col-4">
+              {dataArray ? <ScoreModule dataArrayIndex={18} /> : null}
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-4">Wisdom:</div>
+            <div className="col-4">
+              {dataArray ? <ScoreModule dataArrayIndex={20} /> : null}
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-4">Dexterity:</div>
+            <div className="col-4">
+              {dataArray ? <ScoreModule dataArrayIndex={22} /> : null}
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-4">Constitution:</div>
+            <div className="col-4">
+              {dataArray ? <ScoreModule dataArrayIndex={24} /> : null}
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-4">Charisma:</div>
+            <div className="col-4">
+              {dataArray ? <ScoreModule dataArrayIndex={26} /> : null}
+            </div>
+          </div>
         </div>
         <div className="col-md-6">
-          <h4 style={{textAlign:"center"}}>Levels</h4>
-          <p>
-            Cleric: {dataArray ? <LevelModule dataArrayIndex={273} /> : null}
-            <br />
-            Fighter: {dataArray ? <LevelModule dataArrayIndex={275} /> : null}
-            <br />
-            Paladin: {dataArray ? <LevelModule dataArrayIndex={276} /> : null}
-            <br />
-            Ranger: {dataArray ? <LevelModule dataArrayIndex={277} /> : null}
-            <br />
-            Magic-User:{" "}
-            {dataArray ? <LevelModule dataArrayIndex={278} /> : null}
-            <br />
-            Thief: {dataArray ? <LevelModule dataArrayIndex={279} /> : null}
-            <br />
-          </p>
+          <h4 style={{ textAlign: "center" }}>Levels</h4>
+          <div className="row">
+            <div className="col-6">Cleric: </div>
+            <div className="col-6">
+              {dataArray ? <LevelModule dataArrayIndex={273} /> : null}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">Fighter: </div>
+            <div className="col-6">
+              {dataArray ? <LevelModule dataArrayIndex={275} /> : null}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">Paladin: </div>
+            <div className="col-6">
+              {dataArray ? <LevelModule dataArrayIndex={276} /> : null}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">Ranger: </div>
+            <div className="col-6">
+              {dataArray ? <LevelModule dataArrayIndex={277} /> : null}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">Magic-User: </div>
+            <div className="col-6">
+              {dataArray ? <LevelModule dataArrayIndex={278} /> : null}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">Thief: </div>
+            <div className="col-6">
+              {dataArray ? <LevelModule dataArrayIndex={279} /> : null}
+            </div>
+          </div>
         </div>
       </div>
       <h4>Mage Spells:</h4>{" "}
