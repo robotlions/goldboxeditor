@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { spellList } from "../Data/Spells";
 import { alignments, statusCodes } from "../Data/DataLists";
@@ -41,32 +40,17 @@ export default function CharEdit() {
 
     let defaultName = assembleName();
 
-    const [editing, setEditing] = useState(false);
     const [inputText, setInputText] = useState(defaultName);
     const editDisplay = (
-      <>
-        <input
-          value={inputText}
-          maxLength={15}
-          onChange={(e) => setInputText(e.target.value)}
-          type="text"
-        />
-        <button
-          onClick={() => {
-            setEditing(!editing);
-            saveName();
-          }}
-        >
-          Done
-        </button>
-      </>
+      <input
+        value={inputText}
+        maxLength={15}
+        onChange={(e) => setInputText(e.target.value)}
+        onBlurCapture={() => saveName()}
+        type="text"
+      />
     );
 
-    const defaultDisplay = (
-      <>
-        {defaultName} <button onClick={() => setEditing(!editing)}>Edit</button>
-      </>
-    );
     function assembleName() {
       let assembledName = "";
       for (let i = 1; i <= dataArray[0]; i++) {
@@ -83,13 +67,12 @@ export default function CharEdit() {
       setDataArray(tempArray);
     }
 
-    return editing === false ? defaultDisplay : editDisplay;
+    return editDisplay;
   }
 
   function ScoreModule(props) {
     let tempArray = dataArray;
 
-    const [editing, setEditing] = useState(false);
     const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
 
     function submitChange() {
@@ -98,39 +81,23 @@ export default function CharEdit() {
       setDataArray(tempArray);
     }
 
-    const defaultDisplay = (
-      <>
-        {inputText} <button onClick={() => setEditing(!editing)}>Edit</button>
-      </>
-    );
     const editDisplay = (
-      <>
-        {
-          <input
-            type="number"
-            max="99"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-          />
-        }{" "}
-        <button
-          onClick={() => {
-            setEditing(!editing);
-            submitChange();
-          }}
-        >
-          Done
-        </button>
-      </>
+      <input
+        type="number"
+        max="99"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        onBlur={() => submitChange()}
+        style={{ maxWidth: "10%" }}
+      />
     );
 
-    return editing === false ? defaultDisplay : editDisplay;
+    return editDisplay;
   }
 
   function LevelModule(props) {
     let tempArray = dataArray;
 
-    const [editing, setEditing] = useState(false);
     const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
 
     function submitChange() {
@@ -138,33 +105,21 @@ export default function CharEdit() {
       setDataArray(tempArray);
     }
 
-    const defaultDisplay = (
-      <>
-        {inputText} <button onClick={() => setEditing(!editing)}>Edit</button>
-      </>
-    );
+    
     const editDisplay = (
-      <>
-        {
+      
           <input
+            style={{maxWidth:"10%"}}
             type="number"
             max="99"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
+            onBlur={()=>submitChange()}
           />
-        }{" "}
-        <button
-          onClick={() => {
-            setEditing(!editing);
-            submitChange();
-          }}
-        >
-          Done
-        </button>
-      </>
+       
     );
 
-    return editing === false ? defaultDisplay : editDisplay;
+    return editDisplay;
   }
 
   function HitPointModule(props) {
@@ -365,14 +320,19 @@ export default function CharEdit() {
         <div className="col-md-3">
           Experience: {dataArray ? <ExperienceModule /> : null}
         </div>
-        
       </div>
       <div className="row">
-      <div className="col-md-3">
-          Status: {dataArray ? <SelectModule index={422} dataList={statusCodes} /> : null}
+        <div className="col-md-3">
+          Status:{" "}
+          {dataArray ? (
+            <SelectModule index={422} dataList={statusCodes} />
+          ) : null}
         </div>
         <div className="col-md-3">
-          Alignment: {dataArray ? <SelectModule index={288} dataList={alignments} /> : null}
+          Alignment:{" "}
+          {dataArray ? (
+            <SelectModule index={288} dataList={alignments} />
+          ) : null}
         </div>
       </div>
       <div className="row">
