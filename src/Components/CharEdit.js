@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { spellList } from "../Data/Spells";
 import { alignments, statusCodes } from "../Data/DataLists";
@@ -6,6 +6,7 @@ import { alignments, statusCodes } from "../Data/DataLists";
 export default function CharEdit() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
+  
 
   function exportSaveFile() {
     const blob = new Blob([dataArray], { type: "application/octet-stream" });
@@ -34,6 +35,8 @@ export default function CharEdit() {
     };
     reader.readAsArrayBuffer(file);
   }
+
+ 
 
   function NameModule() {
     let tempArray = dataArray;
@@ -82,7 +85,47 @@ export default function CharEdit() {
       setDataArray(tempArray);
     }
 
+
     const editDisplay = (
+      <input
+      id={props.idText}
+        type="number"
+        max="99"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        onBlur={() => submitChange()}
+        style={{ maxWidth: "60%", textAlign: "center" }}
+      />
+    );
+
+    return editDisplay;
+  }
+
+  function StrengthModule(props) {
+    let tempArray = dataArray;
+
+    const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
+    const [extInput, setExtInput] = useState(dataArray[28])
+   
+
+    function submitChange() {
+      tempArray[props.dataArrayIndex] = inputText;
+      tempArray[props.dataArrayIndex + 1] = inputText;
+      setDataArray(tempArray);
+    }
+
+    function submitExtChange() {
+      tempArray[28] = extInput;
+      tempArray[29] = extInput;
+      setDataArray(tempArray);
+    }
+
+    
+
+
+    const editDisplay = (
+      <>
+      <div className="col-4">
       <input
         type="number"
         max="99"
@@ -91,6 +134,19 @@ export default function CharEdit() {
         onBlur={() => submitChange()}
         style={{ maxWidth: "60%", textAlign: "center" }}
       />
+      </div>
+      <div className="col-4">
+      {inputText >= 18 ? 
+      <input
+        type="number"
+        max="99"
+        value={extInput}
+        onChange={(e) => setExtInput(e.target.value)}
+        onBlur={() => submitExtChange()}
+        style={{ maxWidth: "60%", textAlign: "center" }}
+      /> : null }
+      </div>
+      </>
     );
 
     return editDisplay;
@@ -273,6 +329,8 @@ export default function CharEdit() {
     );
   }
 
+
+
   return (
     <div className="charEditBody">
       <div className="mb-3">
@@ -318,15 +376,14 @@ export default function CharEdit() {
         <div className="col-md-6">
           <h4 style={{ textAlign: "center" }}>Ability Scores</h4>
           <div className="row">
-            {/* The commented out scores are - I think - the in-game modified score after effects */}
             <div className="col-4">Strength:</div>
-            <div className="col-4">
-              {dataArray ? <ScoreModule dataArrayIndex={16} /> : null}
-            </div>
+            
+              {dataArray ? <StrengthModule idText="strengthScore" dataArrayIndex={16} /> : null}
+           
 
-            <div className="col-4">
-              ({dataArray ? <ScoreModule dataArrayIndex={28} /> : null}) <br />
-            </div>
+            {/* <div className="col-4">
+              ({dataArray ? <ScoreModule dataArrayIndex={28} /> : null})
+            </div> */}
           </div>
 
           <div className="row">
@@ -412,6 +469,7 @@ export default function CharEdit() {
         Download
       </button>
       <br />
+
     </div>
   );
 }
