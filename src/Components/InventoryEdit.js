@@ -5,6 +5,7 @@ export default function InventoryEdit() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
   const [loadedItem, setLoadedItem] = useState(null);
+  const [unsavedChanges, setUnsavedChanges] = useState(false);
 
   function loadFile(file) {
     if (document.querySelector("#fileSelect").value === "") {
@@ -29,31 +30,29 @@ export default function InventoryEdit() {
   function ItemEditModule(props) {
     let tempArray = dataArray;
 
-    const [displayName1, setDisplayName1] = useState(
-      itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 49]]
-    );
-    const [displayName2, setDisplayName2] = useState(
-      itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 48]]
-    );
-    const [displayName3, setDisplayName3] = useState(
-      itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 47]]
-    );
+    const [displayName1, setDisplayName1] = useState("");
+    const [displayName2, setDisplayName2] = useState("");
+    const [displayName3, setDisplayName3] = useState("");
     const [updated, setUpdated] = useState(true);
 
     useEffect(() => {
-      setDisplayName1(
-        itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 49]]
-      );
-      setDisplayName2(
-        itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 48]]
-      );
-      setDisplayName3(
-        itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 47]]
-      );
+      if (loadedItem) {
+        setDisplayName1(
+          itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 49]]
+        );
+        setDisplayName2(
+          itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 48]]
+        );
+        setDisplayName3(
+          itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 47]]
+        );
+      }
     }, [tempArray, updated]);
 
     function ValueModule(props) {
-      const [valueState, setValueState] = useState(tempArray[props.value] || null);
+      const [valueState, setValueState] = useState(
+        tempArray[props.value] || null
+      );
 
       function saveValue() {
         tempArray[props.value] = valueState;
@@ -157,20 +156,75 @@ export default function InventoryEdit() {
             </div>
           </div>
           <div className="card-footer row d-flex flex-row-reverse">
-           
             <button
-            style={{maxWidth: 200}}
+              style={{ maxWidth: 200 }}
               className="btn btn-primary shadow"
-              onClick={() => setLoadedItem(null)}
+              onClick={() => {setLoadedItem(null);setUnsavedChanges(true)}}
             >
               Done Editing
             </button>
-           
           </div>
         </div>
       ) : null;
 
-    return mainDisplay;
+    const emptySelect = (
+      <select
+        className="form-select"
+        defaultValue={0}
+        aria-label="Item value dropdown"
+        onChange={(e) => {
+          tempArray[props.value] = e.target.value;
+        }}
+      >
+        <option disabled value={0}></option>
+      </select>
+    );
+
+    const emptyDisplay = (
+      <div className="card">
+        <div className="card-header row">
+          <div id="cardTitle" className="card-title">
+            <h5 style={{ color: "transparent" }}>Easter Egg secret message</h5>
+          </div>
+        </div>
+        <div className="card-body"></div>
+        <div className="row">
+          <div className="col-3">
+            Type: <input type="text" disabled style={{ width: "30%" }} />
+          </div>
+          <div className="col-3">
+            Bonus: <input type="text" disabled style={{ width: "30%" }} />
+          </div>
+          <div className="col-3">
+            Charges: <input type="text" disabled style={{ width: "30%" }} />
+          </div>
+          <div className="col-3">
+            Ammo: <input type="text" disabled style={{ width: "30%" }} />
+          </div>
+        </div>
+        <div style={{ marginTop: 20 }} className="row">
+          <div className="col-3">
+            Weight: <input type="text" disabled style={{ width: "30%" }} />
+          </div>
+        </div>
+        <div style={{ marginTop: 20 }} className="row">
+          <h5>Rename</h5>
+        </div>
+
+        <div className="row">
+          <div className="col-4">{emptySelect}</div>
+          <div className="col-4">{emptySelect}</div>
+          <div className="col-4">{emptySelect}</div>
+        </div>
+        <div className="card-footer row d-flex flex-row-reverse">
+          <button className="btn" disabled style={{ maxWidth: 200 }}>
+            No Item Selected
+          </button>
+        </div>
+      </div>
+    );
+
+    return loadedItem ? mainDisplay : emptyDisplay;
   }
 
   function ItemListModule() {
@@ -271,7 +325,8 @@ export default function InventoryEdit() {
       </div>
 
       <div className="row">
-        {loadedItem ? <ItemEditModule /> : <h4>Select item to edit</h4>}
+        {/* {loadedItem ? <ItemEditModule /> : <h4>Select item to edit</h4>} */}
+        <ItemEditModule />
       </div>
     </>
   );
@@ -289,23 +344,20 @@ export default function InventoryEdit() {
     <div>
       <div className="row" style={{ minHeight: 40 }}>
         <div className="col-md">
-          <input
-            id="fileSelect"
-            type="file"
-            accept=".stf"
-            onChange={(e) => {
-              setSelectedFile(e.target.files[0]);
-              loadFile(e.target.files[0]);
-            }}
-          />
-          {dataArray && loadedItem === null ? (
-            <button
-              className="btn btn-success shadow"
-              onClick={() => exportSaveFile()}
-            >
-              Save and Download
-            </button>
-          ) : null}
+          <div class="mb-3">
+            <input
+              class="form-control"
+              type="file"
+              id="fileSelect"
+              accept=".stf"
+              onChange={(e) => {
+                setSelectedFile(e.target.files[0]);
+                loadFile(e.target.files[0]);
+              }}
+            />
+          </div>
+
+          
         </div>
       </div>
       <div className="row">
@@ -313,6 +365,15 @@ export default function InventoryEdit() {
 
         {dataArray ? mainDisplay : null}
       </div>
+      {unsavedChanges === true && !loadedItem ? (
+            <button
+            style={{marginTop: 20}}
+              className="btn btn-success shadow"
+              onClick={() => exportSaveFile()}
+            >
+              Save and Download
+            </button>
+          ) : null}
     </div>
   );
 }

@@ -14,3 +14,8 @@
     margin-bottom: 10px;
     font-size: 20px;
 }
+
+#fileSelect::file-selector-button{
+    background-color: #0d6efd;
+    color: white;
+}
