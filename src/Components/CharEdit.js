@@ -2,13 +2,18 @@ import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { spellList } from "../Data/Spells";
 import { alignments, statusCodes } from "../Data/DataLists";
+import InventoryEdit from "./InventoryEdit";
 
 export default function CharEdit() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
-  
+  const [inventoryFileName, setInventoryFileName] = useState(null);
 
   function exportSaveFile() {
+    if(!selectedFile){
+      return alert("Please load a character file")
+    }
+    else{
     const blob = new Blob([dataArray], { type: "application/octet-stream" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -16,6 +21,7 @@ export default function CharEdit() {
     link.href = url;
     link.click();
   }
+}
 
   function loadFile(file) {
     if (document.querySelector("#fileSelect").value === "") {
@@ -36,6 +42,11 @@ export default function CharEdit() {
     reader.readAsArrayBuffer(file);
   }
 
+  function createInventoryFile(e){
+    let loadedFileName = e.target.files[0].name
+    let inventoryFile = loadedFileName.substr(0, loadedFileName.lastIndexOf(".")) + ".STF";
+    setInventoryFileName(inventoryFile)
+  }
  
 
   function NameModule() {
@@ -340,6 +351,8 @@ export default function CharEdit() {
           id="fileSelect"
           accept=".sav"
           onChange={(e) => {
+            console.log(e.target.files);
+            createInventoryFile(e);
             setSelectedFile(e.target.files[0]);
             loadFile(e.target.files[0]);
           }}
@@ -465,6 +478,7 @@ export default function CharEdit() {
       <div>{dataArray ? <SpellModule filter="Mage" /> : null} </div>
       {/* <h4>Cleric Spells:</h4> <div>{dataArray ? <SpellModule filter="Cleric"/> : null} </div> */}
       {/* <h4>Druid Spells:</h4> <div>{dataArray ? <SpellModule filter="Druid"/> : null} </div> */}
+      {/* <InventoryEdit inventoryFileName={inventoryFileName}/> */}
       <button className="btn btn-primary" onClick={() => exportSaveFile()}>
         Download
       </button>

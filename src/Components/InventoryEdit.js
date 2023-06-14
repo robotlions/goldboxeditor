@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { itemValues } from "../Data/ItemValues";
 
-export default function InventoryEdit() {
+export default function InventoryEdit(props) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
   const [loadedItem, setLoadedItem] = useState(null);
@@ -355,6 +355,7 @@ export default function InventoryEdit() {
                 loadFile(e.target.files[0]);
               }}
             />
+           
           </div>
 
           
