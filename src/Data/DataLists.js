@@ -23,3 +23,16 @@ export const alignments = {
     7: "Chaotic Neutral",
     8: "Chaotic Evil"
 }
+
+export const races = {
+
+    // 0: "Tribble",
+    1: "Elf",
+    2: "Half-Elf",
+    3: "Dwarf",
+    4: "Gnome",
+    5: "Halfling",
+    6: "Human",
+    // 7: "Monster",
+
+}

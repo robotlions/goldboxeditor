@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { spellList } from "../Data/Spells";
-import { alignments, statusCodes } from "../Data/DataLists";
+import { alignments, statusCodes, races } from "../Data/DataLists";
 import InventoryEdit from "./InventoryEdit";
 
 export default function CharEdit() {
@@ -139,7 +139,7 @@ export default function CharEdit() {
       <div className="col-4">
       <input
         type="number"
-        max="99"
+        max="100"
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
         onBlur={() => submitChange()}
@@ -332,7 +332,7 @@ export default function CharEdit() {
           }}
         >
           <option disabled value={-1}>
-            Status options
+            Options
           </option>
           {dropList}
         </select>
@@ -381,6 +381,12 @@ export default function CharEdit() {
           Alignment:{" "}
           {dataArray ? (
             <SelectModule index={288} dataList={alignments} />
+          ) : null}
+        </div>
+        <div className="col-md-3">
+          Race:{" "}
+          {dataArray ? (
+            <SelectModule index={107} dataList={races} />
           ) : null}
         </div>
       </div>
