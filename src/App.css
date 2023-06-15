@@ -6,14 +6,27 @@
     src: url(./assets/fonts/Geologica_Cursive-Regular.ttf)  format('truetype');
   }
 
+  @font-face {
+    font-family: 'IM-Fell';
+    src: url(./assets/fonts/IMFellGreatPrimerSC-Regular.ttf)  format('truetype');
+  }
+
 
 body{
     font-family: "Geologica-Regular";
+    font-size: 15px;
 }
 
 p {
     font-weight: 300;
-    font-size: large;
+}
+
+input.form-control{
+    font-size: 12px;
+}
+
+select.form-select{
+    font-size: 12px;
 }
 
 .charEditBody{
@@ -26,6 +39,7 @@ p {
 
 .form-control{
     font-weight: 300;
+    font-size: 15px;;
 }
 
 .headlineRow{
@@ -37,11 +51,26 @@ p {
     font-size: 20px;
 }
 
-.spellEntry{
-    font-weight: 300;
+.inventoryText{
+    font-size: 12px;
 }
 
-#fileSelect::file-selector-button{
+.mainTitle{
+    font-family: IM-Fell;
+    text-align: center;
+}
+
+.spellEntry{
+    font-weight: 300;
+    font-size: 12px;
+}
+
+#fileSelect::file-selector-button {
+    background-color: #0d6efd;
+    color: white;
+}
+
+#inventoryFileSelect::file-selector-button {
     background-color: #0d6efd;
     color: white;
 }

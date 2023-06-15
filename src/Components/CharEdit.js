@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { spellList } from "../Data/Spells";
-import { alignments, statusCodes, races } from "../Data/DataLists";
+import { alignments, statusCodes, races, genders } from "../Data/DataLists";
 import InventoryEdit from "./InventoryEdit";
 
 export default function CharEdit() {
@@ -194,8 +194,8 @@ export default function CharEdit() {
     const [inputText, setInputText] = useState(dataArray[112]);
 
     function submitChange() {
-      tempArray[112] = inputText;
-      tempArray[437] = inputText;
+      tempArray[props.dataArrayIndex] = inputText;
+      
       setDataArray(tempArray);
     }
 
@@ -344,6 +344,10 @@ export default function CharEdit() {
 
   return (
     <div className="charEditBody">
+      <div className="row">
+        <h2 className="mainTitle">Advanced Dungeons and Dragons<br/>Secret of the Silver Blades</h2>
+        <div className="col-md-6">
+
       <div className="mb-3">
         <input
           className="form-control"
@@ -358,13 +362,20 @@ export default function CharEdit() {
           }}
         />
       </div>
+      <button className="btn btn-primary" onClick={() => exportSaveFile()}>
+        Download Character File
+      </button>
+      <br />
       <p></p>
       <div className="row">
         <div className="col-md-3">
           Character Name: {dataArray ? <NameModule /> : null}
         </div>
         <div className="col-md-3">
-          Max Hit Points: {dataArray ? <HitPointModule /> : null}
+          Max Hit Points: {dataArray ? <HitPointModule dataArrayIndex={112}/> : null}
+        </div>
+        <div className="col-md-3">
+          Current Hit Points: {dataArray ? <HitPointModule dataArrayIndex={437}/> : null}
         </div>
         <div className="col-md-3">
           Experience: {dataArray ? <ExperienceModule /> : null}
@@ -387,6 +398,12 @@ export default function CharEdit() {
           Race:{" "}
           {dataArray ? (
             <SelectModule index={107} dataList={races} />
+          ) : null}
+        </div>
+        <div className="col-md-3">
+          Gender:{" "}
+          {dataArray ? (
+            <SelectModule index={287} dataList={genders} />
           ) : null}
         </div>
       </div>
@@ -480,16 +497,41 @@ export default function CharEdit() {
           </div>
         </div>
       </div>
+      <br/>
+      {dataArray ? <><h4>Magic-user Spell Slots</h4>
+      <div className="row">
+        <div className="col-2">
+       1: <LevelModule dataArrayIndex={327} />
+       </div>
+       <div className="col-2">
+       2: <LevelModule dataArrayIndex={328} />
+       </div>
+       <div className="col-2">
+       3: <LevelModule dataArrayIndex={329} />
+       </div>
+       <div className="col-2">
+       4: <LevelModule dataArrayIndex={330} />
+       </div>
+       <div className="col-2">
+       5: <LevelModule dataArrayIndex={331} />
+       </div>
+       <div className="col-2">
+       6: <LevelModule dataArrayIndex={332} />
+       </div>
+       <div className="col-2">
+       7: <LevelModule dataArrayIndex={333} />
+       </div>
+      </div></> : null }
       <h4>Mage Spells:</h4>{" "}
       <div>{dataArray ? <SpellModule filter="Mage" /> : null} </div>
       {/* <h4>Cleric Spells:</h4> <div>{dataArray ? <SpellModule filter="Cleric"/> : null} </div> */}
       {/* <h4>Druid Spells:</h4> <div>{dataArray ? <SpellModule filter="Druid"/> : null} </div> */}
-      {/* <InventoryEdit inventoryFileName={inventoryFileName}/> */}
-      <button className="btn btn-primary" onClick={() => exportSaveFile()}>
-        Download
-      </button>
-      <br />
-
+      </div>
+      <div className="col-md-6">
+      <InventoryEdit inventoryFileName={inventoryFileName}/>
+      
+      </div>
+            </div>
     </div>
   );
 }

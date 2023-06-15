@@ -8,7 +8,7 @@ export default function InventoryEdit(props) {
   const [unsavedChanges, setUnsavedChanges] = useState(false);
 
   function loadFile(file) {
-    if (document.querySelector("#fileSelect").value === "") {
+    if (document.querySelector("#inventoryFileSelect").value === "") {
       alert("No file selected");
       return;
     }
@@ -51,7 +51,7 @@ export default function InventoryEdit(props) {
 
     function ValueModule(props) {
       const [valueState, setValueState] = useState(
-        tempArray[props.value] || null
+        tempArray[props.value]
       );
 
       function saveValue() {
@@ -115,25 +115,25 @@ export default function InventoryEdit(props) {
           </div>
           <div className="card-body"></div>
           <div className="row">
-            <div className="col-3">
+            <div className="col-3 inventoryText">
               Type:{" "}
               <ValueModule value={parseInt(Object.keys(loadedItem)) + 46} />
             </div>
-            <div className="col-3">
+            <div className="col-3 inventoryText">
               Bonus:{" "}
               <ValueModule value={parseInt(Object.keys(loadedItem)) + 50} />
             </div>
-            <div className="col-3">
+            <div className="col-3 inventoryText">
               Charges:{" "}
               <ValueModule value={parseInt(Object.keys(loadedItem)) + 60} />
             </div>
-            <div className="col-3">
+            <div className="col-3 inventoryText">
               Ammo:{" "}
               <ValueModule value={parseInt(Object.keys(loadedItem)) + 57} />
             </div>
           </div>
           <div style={{ marginTop: 20 }} className="row">
-            <div className="col-3">
+            <div className="col-3 inventoryText">
               Weight:{" "}
               <ItemWeightModule
                 value={parseInt(Object.keys(loadedItem)) + 55}
@@ -155,6 +155,7 @@ export default function InventoryEdit(props) {
               <NameSelect value={parseInt(Object.keys(loadedItem)) + 47} />
             </div>
           </div>
+          <br/>
           <div className="card-footer row d-flex flex-row-reverse">
             <button
               style={{ maxWidth: 200 }}
@@ -189,21 +190,21 @@ export default function InventoryEdit(props) {
         </div>
         <div className="card-body"></div>
         <div className="row">
-          <div className="col-3">
+          <div className="col-3 inventoryText">
             Type: <input type="text" disabled style={{ width: "30%" }} />
           </div>
-          <div className="col-3">
+          <div className="col-3 inventoryText">
             Bonus: <input type="text" disabled style={{ width: "30%" }} />
           </div>
-          <div className="col-3">
+          <div className="col-3 inventoryText">
             Charges: <input type="text" disabled style={{ width: "30%" }} />
           </div>
-          <div className="col-3">
+          <div className="col-3 inventoryText">
             Ammo: <input type="text" disabled style={{ width: "30%" }} />
           </div>
         </div>
         <div style={{ marginTop: 20 }} className="row">
-          <div className="col-3">
+          <div className="col-3 inventoryText">
             Weight: <input type="text" disabled style={{ width: "30%" }} />
           </div>
         </div>
@@ -216,6 +217,7 @@ export default function InventoryEdit(props) {
           <div className="col-4">{emptySelect}</div>
           <div className="col-4">{emptySelect}</div>
         </div>
+        <br/>
         <div className="card-footer row d-flex flex-row-reverse">
           <button className="btn" disabled style={{ maxWidth: 200 }}>
             No Item Selected
@@ -348,7 +350,7 @@ export default function InventoryEdit(props) {
             <input
               className="form-control"
               type="file"
-              id="fileSelect"
+              id="inventoryFileSelect"
               accept=".stf"
               onChange={(e) => {
                 setSelectedFile(e.target.files[0]);
@@ -357,16 +359,24 @@ export default function InventoryEdit(props) {
             />
            
           </div>
+         
+            <button
+            
+              className="btn btn-success shadow"
+              onClick={() => exportSaveFile()}
+            >
+              Download Inventory File
+            </button>
+          
 
           
         </div>
       </div>
-      <div className="row">
-        <h3>Character Inventory</h3>
-
+      <div className="row" style={{marginTop:20}}>
+        
         {dataArray ? mainDisplay : null}
       </div>
-      {unsavedChanges === true && !loadedItem ? (
+      {/* {unsavedChanges === true && !loadedItem ? (
             <button
             style={{marginTop: 20}}
               className="btn btn-success shadow"
@@ -374,7 +384,7 @@ export default function InventoryEdit(props) {
             >
               Save and Download
             </button>
-          ) : null}
+          ) : null} */}
     </div>
   );
 }
