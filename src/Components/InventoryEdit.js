@@ -246,7 +246,7 @@ export default function InventoryEdit(props) {
           {Object.values(item)}{" "}
           {!loadedItem ? (
             <button
-              className="btn btn-primary shadow editButton"
+              className="btn btn-primary editButton"
               onClick={() => setLoadedItem(item)}
             >
               Edit
@@ -343,7 +343,7 @@ export default function InventoryEdit(props) {
   }
 
   return (
-    <div>
+    <>
       <div className="row" style={{ minHeight: 40 }}>
         <div className="col-md">
           <div className="mb-3">
@@ -360,31 +360,22 @@ export default function InventoryEdit(props) {
            
           </div>
          
-            <button
+           {dataArray ?  <button
             
-              className="btn btn-success shadow"
+              className="btn btn-success"
               onClick={() => exportSaveFile()}
             >
               Download Inventory File
-            </button>
+            </button> : null}
           
 
           
         </div>
       </div>
-      <div className="row" style={{marginTop:20}}>
-        
+      <br/>
+        <div className="row d-flex justify-content-center">
         {dataArray ? mainDisplay : null}
-      </div>
-      {/* {unsavedChanges === true && !loadedItem ? (
-            <button
-            style={{marginTop: 20}}
-              className="btn btn-success shadow"
-              onClick={() => exportSaveFile()}
-            >
-              Save and Download
-            </button>
-          ) : null} */}
-    </div>
+     </div>
+    </>
   );
 }
