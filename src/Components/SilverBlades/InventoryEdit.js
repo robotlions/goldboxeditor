@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { itemValues } from "../Data/ItemValues";
+import { itemValues } from "../../Data/ItemValues";
 
 export default function InventoryEdit(props) {
   const [selectedFile, setSelectedFile] = useState(null);

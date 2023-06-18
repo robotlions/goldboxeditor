@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap"
-import { spellList } from "../Data/Spells";
-import { alignments, statusCodes, races, genders } from "../Data/DataLists";
+import { spellList } from "../../Data/Spells";
+import { alignments, statusCodes, races, genders } from "../../Data/DataLists";
 import InventoryEdit from "./InventoryEdit";
 
 export default function CharEdit() {
@@ -298,7 +298,7 @@ export default function CharEdit() {
   function SpellModule(props) {
     let tempArray = Array.from(dataArray);
     let spellDisplay = tempArray.map((item, index) =>
-      index > 112 && index < 232 && spellList[index].class === props.filter ? (
+      index > 112 && index < 230 && spellList[index].class === props.filter ? (
         <SpellCheckBox item={item} index={index} key={index} />
       ) : null
     );
@@ -616,7 +616,6 @@ const druidMagicDisplay = <>
                   <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" >
                     <div className="accordion-body">
                       {clericMagicDisplay}
-                      <h4>Druid Spells:</h4> <div><SpellModule filter="Druid" /></div>
                     </div>
                   </div>
                 </div>
@@ -629,7 +628,6 @@ const druidMagicDisplay = <>
                   <div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingFive" >
                     <div className="accordion-body">
                       {druidMagicDisplay}
-                      {/* <h4>Druid Spells:</h4> <div><SpellModule filter="Druid" /></div> */}
                     </div>
                   </div>
                 </div>

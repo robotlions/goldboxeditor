@@ -71,6 +71,11 @@ select.form-select{
     margin-bottom: 30px;
 }
 
+#navbrandTitle{
+    font-family: IM-Fell;
+    font-size: x-large;
+}
+
 .spellEntry{
     font-weight: 300;
     font-size: 12px;

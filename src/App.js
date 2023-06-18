@@ -4,8 +4,9 @@ import { Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Nav from "./Components/Nav";
-import CharEdit from './Components/CharEdit';
-import InventoryEdit from './Components/InventoryEdit';
+import CharEdit from './Components/SilverBlades/CharEdit';
+import InventoryEdit from './Components/SilverBlades/InventoryEdit';
+import { PoolRadMain } from './Components/Poolrad/CharEdit';
 
 
 
@@ -25,6 +26,8 @@ function App() {
       <Fragment>
           <Routes>
             <Route path="/" element={<CharEdit />} />
+<Route path="/poolrad/" element={<PoolRadMain/>} />
+
 <Route path="/inventoryedit/" element={<InventoryEdit/>} />
 
           </Routes>
