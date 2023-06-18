@@ -155,12 +155,12 @@ export default function InventoryEdit(props) {
               <NameSelect value={parseInt(Object.keys(loadedItem)) + 47} />
             </div>
           </div>
-          <br/>
+          <br />
           <div className="card-footer row d-flex flex-row-reverse">
             <button
               style={{ maxWidth: 200 }}
               className="btn btn-primary shadow"
-              onClick={() => {setLoadedItem(null);setUnsavedChanges(true)}}
+              onClick={() => { setLoadedItem(null); setUnsavedChanges(true) }}
             >
               Done Editing
             </button>
@@ -217,7 +217,7 @@ export default function InventoryEdit(props) {
           <div className="col-4">{emptySelect}</div>
           <div className="col-4">{emptySelect}</div>
         </div>
-        <br/>
+        <br />
         <div className="card-footer row d-flex flex-row-reverse">
           <button className="btn" disabled style={{ maxWidth: 200 }}>
             No Item Selected
@@ -228,6 +228,8 @@ export default function InventoryEdit(props) {
 
     return loadedItem ? mainDisplay : emptyDisplay;
   }
+
+  
 
   function ItemListModule() {
     const [loading, setLoading] = useState(true);
@@ -245,16 +247,37 @@ export default function InventoryEdit(props) {
         <p className="col-12">
           {Object.values(item)}{" "}
           {!loadedItem ? (
-            <button
+            <><button
               className="btn btn-primary editButton"
               onClick={() => setLoadedItem(item)}
             >
               Edit
             </button>
+            {" "}
+            <button
+            className="btn btn-primary editButton"
+            onClick={() => duplicateItem(item)}
+          >
+            Duplicate
+          </button></>
           ) : null}
         </p>
       </div>
     ));
+
+    function duplicateItem(item){
+    let tempArray = Array.from(dataArray);
+    for(let i =0;i<=66;i++){
+      let n = tempArray[parseInt(Object.keys(item))+i]
+      tempArray.push(n)
+
+    }
+    let newArray = new Uint8Array(tempArray);
+      setDataArray(newArray);
+      assembleList();
+    }
+    
+  
 
     function assembleList() {
       let nameArray = [];
@@ -280,7 +303,7 @@ export default function InventoryEdit(props) {
     const [inputText, setInputText] = useState(
       parseInt(
         (0 + dataArray[props.value + 1].toString(16)).slice(-2) +
-          (0 + dataArray[props.value].toString(16)).slice(-2),
+        (0 + dataArray[props.value].toString(16)).slice(-2),
         16
       )
     );
@@ -357,25 +380,25 @@ export default function InventoryEdit(props) {
                 loadFile(e.target.files[0]);
               }}
             />
-           
-          </div>
-         
-           {dataArray ?  <button
-            
-              className="btn btn-success"
-              onClick={() => exportSaveFile()}
-            >
-              Download Inventory File
-            </button> : null}
-          
 
-          
+          </div>
+
+          {dataArray ? <button
+
+            className="btn btn-success"
+            onClick={() => exportSaveFile()}
+          >
+            Download Inventory File
+          </button> : null}
+
+
+
         </div>
       </div>
-      <br/>
-        <div className="row d-flex justify-content-center">
+      <br />
+      <div className="row d-flex justify-content-center">
         {dataArray ? mainDisplay : null}
-     </div>
+      </div>
     </>
   );
 }
