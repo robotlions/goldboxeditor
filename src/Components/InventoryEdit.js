@@ -255,7 +255,7 @@ export default function InventoryEdit(props) {
             </button>
             {" "}
             <button
-            className="btn btn-primary editButton"
+            className="btn btn-warning editButton"
             onClick={() => duplicateItem(item)}
           >
             Duplicate

@@ -346,10 +346,10 @@ export default function CharEdit() {
       Character Name: <NameModule />
     </div>
     <div className="col-md-3">
-      Max Hit Points: <HitPointModule dataArrayIndex={112} />
+      Max HP: <HitPointModule dataArrayIndex={112} />
     </div>
     <div className="col-md-3">
-      Current Hit Points: <HitPointModule dataArrayIndex={437} />
+      Current HP: <HitPointModule dataArrayIndex={437} />
     </div>
     <div className="col-md-3">
       Experience: <ExperienceModule />
@@ -484,6 +484,62 @@ export default function CharEdit() {
     <h4>Mage Spells:</h4>{" "}
     <div><SpellModule filter="Mage" /></div></>
 
+const clericMagicDisplay = <>
+<h4>Cleric Spell Slots</h4>
+<div className="row">
+  <div className="col-2">
+    1: <LevelModule dataArrayIndex={306} />
+  </div>
+  <div className="col-2">
+    2: <LevelModule dataArrayIndex={307} />
+  </div>
+  <div className="col-2">
+    3: <LevelModule dataArrayIndex={308} />
+  </div>
+  <div className="col-2">
+    4: <LevelModule dataArrayIndex={309} />
+  </div>
+  <div className="col-2">
+    5: <LevelModule dataArrayIndex={310} />
+  </div>
+  <div className="col-2">
+    6: <LevelModule dataArrayIndex={311} />
+  </div>
+  <div className="col-2">
+    7: <LevelModule dataArrayIndex={312} />
+  </div>
+</div>
+<h4>Cleric Spells:</h4>{" "}
+<div><SpellModule filter="Cleric" /></div></>
+
+const druidMagicDisplay = <>
+<h4>Druid Spell Slots</h4>
+<div className="row">
+  <div className="col-2">
+    1: <LevelModule dataArrayIndex={313} />
+  </div>
+  <div className="col-2">
+    2: <LevelModule dataArrayIndex={314} />
+  </div>
+  {/* <div className="col-2">
+    3: <LevelModule dataArrayIndex={308} />
+  </div>
+  <div className="col-2">
+    4: <LevelModule dataArrayIndex={309} />
+  </div>
+  <div className="col-2">
+    5: <LevelModule dataArrayIndex={310} />
+  </div>
+  <div className="col-2">
+    6: <LevelModule dataArrayIndex={311} />
+  </div>
+  <div className="col-2">
+    7: <LevelModule dataArrayIndex={312} />
+  </div> */}
+</div>
+<h4>Druid Spells:</h4>{" "}
+<div><SpellModule filter="Druid" /></div></>
+
 
   return (
     <div className="charEditBody">
@@ -559,8 +615,21 @@ export default function CharEdit() {
                   </h2>
                   <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" >
                     <div className="accordion-body">
-                      <h4>Cleric Spells:</h4> <div><SpellModule filter="Cleric" /></div>
+                      {clericMagicDisplay}
                       <h4>Druid Spells:</h4> <div><SpellModule filter="Druid" /></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingFive">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      Druid Spells
+                    </button>
+                  </h2>
+                  <div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingFive" >
+                    <div className="accordion-body">
+                      {druidMagicDisplay}
+                      {/* <h4>Druid Spells:</h4> <div><SpellModule filter="Druid" /></div> */}
                     </div>
                   </div>
                 </div>
