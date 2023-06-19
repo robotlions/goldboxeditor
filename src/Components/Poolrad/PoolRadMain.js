@@ -2,10 +2,11 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap"
 import { spellList } from "../../Data/Spells";
-import { alignments, statusCodes, races, genders } from "../../Data/DataLists";
-import InventoryEdit from "./InventoryEdit";
+import { alignments, poolRadStatusCodes, poolRadRaces, genders } from "../../Data/DataLists";
+import PoolRadInventory from './PoolRadInventory';
 
-export default function CharEdit() {
+
+export default function PoolRadMain() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
   const [inventoryFileName, setInventoryFileName] = useState(null);
@@ -93,7 +94,7 @@ export default function CharEdit() {
 
     function submitChange() {
       tempArray[props.dataArrayIndex] = inputText;
-      tempArray[props.dataArrayIndex + 1] = inputText;
+      // tempArray[props.dataArrayIndex + 1] = inputText;
       setDataArray(tempArray);
     }
 
@@ -117,7 +118,7 @@ export default function CharEdit() {
     let tempArray = dataArray;
 
     const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
-    const [extInput, setExtInput] = useState(dataArray[28])
+    const [extInput, setExtInput] = useState(dataArray[22])
 
 
     function submitChange() {
@@ -127,8 +128,8 @@ export default function CharEdit() {
     }
 
     function submitExtChange() {
-      tempArray[28] = extInput;
-      tempArray[29] = extInput;
+      tempArray[22] = extInput;
+      // tempArray[29] = extInput;
       setDataArray(tempArray);
     }
 
@@ -192,7 +193,7 @@ export default function CharEdit() {
     let tempArray = dataArray;
 
     const [editing, setEditing] = useState(false);
-    const [inputText, setInputText] = useState(dataArray[112]);
+    const [inputText, setInputText] = useState(dataArray[50]);
 
     function submitChange() {
       tempArray[props.dataArrayIndex] = inputText;
@@ -223,10 +224,10 @@ export default function CharEdit() {
     const [editing, setEditing] = useState(false);
     const [inputText, setInputText] = useState(
       parseInt(
-        (0 + dataArray[303].toString(16)).slice(-2) +
-        (0 + dataArray[302].toString(16)).slice(-2) +
-        (0 + dataArray[301].toString(16)).slice(-2) +
-        (0 + dataArray[300].toString(16)).slice(-2),
+        (0 + dataArray[175].toString(16)).slice(-2) +
+        (0 + dataArray[174].toString(16)).slice(-2) +
+        (0 + dataArray[173].toString(16)).slice(-2) +
+        (0 + dataArray[172].toString(16)).slice(-2),
         16
       )
     );
@@ -257,10 +258,10 @@ export default function CharEdit() {
         }
       }
 
-      tempArray[303] = parseInt(eightBitSplit[0], 16);
-      tempArray[302] = parseInt(eightBitSplit[1], 16);
-      tempArray[301] = parseInt(eightBitSplit[2], 16);
-      tempArray[300] = parseInt(eightBitSplit[3], 16);
+      tempArray[175] = parseInt(eightBitSplit[0], 16);
+      tempArray[174] = parseInt(eightBitSplit[1], 16);
+      tempArray[173] = parseInt(eightBitSplit[2], 16);
+      tempArray[172] = parseInt(eightBitSplit[3], 16);
       setDataArray(tempArray);
     }
 
@@ -346,10 +347,10 @@ export default function CharEdit() {
       Character Name: <NameModule />
     </div>
     <div className="col-md-3">
-      Max HP: <HitPointModule dataArrayIndex={112} />
+      Max HP: <HitPointModule dataArrayIndex={50} />
     </div>
     <div className="col-md-3">
-      Current HP: <HitPointModule dataArrayIndex={437} />
+      Current HP: <HitPointModule dataArrayIndex={283} />
     </div>
     <div className="col-md-3">
       Experience: <ExperienceModule />
@@ -358,19 +359,19 @@ export default function CharEdit() {
     <div className="row">
       <div className="col-md-3">
         Status:{" "}
-        <SelectModule index={422} dataList={statusCodes} />
+        <SelectModule index={268} dataList={poolRadStatusCodes} />
       </div>
       <div className="col-md-3">
         Alignment:{" "}
-        <SelectModule index={288} dataList={alignments} />
+        <SelectModule index={160} dataList={alignments} />
       </div>
       <div className="col-md-3">
         Race:{" "}
-        <SelectModule index={107} dataList={races} />
+        <SelectModule index={46} dataList={poolRadRaces} />
       </div>
       <div className="col-md-3">
         Gender:{" "}
-        <SelectModule index={287} dataList={genders} />
+        <SelectModule index={158} dataList={genders} />
       </div>
     </div>
   </>
@@ -386,31 +387,31 @@ export default function CharEdit() {
         <div className="row">
           <div className="col-4">Intelligence:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={18} />
+            <ScoreModule dataArrayIndex={17} />
           </div>
         </div>
         <div className="row">
           <div className="col-4">Wisdom:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={20} />
+            <ScoreModule dataArrayIndex={18} />
           </div>
         </div>
         <div className="row">
           <div className="col-4">Dexterity:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={22} />
+            <ScoreModule dataArrayIndex={19} />
           </div>
         </div>
         <div className="row">
           <div className="col-4">Constitution:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={24} />
+            <ScoreModule dataArrayIndex={20} />
           </div>
         </div>
         <div className="row">
           <div className="col-4">Charisma:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={26} />
+            <ScoreModule dataArrayIndex={21} />
           </div>
         </div>
       </div>
@@ -419,37 +420,37 @@ export default function CharEdit() {
         <div className="row">
           <div className="col-6">Cleric: </div>
           <div className="col-6">
-            <LevelModule dataArrayIndex={273} />
+            <LevelModule dataArrayIndex={151} />
           </div>
         </div>
         <div className="row">
           <div className="col-6">Fighter: </div>
           <div className="col-6">
-            <LevelModule dataArrayIndex={275} />
+            <LevelModule dataArrayIndex={152} />
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-6">Paladin: </div>
           <div className="col-6">
             <LevelModule dataArrayIndex={276} />
           </div>
-        </div>
-        <div className="row">
+        </div> */}
+        {/* <div className="row">
           <div className="col-6">Ranger: </div>
           <div className="col-6">
             <LevelModule dataArrayIndex={277} />
           </div>
-        </div>
+        </div> */}
         <div className="row">
           <div className="col-6">Magic-User: </div>
           <div className="col-6">
-            <LevelModule dataArrayIndex={278} />
+            <LevelModule dataArrayIndex={155} />
           </div>
         </div>
         <div className="row">
           <div className="col-6">Thief: </div>
           <div className="col-6">
-            <LevelModule dataArrayIndex={279} />
+            <LevelModule dataArrayIndex={156} />
           </div>
         </div>
       </div>
@@ -544,7 +545,7 @@ const druidMagicDisplay = <>
   return (
     <div className="charEditBody">
       <div className="row">
-        <h2 className="mainTitle">Advanced Dungeons and Dragons<br />Secret of the Silver Blades</h2>
+        <h2 className="mainTitle">Advanced Dungeons and Dragons<br />Pool of Radiance</h2>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Character Editor</h3>
           <div className="mb-3">
@@ -638,7 +639,7 @@ const druidMagicDisplay = <>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
 
-          <InventoryEdit inventoryFileName={inventoryFileName} />
+          <PoolRadInventory inventoryFileName={inventoryFileName} />
 
         </div>
       </div>

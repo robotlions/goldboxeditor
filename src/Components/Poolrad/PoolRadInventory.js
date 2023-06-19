@@ -1,4 +1,4 @@
-export default function InventoryEdit(){
+export default function PoolRadInventory(){
 
     return(
         <p>Pool of Radiance Inventory edit</p>

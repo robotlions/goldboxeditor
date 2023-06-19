@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { itemValues } from "../../Data/ItemValues";
 
-export default function InventoryEdit(props) {
+export default function SilverBladesInventory(props) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
   const [loadedItem, setLoadedItem] = useState(null);

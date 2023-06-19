@@ -4,9 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Nav from "./Components/Nav";
-import CharEdit from './Components/SilverBlades/CharEdit';
-import InventoryEdit from './Components/SilverBlades/InventoryEdit';
-import PoolRadMain from './Components/Poolrad/CharEdit';
+import SilverBladesMain from './Components/SilverBlades/SilverBladesMain';
+import PoolRadMain from './Components/Poolrad/PoolRadMain';
 
 
 
@@ -27,9 +26,8 @@ function App() {
           <Routes>
             <Route path="/" element={<PoolRadMain/>} />
 <Route path="/poolrad/" element={<PoolRadMain/>} />
-<Route path="/silverblades/" element={<CharEdit />} />
+<Route path="/silverblades/" element={<SilverBladesMain />} />
 
-<Route path="/inventoryedit/" element={<InventoryEdit/>} />
 
           </Routes>
         </Fragment>

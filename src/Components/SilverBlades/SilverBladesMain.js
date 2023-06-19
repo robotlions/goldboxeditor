@@ -3,9 +3,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap"
 import { spellList } from "../../Data/Spells";
 import { alignments, statusCodes, races, genders } from "../../Data/DataLists";
-import InventoryEdit from "../Poolrad/InventoryEdit"
+import SilverBladesInventory from "./SilverBladesInventory";
 
-export default function PoolRadMain() {
+export default function SilverBladesMain() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
   const [inventoryFileName, setInventoryFileName] = useState(null);
@@ -93,7 +93,7 @@ export default function PoolRadMain() {
 
     function submitChange() {
       tempArray[props.dataArrayIndex] = inputText;
-      // tempArray[props.dataArrayIndex + 1] = inputText;
+      tempArray[props.dataArrayIndex + 1] = inputText;
       setDataArray(tempArray);
     }
 
@@ -117,7 +117,7 @@ export default function PoolRadMain() {
     let tempArray = dataArray;
 
     const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
-    const [extInput, setExtInput] = useState(dataArray[22])
+    const [extInput, setExtInput] = useState(dataArray[28])
 
 
     function submitChange() {
@@ -127,8 +127,8 @@ export default function PoolRadMain() {
     }
 
     function submitExtChange() {
-      tempArray[22] = extInput;
-      // tempArray[29] = extInput;
+      tempArray[28] = extInput;
+      tempArray[29] = extInput;
       setDataArray(tempArray);
     }
 
@@ -192,7 +192,7 @@ export default function PoolRadMain() {
     let tempArray = dataArray;
 
     const [editing, setEditing] = useState(false);
-    const [inputText, setInputText] = useState(dataArray[50]);
+    const [inputText, setInputText] = useState(dataArray[112]);
 
     function submitChange() {
       tempArray[props.dataArrayIndex] = inputText;
@@ -223,10 +223,10 @@ export default function PoolRadMain() {
     const [editing, setEditing] = useState(false);
     const [inputText, setInputText] = useState(
       parseInt(
-        (0 + dataArray[175].toString(16)).slice(-2) +
-        (0 + dataArray[174].toString(16)).slice(-2) +
-        (0 + dataArray[173].toString(16)).slice(-2) +
-        (0 + dataArray[172].toString(16)).slice(-2),
+        (0 + dataArray[303].toString(16)).slice(-2) +
+        (0 + dataArray[302].toString(16)).slice(-2) +
+        (0 + dataArray[301].toString(16)).slice(-2) +
+        (0 + dataArray[300].toString(16)).slice(-2),
         16
       )
     );
@@ -257,10 +257,10 @@ export default function PoolRadMain() {
         }
       }
 
-      tempArray[175] = parseInt(eightBitSplit[0], 16);
-      tempArray[174] = parseInt(eightBitSplit[1], 16);
-      tempArray[173] = parseInt(eightBitSplit[2], 16);
-      tempArray[172] = parseInt(eightBitSplit[3], 16);
+      tempArray[303] = parseInt(eightBitSplit[0], 16);
+      tempArray[302] = parseInt(eightBitSplit[1], 16);
+      tempArray[301] = parseInt(eightBitSplit[2], 16);
+      tempArray[300] = parseInt(eightBitSplit[3], 16);
       setDataArray(tempArray);
     }
 
@@ -346,32 +346,32 @@ export default function PoolRadMain() {
       Character Name: <NameModule />
     </div>
     <div className="col-md-3">
-      Max HP: <HitPointModule dataArrayIndex={50} />
+      Max HP: <HitPointModule dataArrayIndex={112} />
     </div>
     <div className="col-md-3">
-      Current HP: <HitPointModule dataArrayIndex={283} />
+      Current HP: <HitPointModule dataArrayIndex={437} />
     </div>
     <div className="col-md-3">
       Experience: <ExperienceModule />
     </div>
   </div>
     <div className="row">
-      {/* <div className="col-md-3">
+      <div className="col-md-3">
         Status:{" "}
         <SelectModule index={422} dataList={statusCodes} />
-      </div> */}
-      {/* <div className="col-md-3">
+      </div>
+      <div className="col-md-3">
         Alignment:{" "}
         <SelectModule index={288} dataList={alignments} />
-      </div> */}
-      {/* <div className="col-md-3">
+      </div>
+      <div className="col-md-3">
         Race:{" "}
         <SelectModule index={107} dataList={races} />
-      </div> */}
-      {/* <div className="col-md-3">
+      </div>
+      <div className="col-md-3">
         Gender:{" "}
         <SelectModule index={287} dataList={genders} />
-      </div> */}
+      </div>
     </div>
   </>
 
@@ -386,31 +386,31 @@ export default function PoolRadMain() {
         <div className="row">
           <div className="col-4">Intelligence:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={17} />
+            <ScoreModule dataArrayIndex={18} />
           </div>
         </div>
         <div className="row">
           <div className="col-4">Wisdom:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={18} />
+            <ScoreModule dataArrayIndex={20} />
           </div>
         </div>
         <div className="row">
           <div className="col-4">Dexterity:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={19} />
+            <ScoreModule dataArrayIndex={22} />
           </div>
         </div>
         <div className="row">
           <div className="col-4">Constitution:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={20} />
+            <ScoreModule dataArrayIndex={24} />
           </div>
         </div>
         <div className="row">
           <div className="col-4">Charisma:</div>
           <div className="col-4">
-            <ScoreModule dataArrayIndex={21} />
+            <ScoreModule dataArrayIndex={26} />
           </div>
         </div>
       </div>
@@ -419,37 +419,37 @@ export default function PoolRadMain() {
         <div className="row">
           <div className="col-6">Cleric: </div>
           <div className="col-6">
-            <LevelModule dataArrayIndex={151} />
+            <LevelModule dataArrayIndex={273} />
           </div>
         </div>
         <div className="row">
           <div className="col-6">Fighter: </div>
           <div className="col-6">
-            <LevelModule dataArrayIndex={152} />
+            <LevelModule dataArrayIndex={275} />
           </div>
         </div>
-        {/* <div className="row">
+        <div className="row">
           <div className="col-6">Paladin: </div>
           <div className="col-6">
             <LevelModule dataArrayIndex={276} />
           </div>
-        </div> */}
-        {/* <div className="row">
+        </div>
+        <div className="row">
           <div className="col-6">Ranger: </div>
           <div className="col-6">
             <LevelModule dataArrayIndex={277} />
           </div>
-        </div> */}
+        </div>
         <div className="row">
           <div className="col-6">Magic-User: </div>
           <div className="col-6">
-            <LevelModule dataArrayIndex={155} />
+            <LevelModule dataArrayIndex={278} />
           </div>
         </div>
         <div className="row">
           <div className="col-6">Thief: </div>
           <div className="col-6">
-            <LevelModule dataArrayIndex={156} />
+            <LevelModule dataArrayIndex={279} />
           </div>
         </div>
       </div>
@@ -544,7 +544,7 @@ const druidMagicDisplay = <>
   return (
     <div className="charEditBody">
       <div className="row">
-        <h2 className="mainTitle">Advanced Dungeons and Dragons<br />Pool of Radiance</h2>
+        <h2 className="mainTitle">Advanced Dungeons and Dragons<br />Secret of the Silver Blades</h2>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Character Editor</h3>
           <div className="mb-3">
@@ -638,7 +638,7 @@ const druidMagicDisplay = <>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
 
-          <InventoryEdit inventoryFileName={inventoryFileName} />
+          <SilverBladesInventory inventoryFileName={inventoryFileName} />
 
         </div>
       </div>
