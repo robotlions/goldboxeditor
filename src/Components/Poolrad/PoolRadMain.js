@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap"
 import { alignments, poolRadStatusCodes, poolRadRaces, genders, poolRadSpells } from "./PoolRadData";
 import PoolRadInventory from './PoolRadInventory';
+import * as Functions from "../Functions";
 
 
 export default function PoolRadMain() {
@@ -50,41 +51,41 @@ export default function PoolRadMain() {
   }
 
 
-  function NameModule() {
-    let tempArray = dataArray;
+  // function NameModule() {
+  //   let tempArray = dataArray;
 
-    let defaultName = assembleName();
+  //   let defaultName = assembleName();
 
-    const [inputText, setInputText] = useState(defaultName);
-    const editDisplay = (
-      <input
-        className="form-control"
-        value={inputText}
-        maxLength={15}
-        onChange={(e) => setInputText(e.target.value)}
-        onBlurCapture={() => saveName()}
-        type="text"
-      />
-    );
+  //   const [inputText, setInputText] = useState(defaultName);
+  //   const editDisplay = (
+  //     <input
+  //       className="form-control"
+  //       value={inputText}
+  //       maxLength={15}
+  //       onChange={(e) => setInputText(e.target.value)}
+  //       onBlurCapture={() => saveName()}
+  //       type="text"
+  //     />
+  //   );
 
-    function assembleName() {
-      let assembledName = "";
-      for (let i = 1; i <= dataArray[0]; i++) {
-        assembledName = assembledName + String.fromCharCode(dataArray[i]);
-      }
-      return assembledName;
-    }
+  //   function assembleName() {
+  //     let assembledName = "";
+  //     for (let i = 1; i <= dataArray[0]; i++) {
+  //       assembledName = assembledName + String.fromCharCode(dataArray[i]);
+  //     }
+  //     return assembledName;
+  //   }
 
-    function saveName() {
-      tempArray[0] = inputText.length;
-      for (let i = 0; i <= inputText.length; i++) {
-        tempArray[i + 1] = inputText.toUpperCase().charCodeAt(i);
-      }
-      setDataArray(tempArray);
-    }
+  //   function saveName() {
+  //     tempArray[0] = inputText.length;
+  //     for (let i = 0; i <= inputText.length; i++) {
+  //       tempArray[i + 1] = inputText.toUpperCase().charCodeAt(i);
+  //     }
+  //     setDataArray(tempArray);
+  //   }
 
-    return editDisplay;
-  }
+  //   return editDisplay;
+  // }
 
   function ScoreModule(props) {
     let tempArray = dataArray;
@@ -188,84 +189,84 @@ export default function PoolRadMain() {
     return editDisplay;
   }
 
-  function HitPointModule(props) {
-    let tempArray = dataArray;
+  // function HitPointModule(props) {
+  //   let tempArray = dataArray;
 
-    const [editing, setEditing] = useState(false);
-    const [inputText, setInputText] = useState(dataArray[50]);
+  //   const [editing, setEditing] = useState(false);
+  //   const [inputText, setInputText] = useState(dataArray[50]);
 
-    function submitChange() {
-      tempArray[props.dataArrayIndex] = inputText;
+  //   function submitChange() {
+  //     tempArray[props.dataArrayIndex] = inputText;
 
-      setDataArray(tempArray);
-    }
+  //     setDataArray(tempArray);
+  //   }
 
-    const editDisplay = (
-      <input
-        className="form-control"
-        type="number"
-        max="255"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        onBlur={() => {
-          setEditing(!editing);
-          submitChange();
-        }}
-      />
-    );
+  //   const editDisplay = (
+  //     <input
+  //       className="form-control"
+  //       type="number"
+  //       max="255"
+  //       value={inputText}
+  //       onChange={(e) => setInputText(e.target.value)}
+  //       onBlur={() => {
+  //         setEditing(!editing);
+  //         submitChange();
+  //       }}
+  //     />
+  //   );
 
-    return editDisplay;
-  }
+  //   return editDisplay;
+  // }
 
-  function ExperienceModule(props) {
-    let tempArray = dataArray;
+  // function ExperienceModule(props) {
+  //   let tempArray = dataArray;
 
-    const [editing, setEditing] = useState(false);
-    const [inputText, setInputText] = useState(
-      parseInt(
-        (0 + dataArray[175].toString(16)).slice(-2) +
-        (0 + dataArray[174].toString(16)).slice(-2) +
-        (0 + dataArray[173].toString(16)).slice(-2) +
-        (0 + dataArray[172].toString(16)).slice(-2),
-        16
-      )
-    );
+  //   const [editing, setEditing] = useState(false);
+  //   const [inputText, setInputText] = useState(
+  //     parseInt(
+  //       (0 + dataArray[175].toString(16)).slice(-2) +
+  //       (0 + dataArray[174].toString(16)).slice(-2) +
+  //       (0 + dataArray[173].toString(16)).slice(-2) +
+  //       (0 + dataArray[172].toString(16)).slice(-2),
+  //       16
+  //     )
+  //   );
 
-    const editDisplay = (
-      <input
-        className="form-control"
-        type="text"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        onBlur={() => {
-          setEditing(!editing);
-          convertDecimaltoBinary();
-        }}
-      />
-    );
+  //   const editDisplay = (
+  //     <input
+  //       className="form-control"
+  //       type="text"
+  //       value={inputText}
+  //       onChange={(e) => setInputText(e.target.value)}
+  //       onBlur={() => {
+  //         setEditing(!editing);
+  //         convertDecimaltoBinary();
+  //       }}
+  //     />
+  //   );
 
-    function convertDecimaltoBinary() {
-      let eightBit = (
-        "00000000" + parseInt(inputText).toString(16).toUpperCase()
-      ).slice(-8);
-      let eightBitSplit = eightBit.match(/.{1,2}/g) ?? [];
-      for (let i = 0; i < 3; i++) {
-        if (eightBitSplit[i] === "00") {
-          eightBitSplit[i] = "0";
-        } else if (eightBitSplit[i].charAt(0) === "0") {
-          eightBitSplit[i] = eightBitSplit[i].charAt(1);
-        }
-      }
+  //   function convertDecimaltoBinary() {
+  //     let eightBit = (
+  //       "00000000" + parseInt(inputText).toString(16).toUpperCase()
+  //     ).slice(-8);
+  //     let eightBitSplit = eightBit.match(/.{1,2}/g) ?? [];
+  //     for (let i = 0; i < 3; i++) {
+  //       if (eightBitSplit[i] === "00") {
+  //         eightBitSplit[i] = "0";
+  //       } else if (eightBitSplit[i].charAt(0) === "0") {
+  //         eightBitSplit[i] = eightBitSplit[i].charAt(1);
+  //       }
+  //     }
 
-      tempArray[175] = parseInt(eightBitSplit[0], 16);
-      tempArray[174] = parseInt(eightBitSplit[1], 16);
-      tempArray[173] = parseInt(eightBitSplit[2], 16);
-      tempArray[172] = parseInt(eightBitSplit[3], 16);
-      setDataArray(tempArray);
-    }
+  //     tempArray[175] = parseInt(eightBitSplit[0], 16);
+  //     tempArray[174] = parseInt(eightBitSplit[1], 16);
+  //     tempArray[173] = parseInt(eightBitSplit[2], 16);
+  //     tempArray[172] = parseInt(eightBitSplit[3], 16);
+  //     setDataArray(tempArray);
+  //   }
 
-    return editDisplay;
-  }
+  //   return editDisplay;
+  // }
 
   function SpellCheckBox(props) {
     let tempArray = dataArray;
@@ -343,16 +344,16 @@ export default function PoolRadMain() {
 
   const charInfoDisplay = <><div className="row">
     <div className="col-md-3">
-      Character Name: <NameModule />
+      Character Name: <Functions.NameModule dataArray={dataArray} setDataArray={setDataArray}/>
     </div>
     <div className="col-md-3">
-      Max HP: <HitPointModule dataArrayIndex={50} />
+      Max HP: <Functions.HitPointModule dataArray={dataArray} setDataArray={setDataArray} dataArrayIndex={50} />
     </div>
     <div className="col-md-3">
-      Current HP: <HitPointModule dataArrayIndex={283} />
+      Current HP: <Functions.HitPointModule dataArray={dataArray} setDataArray={setDataArray} dataArrayIndex={283} />
     </div>
     <div className="col-md-3">
-      Experience: <ExperienceModule />
+      Experience: <Functions.ExperienceModule dataArray={dataArray} setDataArray={setDataArray} dataArrayIndex={172}/>
     </div>
   </div>
     <div className="row">
