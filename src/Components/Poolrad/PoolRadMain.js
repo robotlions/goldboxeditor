@@ -1,8 +1,7 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap"
-import { spellList } from "../../Data/Spells";
-import { alignments, poolRadStatusCodes, poolRadRaces, genders } from "../../Data/DataLists";
+import { alignments, poolRadStatusCodes, poolRadRaces, genders, poolRadSpells } from "./PoolRadData";
 import PoolRadInventory from './PoolRadInventory';
 
 
@@ -291,7 +290,7 @@ export default function PoolRadMain() {
             updateChecked();
           }}
         />
-        {spellList[props.index].spellName}
+        {poolRadSpells[props.index].spellName}
       </div>
     );
   }
@@ -299,7 +298,7 @@ export default function PoolRadMain() {
   function SpellModule(props) {
     let tempArray = Array.from(dataArray);
     let spellDisplay = tempArray.map((item, index) =>
-      index > 112 && index < 230 && spellList[index].class === props.filter ? (
+      index > 50 && index < 107 && poolRadSpells[index].class === props.filter ? (
         <SpellCheckBox item={item} index={index} key={index} />
       ) : null
     );
@@ -429,18 +428,6 @@ export default function PoolRadMain() {
             <LevelModule dataArrayIndex={152} />
           </div>
         </div>
-        {/* <div className="row">
-          <div className="col-6">Paladin: </div>
-          <div className="col-6">
-            <LevelModule dataArrayIndex={276} />
-          </div>
-        </div> */}
-        {/* <div className="row">
-          <div className="col-6">Ranger: </div>
-          <div className="col-6">
-            <LevelModule dataArrayIndex={277} />
-          </div>
-        </div> */}
         <div className="row">
           <div className="col-6">Magic-User: </div>
           <div className="col-6">
@@ -461,85 +448,37 @@ export default function PoolRadMain() {
     <h4>Magic-user Spell Slots</h4>
     <div className="row">
       <div className="col-2">
-        1: <LevelModule dataArrayIndex={327} />
+        1: <LevelModule dataArrayIndex={181} />
       </div>
       <div className="col-2">
-        2: <LevelModule dataArrayIndex={328} />
+        2: <LevelModule dataArrayIndex={182} />
       </div>
       <div className="col-2">
-        3: <LevelModule dataArrayIndex={329} />
+        3: <LevelModule dataArrayIndex={183} />
       </div>
-      <div className="col-2">
-        4: <LevelModule dataArrayIndex={330} />
-      </div>
-      <div className="col-2">
-        5: <LevelModule dataArrayIndex={331} />
-      </div>
-      <div className="col-2">
-        6: <LevelModule dataArrayIndex={332} />
-      </div>
-      <div className="col-2">
-        7: <LevelModule dataArrayIndex={333} />
-      </div>
+
     </div>
     <h4>Mage Spells:</h4>{" "}
     <div><SpellModule filter="Mage" /></div></>
 
-const clericMagicDisplay = <>
-<h4>Cleric Spell Slots</h4>
-<div className="row">
-  <div className="col-2">
-    1: <LevelModule dataArrayIndex={306} />
-  </div>
-  <div className="col-2">
-    2: <LevelModule dataArrayIndex={307} />
-  </div>
-  <div className="col-2">
-    3: <LevelModule dataArrayIndex={308} />
-  </div>
-  <div className="col-2">
-    4: <LevelModule dataArrayIndex={309} />
-  </div>
-  <div className="col-2">
-    5: <LevelModule dataArrayIndex={310} />
-  </div>
-  <div className="col-2">
-    6: <LevelModule dataArrayIndex={311} />
-  </div>
-  <div className="col-2">
-    7: <LevelModule dataArrayIndex={312} />
-  </div>
-</div>
-<h4>Cleric Spells:</h4>{" "}
-<div><SpellModule filter="Cleric" /></div></>
+  const clericMagicDisplay = <>
+    <h4>Cleric Spell Slots</h4>
+    <div className="row">
+      <div className="col-2">
+        1: <LevelModule dataArrayIndex={178} />
+      </div>
+      <div className="col-2">
+        2: <LevelModule dataArrayIndex={179} />
+      </div>
+      <div className="col-2">
+        3: <LevelModule dataArrayIndex={180} />
+      </div>
 
-const druidMagicDisplay = <>
-<h4>Druid Spell Slots</h4>
-<div className="row">
-  <div className="col-2">
-    1: <LevelModule dataArrayIndex={313} />
-  </div>
-  <div className="col-2">
-    2: <LevelModule dataArrayIndex={314} />
-  </div>
-  {/* <div className="col-2">
-    3: <LevelModule dataArrayIndex={308} />
-  </div>
-  <div className="col-2">
-    4: <LevelModule dataArrayIndex={309} />
-  </div>
-  <div className="col-2">
-    5: <LevelModule dataArrayIndex={310} />
-  </div>
-  <div className="col-2">
-    6: <LevelModule dataArrayIndex={311} />
-  </div>
-  <div className="col-2">
-    7: <LevelModule dataArrayIndex={312} />
-  </div> */}
-</div>
-<h4>Druid Spells:</h4>{" "}
-<div><SpellModule filter="Druid" /></div></>
+    </div>
+    <h4>Cleric Spells:</h4>{" "}
+    <div><SpellModule filter="Cleric" /></div></>
+
+
 
 
   return (
@@ -620,18 +559,7 @@ const druidMagicDisplay = <>
                     </div>
                   </div>
                 </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="headingFive">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                      Druid Spells
-                    </button>
-                  </h2>
-                  <div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingFive" >
-                    <div className="accordion-body">
-                      {druidMagicDisplay}
-                    </div>
-                  </div>
-                </div>
+
               </div>
 
             </> : null}

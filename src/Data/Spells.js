@@ -1,16 +1,4 @@
-export const poolRadSpells ={
 
-    51: {spellName: "Bless", class: "Cleric", level: 1},
-    52: {spellName: "Curse", class: "Cleric", level: 1},
-    53: {spellName: "Cure Light Wounds", class: "Cleric", level: 1},
-    54: {spellName: "Cause Light Wounds", class: "Cleric", level: 1},
-    55: {spellName: "Detect Magic", class: "Cleric", level: 1},
-    56: {spellName: "Protection from Evil", class: "Cleric", level: 1},
-    57: {spellName: "Protection from Good", class: "Cleric", level: 1},
-    58: {spellName: "Resist Cold", class: "Cleric", level: 1},
-    59: {spellName: "Burning Hands", class: "Mage", level: 1},
-    60: {spellName: "Charm Person", class: "Mage", level: 1},
-}
 
 
 export const spellList = {
