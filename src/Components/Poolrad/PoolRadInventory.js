@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { itemValues } from "../../Data/ItemValues";
+import { poolRadItemValues } from "./PoolRadData";
 
 export default function PoolRadInventory(props) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -38,13 +38,13 @@ export default function PoolRadInventory(props) {
     useEffect(() => {
       if (loadedItem) {
         setDisplayName1(
-          itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 49]]
+          poolRadItemValues[tempArray[parseInt(Object.keys(loadedItem)) + 49]]
         );
         setDisplayName2(
-          itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 48]]
+          poolRadItemValues[tempArray[parseInt(Object.keys(loadedItem)) + 48]]
         );
         setDisplayName3(
-          itemValues[tempArray[parseInt(Object.keys(loadedItem)) + 47]]
+          poolRadItemValues[tempArray[parseInt(Object.keys(loadedItem)) + 47]]
         );
       }
     }, [tempArray, updated]);
@@ -74,7 +74,7 @@ export default function PoolRadInventory(props) {
     }
 
     function NameSelect(props) {
-      let dropList = Object.entries(itemValues).map((item, index) => (
+      let dropList = Object.entries(poolRadItemValues).map((item, index) => (
         <option key={index} value={item[0]}>
           {item[1]}
         </option>
@@ -287,7 +287,7 @@ export default function PoolRadInventory(props) {
           let j = dataArray[i + 49];
           let k = dataArray[i + 48];
           let l = dataArray[i + 47];
-          assembledName = `${itemValues[j]} ${itemValues[k]} ${itemValues[l]}`;
+          assembledName = `${poolRadItemValues[j]} ${poolRadItemValues[k]} ${poolRadItemValues[l]}`;
           nameArray.push({ [i]: assembledName });
         }
       }
