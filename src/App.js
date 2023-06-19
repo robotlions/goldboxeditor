@@ -6,7 +6,7 @@ import './App.css';
 import Nav from "./Components/Nav";
 import CharEdit from './Components/SilverBlades/CharEdit';
 import InventoryEdit from './Components/SilverBlades/InventoryEdit';
-import { PoolRadMain } from './Components/Poolrad/CharEdit';
+import PoolRadMain from './Components/Poolrad/CharEdit';
 
 
 
@@ -25,8 +25,9 @@ function App() {
         </div>   
       <Fragment>
           <Routes>
-            <Route path="/" element={<CharEdit />} />
+            <Route path="/" element={<PoolRadMain/>} />
 <Route path="/poolrad/" element={<PoolRadMain/>} />
+<Route path="/silverblades/" element={<CharEdit />} />
 
 <Route path="/inventoryedit/" element={<InventoryEdit/>} />
 

@@ -15,7 +15,7 @@ export default function Nav() {
           <Navbar.Collapse className="justify-content-evenly"id="basic-navbar-nav">
             <MyNav className="me-auto">
         <MyNav.Link href="/poolrad/">Pool of Radiance</MyNav.Link>
-        <MyNav.Link href="/">Secret of the Silver Blades</MyNav.Link>
+        <MyNav.Link href="/silverblades/">Secret of the Silver Blades</MyNav.Link>
 
         {/* <MyNav.Link href="/recipes/">Recipes</MyNav.Link>
         <MyNav.Link href="/methods/">Methods</MyNav.Link> */}
