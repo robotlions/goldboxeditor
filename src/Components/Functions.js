@@ -121,4 +121,33 @@ export function NameModule(props) {
     return editDisplay;
   }
 
-  
+  export function SelectModule(props) {
+    let tempArray = props.dataArray;
+
+    let dropList = Object.entries(props.dataList).map((item, index) => (
+      <option key={index} value={item[0]}>
+        {item[1]}
+      </option>
+    ));
+
+    let defaultDisplay = tempArray[props.index];
+
+    return (
+      <div className="d-flex">
+        <select
+          className="form-select"
+          defaultValue={defaultDisplay}
+          aria-label="Item value dropdown"
+          onChange={(e) => {
+            tempArray[props.index] = e.target.value;
+            props.setDataArray(tempArray);
+          }}
+        >
+          <option disabled value={-1}>
+            Options
+          </option>
+          {dropList}
+        </select>
+      </div>
+    );
+  }

@@ -311,36 +311,36 @@ export default function PoolRadMain() {
     );
   }
 
-  function SelectModule(props) {
-    let tempArray = dataArray;
+  // function SelectModule(props) {
+  //   let tempArray = dataArray;
 
-    let dropList = Object.entries(props.dataList).map((item, index) => (
-      <option key={index} value={item[0]}>
-        {item[1]}
-      </option>
-    ));
+  //   let dropList = Object.entries(props.dataList).map((item, index) => (
+  //     <option key={index} value={item[0]}>
+  //       {item[1]}
+  //     </option>
+  //   ));
 
-    let defaultDisplay = tempArray[props.index];
+  //   let defaultDisplay = tempArray[props.index];
 
-    return (
-      <div className="d-flex">
-        <select
-          className="form-select"
-          defaultValue={defaultDisplay}
-          aria-label="Item value dropdown"
-          onChange={(e) => {
-            tempArray[props.index] = e.target.value;
-            setDataArray(tempArray);
-          }}
-        >
-          <option disabled value={-1}>
-            Options
-          </option>
-          {dropList}
-        </select>
-      </div>
-    );
-  }
+  //   return (
+  //     <div className="d-flex">
+  //       <select
+  //         className="form-select"
+  //         defaultValue={defaultDisplay}
+  //         aria-label="Item value dropdown"
+  //         onChange={(e) => {
+  //           tempArray[props.index] = e.target.value;
+  //           setDataArray(tempArray);
+  //         }}
+  //       >
+  //         <option disabled value={-1}>
+  //           Options
+  //         </option>
+  //         {dropList}
+  //       </select>
+  //     </div>
+  //   );
+  // }
 
   const charInfoDisplay = <><div className="row">
     <div className="col-md-3">
@@ -359,19 +359,19 @@ export default function PoolRadMain() {
     <div className="row">
       <div className="col-md-3">
         Status:{" "}
-        <SelectModule index={268} dataList={poolRadStatusCodes} />
+        <Functions.SelectModule dataArray={dataArray} setDataArray={setDataArray} index={268} dataList={poolRadStatusCodes} />
       </div>
       <div className="col-md-3">
         Alignment:{" "}
-        <SelectModule index={160} dataList={alignments} />
+        <Functions.SelectModule dataArray={dataArray} setDataArray={setDataArray} index={160} dataList={alignments} />
       </div>
       <div className="col-md-3">
         Race:{" "}
-        <SelectModule index={46} dataList={poolRadRaces} />
+        <Functions.SelectModule dataArray={dataArray} setDataArray={setDataArray} index={46} dataList={poolRadRaces} />
       </div>
       <div className="col-md-3">
         Gender:{" "}
-        <SelectModule index={158} dataList={genders} />
+        <Functions.SelectModule dataArray={dataArray} setDataArray={setDataArray} index={158} dataList={genders} />
       </div>
     </div>
   </>
