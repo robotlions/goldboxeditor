@@ -287,7 +287,7 @@ export function StrengthModule(props) {
         />
       </div>
       <div className="col-4">
-        {inputText >= 18 ? (
+        {inputText === 18 ? (
           <input
             type="number"
             max="99"

@@ -1,15 +1,10 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
-import {
-  alignments,
-  poolRadStatusCodes,
-  poolRadRaces,
-  genders,
-  poolRadSpells,
-} from "./PoolRadData";
+import { poolRadStatusCodes, poolRadRaces, poolRadSpells } from "./PoolRadData";
 import PoolRadInventory from "./PoolRadInventory";
 import * as CharFunctions from "../CharFunctions";
+import * as CharComponents from "../CharComponents";
 
 export default function PoolRadMain() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -55,194 +50,8 @@ export default function PoolRadMain() {
     setInventoryFileName(inventoryFile);
   }
 
-  const charInfoDisplay = (
-    <>
-      <div className="row">
-        <div className="col-md-3">
-          Character Name:{" "}
-          <CharFunctions.NameModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-          />
-        </div>
-        <div className="col-md-3">
-          Max HP:{" "}
-          <CharFunctions.HitPointModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={50}
-          />
-        </div>
-        <div className="col-md-3">
-          Current HP:{" "}
-          <CharFunctions.HitPointModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={283}
-          />
-        </div>
-        <div className="col-md-3">
-          Experience:{" "}
-          <CharFunctions.ExperienceModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={172}
-          />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-3">
-          Status:{" "}
-          <CharFunctions.SelectModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            index={268}
-            dataList={poolRadStatusCodes}
-          />
-        </div>
-        <div className="col-md-3">
-          Alignment:{" "}
-          <CharFunctions.SelectModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            index={160}
-            dataList={alignments}
-          />
-        </div>
-        <div className="col-md-3">
-          Race:{" "}
-          <CharFunctions.SelectModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            index={46}
-            dataList={poolRadRaces}
-          />
-        </div>
-        <div className="col-md-3">
-          Gender:{" "}
-          <CharFunctions.SelectModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            index={158}
-            dataList={genders}
-          />
-        </div>
-      </div>
-    </>
-  );
+  
 
-  const charAbilityDisplay = (
-    <>
-      <div className="row">
-        <div className="col-md-6">
-          <h4 style={{ textAlign: "center" }}>Ability Scores</h4>
-          <div className="row">
-            <div className="col-4">Strength:</div>
-            <CharFunctions.StrengthModule
-              idText="strengthScore"
-              dataArray={dataArray}
-              setDataArray={setDataArray}
-              extStrIndex={22}
-              dataArrayIndex={16}
-            />
-          </div>
-          <div className="row">
-            <div className="col-4">Intelligence:</div>
-            <div className="col-4">
-              <CharFunctions.ScoreModule
-                dataArray={dataArray}
-                setDataArray={setDataArray}
-                dataArrayIndex={17}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">Wisdom:</div>
-            <div className="col-4">
-              <CharFunctions.ScoreModule
-                dataArray={dataArray}
-                setDataArray={setDataArray}
-                dataArrayIndex={18}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">Dexterity:</div>
-            <div className="col-4">
-              <CharFunctions.ScoreModule
-                dataArray={dataArray}
-                setDataArray={setDataArray}
-                dataArrayIndex={19}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">Constitution:</div>
-            <div className="col-4">
-              <CharFunctions.ScoreModule
-                dataArray={dataArray}
-                setDataArray={setDataArray}
-                dataArrayIndex={20}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">Charisma:</div>
-            <div className="col-4">
-              <CharFunctions.ScoreModule
-                dataArray={dataArray}
-                setDataArray={setDataArray}
-                dataArrayIndex={21}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <h4 style={{ textAlign: "center" }}>Levels</h4>
-          <div className="row">
-            <div className="col-6">Cleric: </div>
-            <div className="col-6">
-              <CharFunctions.LevelModule
-                dataArray={dataArray}
-                setDataArray={setDataArray}
-                dataArrayIndex={151}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">Fighter: </div>
-            <div className="col-6">
-              <CharFunctions.LevelModule
-                dataArray={dataArray}
-                setDataArray={setDataArray}
-                dataArrayIndex={152}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">Magic-User: </div>
-            <div className="col-6">
-              <CharFunctions.LevelModule
-                dataArray={dataArray}
-                setDataArray={setDataArray}
-                dataArrayIndex={155}
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">Thief: </div>
-            <div className="col-6">
-              <CharFunctions.LevelModule
-                dataArray={dataArray}
-                setDataArray={setDataArray}
-                dataArrayIndex={156}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
 
   const arcaneMagicDisplay = (
     <>
@@ -385,7 +194,17 @@ export default function PoolRadMain() {
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingOne"
                   >
-                    <div className="accordion-body">{charInfoDisplay}</div>
+                    <div className="accordion-body">
+                      <CharComponents.CharInfoDisplay
+                        dataArray={dataArray}
+                        setDataArray={setDataArray}
+                        maxHPIndex={50}
+                        currentHPIndex={283}
+                        experienceIndex={172}
+                        statusCodes={poolRadStatusCodes}
+                        racesList={poolRadRaces}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="accordion-item">
@@ -406,7 +225,23 @@ export default function PoolRadMain() {
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingTwo"
                   >
-                    <div className="accordion-body">{charAbilityDisplay}</div>
+                    <div className="accordion-body">
+                      <CharComponents.CharAbilityDisplay
+                        dataArray={dataArray}
+                        setDataArray={setDataArray}
+                        strIndex={16}
+                        extStrIndex={22}
+                        intIndex={17}
+                        wisIndex={18}
+                        dexIndex={19}
+                        conIndex={20}
+                        chaIndex={21}
+                        clericIndex={151}
+                        fighterIndex={152}
+                        magicUserIndex={155}
+                        thiefIndex={156}
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="accordion-item">
