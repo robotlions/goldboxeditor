@@ -84,6 +84,31 @@ export function HitPointModule(props) {
   }
 
 
+  export function LevelModule(props) {
+    let tempArray = props.dataArray;
+
+    const [inputText, setInputText] = useState(props.dataArray[props.dataArrayIndex]);
+
+    function submitChange() {
+      tempArray[props.dataArrayIndex] = inputText;
+      props.setDataArray(tempArray);
+    }
+
+    const editDisplay = (
+      <input
+        style={{ maxWidth: "60%", textAlign: "center" }}
+        type="number"
+        max="99"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        onBlur={() => submitChange()}
+      />
+    );
+
+    return editDisplay;
+  }
+
+
 
 export function NameModule(props) {
     let tempArray = props.dataArray;
@@ -121,6 +146,33 @@ export function NameModule(props) {
     return editDisplay;
   }
 
+  export function ScoreModule(props) {
+    let tempArray = props.dataArray;
+
+    const [inputText, setInputText] = useState(props.dataArray[props.dataArrayIndex]);
+
+    function submitChange() {
+      tempArray[props.dataArrayIndex] = inputText;
+      tempArray[props.dataArrayIndexCurrent] = inputText;
+      props.setDataArray(tempArray);
+    }
+
+
+    const editDisplay = (
+      <input
+        id={props.idText}
+        type="number"
+        max="99"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        onBlur={() => submitChange()}
+        style={{ maxWidth: "60%", textAlign: "center" }}
+      />
+    );
+
+    return editDisplay;
+  }
+
   export function SelectModule(props) {
     let tempArray = props.dataArray;
 
@@ -150,4 +202,98 @@ export function NameModule(props) {
         </select>
       </div>
     );
+  }
+
+
+  export function SpellModule(props) {
+    let tempArray = Array.from(props.dataArray);
+    let spellDisplay = tempArray.map((item, index) =>
+      index > props.dataArrayMin && index < props.dataArrayMax && props.dataList[index].class === props.filter ? (
+        <SpellCheckBox dataArray={props.dataArray} setDataArray={props.setDataArray} dataList={props.dataList} item={item} index={index} key={index} />
+      ) : null
+    );
+
+    return (
+      <div style={{ marginBottom: 20 }} className="d-flex flex-wrap">
+        {spellDisplay}
+      </div>
+    );
+  }
+
+
+  export function SpellCheckBox(props) {
+    let tempArray = props.dataArray;
+
+    const [checked, setChecked] = useState(props.item === 1 ? true : false);
+
+    function updateChecked() {
+      let checkValue = checked === true ? 0 : 1;
+      tempArray[props.index] = parseInt(checkValue, 16);
+      props.setDataArray(tempArray);
+    }
+
+    return (
+      <div className="col-6 col-md-3 spellEntry">
+        <input
+          style={{ marginRight: 10 }}
+          className="form-check-input"
+          type="checkbox"
+          checked={checked}
+          onChange={() => {
+            setChecked(!checked);
+            updateChecked();
+          }}
+        />
+        {props.dataList[props.index].spellName}
+      </div>
+    );
+  }
+
+  export function StrengthModule(props) {
+    let tempArray = props.dataArray;
+
+    const [inputText, setInputText] = useState(props.dataArray[props.dataArrayIndex]);
+    const [extInput, setExtInput] = useState(props.dataArray[props.extStrIndex])
+
+
+    function submitChange() {
+      tempArray[props.dataArrayIndex] = inputText;
+      tempArray[props.dataArrayIndexCurrent] = inputText;
+      props.setDataArray(tempArray);
+    }
+
+    function submitExtChange() {
+      tempArray[props.extStrIndex] = extInput;
+      tempArray[props.extStrCurrent] = extInput;
+      props.setDataArray(tempArray);
+    }
+
+
+    const editDisplay = (
+      <>
+        <div className="col-4">
+          <input
+            type="number"
+            max="100"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            onBlur={() => submitChange()}
+            style={{ maxWidth: "60%", textAlign: "center" }}
+          />
+        </div>
+        <div className="col-4">
+          {inputText >= 18 ?
+            <input
+              type="number"
+              max="99"
+              value={extInput}
+              onChange={(e) => setExtInput(e.target.value)}
+              onBlur={() => submitExtChange()}
+              style={{ maxWidth: "60%", textAlign: "center" }}
+            /> : null}
+        </div>
+      </>
+    );
+
+    return editDisplay;
   }
