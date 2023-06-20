@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap"
+import "bootstrap/dist/js/bootstrap";
 import { spellList } from "../../Data/Spells";
 import { alignments, statusCodes, races, genders } from "../../Data/DataLists";
 import SilverBladesInventory from "./SilverBladesInventory";
@@ -12,9 +12,8 @@ export default function SilverBladesMain() {
 
   function exportSaveFile() {
     if (!selectedFile) {
-      return alert("Please load a character file")
-    }
-    else {
+      return alert("Please load a character file");
+    } else {
       const blob = new Blob([dataArray], { type: "application/octet-stream" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -44,11 +43,11 @@ export default function SilverBladesMain() {
   }
 
   function createInventoryFile(e) {
-    let loadedFileName = e.target.files[0].name
-    let inventoryFile = loadedFileName.substr(0, loadedFileName.lastIndexOf(".")) + ".STF";
-    setInventoryFileName(inventoryFile)
+    let loadedFileName = e.target.files[0].name;
+    let inventoryFile =
+      loadedFileName.substr(0, loadedFileName.lastIndexOf(".")) + ".STF";
+    setInventoryFileName(inventoryFile);
   }
-
 
   function NameModule() {
     let tempArray = dataArray;
@@ -97,7 +96,6 @@ export default function SilverBladesMain() {
       setDataArray(tempArray);
     }
 
-
     const editDisplay = (
       <input
         id={props.idText}
@@ -117,8 +115,7 @@ export default function SilverBladesMain() {
     let tempArray = dataArray;
 
     const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
-    const [extInput, setExtInput] = useState(dataArray[28])
-
+    const [extInput, setExtInput] = useState(dataArray[28]);
 
     function submitChange() {
       tempArray[props.dataArrayIndex] = inputText;
@@ -131,9 +128,6 @@ export default function SilverBladesMain() {
       tempArray[29] = extInput;
       setDataArray(tempArray);
     }
-
-
-
 
     const editDisplay = (
       <>
@@ -148,7 +142,7 @@ export default function SilverBladesMain() {
           />
         </div>
         <div className="col-4">
-          {inputText >= 18 ?
+          {inputText >= 18 ? (
             <input
               type="number"
               max="99"
@@ -156,7 +150,8 @@ export default function SilverBladesMain() {
               onChange={(e) => setExtInput(e.target.value)}
               onBlur={() => submitExtChange()}
               style={{ maxWidth: "60%", textAlign: "center" }}
-            /> : null}
+            />
+          ) : null}
         </div>
       </>
     );
@@ -224,9 +219,9 @@ export default function SilverBladesMain() {
     const [inputText, setInputText] = useState(
       parseInt(
         (0 + dataArray[303].toString(16)).slice(-2) +
-        (0 + dataArray[302].toString(16)).slice(-2) +
-        (0 + dataArray[301].toString(16)).slice(-2) +
-        (0 + dataArray[300].toString(16)).slice(-2),
+          (0 + dataArray[302].toString(16)).slice(-2) +
+          (0 + dataArray[301].toString(16)).slice(-2) +
+          (0 + dataArray[300].toString(16)).slice(-2),
         16
       )
     );
@@ -341,187 +336,199 @@ export default function SilverBladesMain() {
     );
   }
 
-  const charInfoDisplay = <><div className="row">
-    <div className="col-md-3">
-      Character Name: <NameModule />
-    </div>
-    <div className="col-md-3">
-      Max HP: <HitPointModule dataArrayIndex={112} />
-    </div>
-    <div className="col-md-3">
-      Current HP: <HitPointModule dataArrayIndex={437} />
-    </div>
-    <div className="col-md-3">
-      Experience: <ExperienceModule />
-    </div>
-  </div>
-    <div className="row">
-      <div className="col-md-3">
-        Status:{" "}
-        <SelectModule index={422} dataList={statusCodes} />
+  const charInfoDisplay = (
+    <>
+      <div className="row">
+        <div className="col-md-3">
+          Character Name: <NameModule />
+        </div>
+        <div className="col-md-3">
+          Max HP: <HitPointModule dataArrayIndex={112} />
+        </div>
+        <div className="col-md-3">
+          Current HP: <HitPointModule dataArrayIndex={437} />
+        </div>
+        <div className="col-md-3">
+          Experience: <ExperienceModule />
+        </div>
       </div>
-      <div className="col-md-3">
-        Alignment:{" "}
-        <SelectModule index={288} dataList={alignments} />
+      <div className="row">
+        <div className="col-md-3">
+          Status: <SelectModule index={422} dataList={statusCodes} />
+        </div>
+        <div className="col-md-3">
+          Alignment: <SelectModule index={288} dataList={alignments} />
+        </div>
+        <div className="col-md-3">
+          Race: <SelectModule index={107} dataList={races} />
+        </div>
+        <div className="col-md-3">
+          Gender: <SelectModule index={287} dataList={genders} />
+        </div>
       </div>
-      <div className="col-md-3">
-        Race:{" "}
-        <SelectModule index={107} dataList={races} />
-      </div>
-      <div className="col-md-3">
-        Gender:{" "}
-        <SelectModule index={287} dataList={genders} />
-      </div>
-    </div>
-  </>
+    </>
+  );
 
-  const charAbilityDisplay =
-    <><div className="row">
-      <div className="col-md-6">
-        <h4 style={{ textAlign: "center" }}>Ability Scores</h4>
-        <div className="row">
-          <div className="col-4">Strength:</div>
-          <StrengthModule idText="strengthScore" dataArrayIndex={16} />
-        </div>
-        <div className="row">
-          <div className="col-4">Intelligence:</div>
-          <div className="col-4">
-            <ScoreModule dataArrayIndex={18} />
+  const charAbilityDisplay = (
+    <>
+      <div className="row">
+        <div className="col-md-6">
+          <h4 style={{ textAlign: "center" }}>Ability Scores</h4>
+          <div className="row">
+            <div className="col-4">Strength:</div>
+            <StrengthModule idText="strengthScore" dataArrayIndex={16} />
+          </div>
+          <div className="row">
+            <div className="col-4">Intelligence:</div>
+            <div className="col-4">
+              <ScoreModule dataArrayIndex={18} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-4">Wisdom:</div>
+            <div className="col-4">
+              <ScoreModule dataArrayIndex={20} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-4">Dexterity:</div>
+            <div className="col-4">
+              <ScoreModule dataArrayIndex={22} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-4">Constitution:</div>
+            <div className="col-4">
+              <ScoreModule dataArrayIndex={24} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-4">Charisma:</div>
+            <div className="col-4">
+              <ScoreModule dataArrayIndex={26} />
+            </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-4">Wisdom:</div>
-          <div className="col-4">
-            <ScoreModule dataArrayIndex={20} />
+        <div className="col-md-6">
+          <h4 style={{ textAlign: "center" }}>Levels</h4>
+          <div className="row">
+            <div className="col-6">Cleric: </div>
+            <div className="col-6">
+              <LevelModule dataArrayIndex={273} />
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-4">Dexterity:</div>
-          <div className="col-4">
-            <ScoreModule dataArrayIndex={22} />
+          <div className="row">
+            <div className="col-6">Fighter: </div>
+            <div className="col-6">
+              <LevelModule dataArrayIndex={275} />
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-4">Constitution:</div>
-          <div className="col-4">
-            <ScoreModule dataArrayIndex={24} />
+          <div className="row">
+            <div className="col-6">Paladin: </div>
+            <div className="col-6">
+              <LevelModule dataArrayIndex={276} />
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-4">Charisma:</div>
-          <div className="col-4">
-            <ScoreModule dataArrayIndex={26} />
+          <div className="row">
+            <div className="col-6">Ranger: </div>
+            <div className="col-6">
+              <LevelModule dataArrayIndex={277} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">Magic-User: </div>
+            <div className="col-6">
+              <LevelModule dataArrayIndex={278} />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">Thief: </div>
+            <div className="col-6">
+              <LevelModule dataArrayIndex={279} />
+            </div>
           </div>
         </div>
       </div>
-      <div className="col-md-6">
-        <h4 style={{ textAlign: "center" }}>Levels</h4>
-        <div className="row">
-          <div className="col-6">Cleric: </div>
-          <div className="col-6">
-            <LevelModule dataArrayIndex={273} />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6">Fighter: </div>
-          <div className="col-6">
-            <LevelModule dataArrayIndex={275} />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6">Paladin: </div>
-          <div className="col-6">
-            <LevelModule dataArrayIndex={276} />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6">Ranger: </div>
-          <div className="col-6">
-            <LevelModule dataArrayIndex={277} />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6">Magic-User: </div>
-          <div className="col-6">
-            <LevelModule dataArrayIndex={278} />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-6">Thief: </div>
-          <div className="col-6">
-            <LevelModule dataArrayIndex={279} />
-          </div>
-        </div>
-      </div>
-    </div></>
+    </>
+  );
 
+  const arcaneMagicDisplay = (
+    <>
+      <h4>Magic-user Spell Slots</h4>
+      <div className="row">
+        <div className="col-2">
+          1: <LevelModule dataArrayIndex={327} />
+        </div>
+        <div className="col-2">
+          2: <LevelModule dataArrayIndex={328} />
+        </div>
+        <div className="col-2">
+          3: <LevelModule dataArrayIndex={329} />
+        </div>
+        <div className="col-2">
+          4: <LevelModule dataArrayIndex={330} />
+        </div>
+        <div className="col-2">
+          5: <LevelModule dataArrayIndex={331} />
+        </div>
+        <div className="col-2">
+          6: <LevelModule dataArrayIndex={332} />
+        </div>
+        <div className="col-2">
+          7: <LevelModule dataArrayIndex={333} />
+        </div>
+      </div>
+      <h4>Mage Spells:</h4>{" "}
+      <div>
+        <SpellModule filter="Mage" />
+      </div>
+    </>
+  );
 
-  const arcaneMagicDisplay = <>
-    <h4>Magic-user Spell Slots</h4>
-    <div className="row">
-      <div className="col-2">
-        1: <LevelModule dataArrayIndex={327} />
+  const clericMagicDisplay = (
+    <>
+      <h4>Cleric Spell Slots</h4>
+      <div className="row">
+        <div className="col-2">
+          1: <LevelModule dataArrayIndex={306} />
+        </div>
+        <div className="col-2">
+          2: <LevelModule dataArrayIndex={307} />
+        </div>
+        <div className="col-2">
+          3: <LevelModule dataArrayIndex={308} />
+        </div>
+        <div className="col-2">
+          4: <LevelModule dataArrayIndex={309} />
+        </div>
+        <div className="col-2">
+          5: <LevelModule dataArrayIndex={310} />
+        </div>
+        <div className="col-2">
+          6: <LevelModule dataArrayIndex={311} />
+        </div>
+        <div className="col-2">
+          7: <LevelModule dataArrayIndex={312} />
+        </div>
       </div>
-      <div className="col-2">
-        2: <LevelModule dataArrayIndex={328} />
+      <h4>Cleric Spells:</h4>{" "}
+      <div>
+        <SpellModule filter="Cleric" />
       </div>
-      <div className="col-2">
-        3: <LevelModule dataArrayIndex={329} />
-      </div>
-      <div className="col-2">
-        4: <LevelModule dataArrayIndex={330} />
-      </div>
-      <div className="col-2">
-        5: <LevelModule dataArrayIndex={331} />
-      </div>
-      <div className="col-2">
-        6: <LevelModule dataArrayIndex={332} />
-      </div>
-      <div className="col-2">
-        7: <LevelModule dataArrayIndex={333} />
-      </div>
-    </div>
-    <h4>Mage Spells:</h4>{" "}
-    <div><SpellModule filter="Mage" /></div></>
+    </>
+  );
 
-const clericMagicDisplay = <>
-<h4>Cleric Spell Slots</h4>
-<div className="row">
-  <div className="col-2">
-    1: <LevelModule dataArrayIndex={306} />
-  </div>
-  <div className="col-2">
-    2: <LevelModule dataArrayIndex={307} />
-  </div>
-  <div className="col-2">
-    3: <LevelModule dataArrayIndex={308} />
-  </div>
-  <div className="col-2">
-    4: <LevelModule dataArrayIndex={309} />
-  </div>
-  <div className="col-2">
-    5: <LevelModule dataArrayIndex={310} />
-  </div>
-  <div className="col-2">
-    6: <LevelModule dataArrayIndex={311} />
-  </div>
-  <div className="col-2">
-    7: <LevelModule dataArrayIndex={312} />
-  </div>
-</div>
-<h4>Cleric Spells:</h4>{" "}
-<div><SpellModule filter="Cleric" /></div></>
-
-const druidMagicDisplay = <>
-<h4>Druid Spell Slots</h4>
-<div className="row">
-  <div className="col-2">
-    1: <LevelModule dataArrayIndex={313} />
-  </div>
-  <div className="col-2">
-    2: <LevelModule dataArrayIndex={314} />
-  </div>
-  {/* <div className="col-2">
+  const druidMagicDisplay = (
+    <>
+      <h4>Druid Spell Slots</h4>
+      <div className="row">
+        <div className="col-2">
+          1: <LevelModule dataArrayIndex={313} />
+        </div>
+        <div className="col-2">
+          2: <LevelModule dataArrayIndex={314} />
+        </div>
+        {/* <div className="col-2">
     3: <LevelModule dataArrayIndex={308} />
   </div>
   <div className="col-2">
@@ -536,15 +543,22 @@ const druidMagicDisplay = <>
   <div className="col-2">
     7: <LevelModule dataArrayIndex={312} />
   </div> */}
-</div>
-<h4>Druid Spells:</h4>{" "}
-<div><SpellModule filter="Druid" /></div></>
-
+      </div>
+      <h4>Druid Spells:</h4>{" "}
+      <div>
+        <SpellModule filter="Druid" />
+      </div>
+    </>
+  );
 
   return (
     <div className="charEditBody">
       <div className="row">
-        <h2 className="mainTitle">Advanced Dungeons and Dragons<br />Secret of the Silver Blades</h2>
+        <h2 className="mainTitle">
+          Advanced Dungeons and Dragons
+          <br />
+          Secret of the Silver Blades
+        </h2>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Character Editor</h3>
           <div className="mb-3">
@@ -561,85 +575,132 @@ const druidMagicDisplay = <>
               }}
             />
           </div>
-          {dataArray ? <button className="btn btn-success" onClick={() => exportSaveFile()}>
-            Download Character File
-          </button> : null}
+          {dataArray ? (
+            <button
+              className="btn btn-success"
+              onClick={() => exportSaveFile()}
+            >
+              Download Character File
+            </button>
+          ) : null}
           <br />
           <p></p>
-          {dataArray ?
+          {dataArray ? (
             <>
-
-
               <div className="accordion" id="charEditAccordion">
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingOne">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button
+                      className="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
                       Character Info
                     </button>
                   </h2>
-                  <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne">
-                    <div className="accordion-body">
-                      {charInfoDisplay}
-                    </div>
+                  <div
+                    id="collapseOne"
+                    className="accordion-collapse collapse show"
+                    aria-labelledby="headingOne"
+                  >
+                    <div className="accordion-body">{charInfoDisplay}</div>
                   </div>
                 </div>
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingTwo">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <button
+                      className="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="true"
+                      aria-controls="collapseTwo"
+                    >
                       Ability Scores and Levels
                     </button>
                   </h2>
-                  <div id="collapseTwo" className="accordion-collapse collapse show" aria-labelledby="headingTwo" >
-                    <div className="accordion-body">
-                      {charAbilityDisplay}
-                    </div>
+                  <div
+                    id="collapseTwo"
+                    className="accordion-collapse collapse show"
+                    aria-labelledby="headingTwo"
+                  >
+                    <div className="accordion-body">{charAbilityDisplay}</div>
                   </div>
                 </div>
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingThree">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
                       Magic-user Spells
                     </button>
                   </h2>
-                  <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" >
-                    <div className="accordion-body">
-                      {arcaneMagicDisplay}
-                    </div>
+                  <div
+                    id="collapseThree"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingThree"
+                  >
+                    <div className="accordion-body">{arcaneMagicDisplay}</div>
                   </div>
                 </div>
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingFour">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                      aria-expanded="false"
+                      aria-controls="collapseFour"
+                    >
                       Cleric Spells
                     </button>
                   </h2>
-                  <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" >
-                    <div className="accordion-body">
-                      {clericMagicDisplay}
-                    </div>
+                  <div
+                    id="collapseFour"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingFour"
+                  >
+                    <div className="accordion-body">{clericMagicDisplay}</div>
                   </div>
                 </div>
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingFive">
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive"
+                      aria-expanded="false"
+                      aria-controls="collapseFive"
+                    >
                       Druid Spells
                     </button>
                   </h2>
-                  <div id="collapseFive" className="accordion-collapse collapse" aria-labelledby="headingFive" >
-                    <div className="accordion-body">
-                      {druidMagicDisplay}
-                    </div>
+                  <div
+                    id="collapseFive"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingFive"
+                  >
+                    <div className="accordion-body">{druidMagicDisplay}</div>
                   </div>
                 </div>
               </div>
-
-            </> : null}
+            </>
+          ) : null}
         </div>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
 
           <SilverBladesInventory inventoryFileName={inventoryFileName} />
-
         </div>
       </div>
     </div>

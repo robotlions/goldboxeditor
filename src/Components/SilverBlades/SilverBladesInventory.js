@@ -50,9 +50,7 @@ export default function SilverBladesInventory(props) {
     }, [tempArray, updated]);
 
     function ValueModule(props) {
-      const [valueState, setValueState] = useState(
-        tempArray[props.value]
-      );
+      const [valueState, setValueState] = useState(tempArray[props.value]);
 
       function saveValue() {
         tempArray[props.value] = valueState;
@@ -160,7 +158,10 @@ export default function SilverBladesInventory(props) {
             <button
               style={{ maxWidth: 200 }}
               className="btn btn-primary shadow"
-              onClick={() => { setLoadedItem(null); setUnsavedChanges(true) }}
+              onClick={() => {
+                setLoadedItem(null);
+                setUnsavedChanges(true);
+              }}
             >
               Done Editing
             </button>
@@ -229,8 +230,6 @@ export default function SilverBladesInventory(props) {
     return loadedItem ? mainDisplay : emptyDisplay;
   }
 
-  
-
   function ItemListModule() {
     const [loading, setLoading] = useState(true);
     const [itemListArray, setItemListArray] = useState([]);
@@ -247,37 +246,35 @@ export default function SilverBladesInventory(props) {
         <p className="col-12">
           {Object.values(item)}{" "}
           {!loadedItem ? (
-            <><button
-              className="btn btn-primary editButton"
-              onClick={() => setLoadedItem(item)}
-            >
-              Edit
-            </button>
-            {" "}
-            <button
-            className="btn btn-warning editButton"
-            onClick={() => duplicateItem(item)}
-          >
-            Duplicate
-          </button></>
+            <>
+              <button
+                className="btn btn-primary editButton"
+                onClick={() => setLoadedItem(item)}
+              >
+                Edit
+              </button>{" "}
+              <button
+                className="btn btn-warning editButton"
+                onClick={() => duplicateItem(item)}
+              >
+                Duplicate
+              </button>
+            </>
           ) : null}
         </p>
       </div>
     ));
 
-    function duplicateItem(item){
-    let tempArray = Array.from(dataArray);
-    for(let i =0;i<=66;i++){
-      let n = tempArray[parseInt(Object.keys(item))+i]
-      tempArray.push(n)
-
-    }
-    let newArray = new Uint8Array(tempArray);
+    function duplicateItem(item) {
+      let tempArray = Array.from(dataArray);
+      for (let i = 0; i <= 66; i++) {
+        let n = tempArray[parseInt(Object.keys(item)) + i];
+        tempArray.push(n);
+      }
+      let newArray = new Uint8Array(tempArray);
       setDataArray(newArray);
       assembleList();
     }
-    
-  
 
     function assembleList() {
       let nameArray = [];
@@ -303,7 +300,7 @@ export default function SilverBladesInventory(props) {
     const [inputText, setInputText] = useState(
       parseInt(
         (0 + dataArray[props.value + 1].toString(16)).slice(-2) +
-        (0 + dataArray[props.value].toString(16)).slice(-2),
+          (0 + dataArray[props.value].toString(16)).slice(-2),
         16
       )
     );
@@ -380,19 +377,16 @@ export default function SilverBladesInventory(props) {
                 loadFile(e.target.files[0]);
               }}
             />
-
           </div>
 
-          {dataArray ? <button
-
-            className="btn btn-success"
-            onClick={() => exportSaveFile()}
-          >
-            Download Inventory File
-          </button> : null}
-
-
-
+          {dataArray ? (
+            <button
+              className="btn btn-success"
+              onClick={() => exportSaveFile()}
+            >
+              Download Inventory File
+            </button>
+          ) : null}
         </div>
       </div>
       <br />

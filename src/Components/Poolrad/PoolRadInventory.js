@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { poolRadItemValues } from "./PoolRadData";
+import * as InvFunctions from "../InvFunctions";
 
 export default function PoolRadInventory(props) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -50,9 +51,7 @@ export default function PoolRadInventory(props) {
     }, [tempArray, updated]);
 
     function ValueModule(props) {
-      const [valueState, setValueState] = useState(
-        tempArray[props.value]
-      );
+      const [valueState, setValueState] = useState(tempArray[props.value]);
 
       function saveValue() {
         tempArray[props.value] = valueState;
@@ -160,7 +159,10 @@ export default function PoolRadInventory(props) {
             <button
               style={{ maxWidth: 200 }}
               className="btn btn-primary shadow"
-              onClick={() => { setLoadedItem(null); setUnsavedChanges(true) }}
+              onClick={() => {
+                setLoadedItem(null);
+                setUnsavedChanges(true);
+              }}
             >
               Done Editing
             </button>
@@ -229,8 +231,6 @@ export default function PoolRadInventory(props) {
     return loadedItem ? mainDisplay : emptyDisplay;
   }
 
-  
-
   function ItemListModule() {
     const [loading, setLoading] = useState(true);
     const [itemListArray, setItemListArray] = useState([]);
@@ -247,37 +247,35 @@ export default function PoolRadInventory(props) {
         <p className="col-12">
           {Object.values(item)}{" "}
           {!loadedItem ? (
-            <><button
-              className="btn btn-primary editButton"
-              onClick={() => setLoadedItem(item)}
-            >
-              Edit
-            </button>
-            {" "}
-            <button
-            className="btn btn-warning editButton"
-            onClick={() => duplicateItem(item)}
-          >
-            Duplicate
-          </button></>
+            <>
+              <button
+                className="btn btn-primary editButton"
+                onClick={() => setLoadedItem(item)}
+              >
+                Edit
+              </button>{" "}
+              <button
+                className="btn btn-warning editButton"
+                onClick={() => duplicateItem(item)}
+              >
+                Duplicate
+              </button>
+            </>
           ) : null}
         </p>
       </div>
     ));
 
-    function duplicateItem(item){
-    let tempArray = Array.from(dataArray);
-    for(let i =0;i<=62;i++){
-      let n = tempArray[parseInt(Object.keys(item))+i]
-      tempArray.push(n)
-
-    }
-    let newArray = new Uint8Array(tempArray);
+    function duplicateItem(item) {
+      let tempArray = Array.from(dataArray);
+      for (let i = 0; i <= 62; i++) {
+        let n = tempArray[parseInt(Object.keys(item)) + i];
+        tempArray.push(n);
+      }
+      let newArray = new Uint8Array(tempArray);
       setDataArray(newArray);
       assembleList();
     }
-    
-  
 
     function assembleList() {
       let nameArray = [];
@@ -303,7 +301,7 @@ export default function PoolRadInventory(props) {
     const [inputText, setInputText] = useState(
       parseInt(
         (0 + dataArray[props.value + 1].toString(16)).slice(-2) +
-        (0 + dataArray[props.value].toString(16)).slice(-2),
+          (0 + dataArray[props.value].toString(16)).slice(-2),
         16
       )
     );
@@ -351,7 +349,20 @@ export default function PoolRadInventory(props) {
 
       <div className="row">
         {/* {loadedItem ? <ItemEditModule /> : <h4>Select item to edit</h4>} */}
-        <ItemEditModule />
+        <InvFunctions.ItemEditModule
+          dataArray={dataArray}
+          setDataArray={setDataArray}
+          loadedItem={loadedItem}
+          setLoadedItem={setLoadedItem}
+          dataList={poolRadItemValues}
+          nameIndex={47}
+          typeIndex={46}
+          bonusIndex={50}
+          chargeIndex={60}
+          ammoIndex={57}
+          weightIndex={55}
+          setUnsavedChanges={setUnsavedChanges}
+        />
       </div>
     </>
   );
@@ -380,19 +391,16 @@ export default function PoolRadInventory(props) {
                 loadFile(e.target.files[0]);
               }}
             />
-
           </div>
 
-          {dataArray ? <button
-
-            className="btn btn-success"
-            onClick={() => exportSaveFile()}
-          >
-            Download Inventory File
-          </button> : null}
-
-
-
+          {dataArray ? (
+            <button
+              className="btn btn-success"
+              onClick={() => exportSaveFile()}
+            >
+              Download Inventory File
+            </button>
+          ) : null}
         </div>
       </div>
       <br />
