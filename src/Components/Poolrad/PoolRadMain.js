@@ -211,7 +211,6 @@ export default function PoolRadMain() {
                         platinumIndex={144}
                         gemsIndex={146}
                         jewelryIndex={148}
-
                       />
                     </div>
                   </div>
@@ -253,6 +252,41 @@ export default function PoolRadMain() {
                     </div>
                   </div>
                 </div>
+
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingMoney">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseMoney"
+                      aria-expanded="true"
+                      aria-controls="collapseMoney"
+                    >
+                      Money
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseMoney"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingMoney"
+                  >
+                    <div className="accordion-body">
+                      <CharComponents.CharMoneyComponent
+                        dataArray={dataArray}
+                        setDataArray={setDataArray}
+                        copperIndex={136}
+                        silverIndex={138}
+                        electrumIndex={140}
+                        goldIndex={142}
+                        platinumIndex={144}
+                        gemsIndex={146}
+                        jewelryIndex={148}
+                      />
+                    </div>
+                  </div>
+                </div>
+
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingThree">
                     <button
