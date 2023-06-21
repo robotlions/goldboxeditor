@@ -201,17 +201,6 @@ export default function PoolRadMain() {
                         statusCodes={poolRadStatusCodes}
                         racesList={poolRadRaces}
                       />
-                      <CharComponents.CharMoneyComponent
-                        dataArray={dataArray}
-                        setDataArray={setDataArray}
-                        copperIndex={136}
-                        silverIndex={138}
-                        electrumIndex={140}
-                        goldIndex={142}
-                        platinumIndex={144}
-                        gemsIndex={146}
-                        jewelryIndex={148}
-                      />
                     </div>
                   </div>
                 </div>
