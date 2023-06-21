@@ -50,9 +50,6 @@ export default function PoolRadMain() {
     setInventoryFileName(inventoryFile);
   }
 
-  
-
-
   const arcaneMagicDisplay = (
     <>
       <h4>Magic-user Spell Slots</h4>
@@ -203,6 +200,18 @@ export default function PoolRadMain() {
                         experienceIndex={172}
                         statusCodes={poolRadStatusCodes}
                         racesList={poolRadRaces}
+                      />
+                      <CharComponents.CharMoneyComponent
+                        dataArray={dataArray}
+                        setDataArray={setDataArray}
+                        copperIndex={136}
+                        silverIndex={138}
+                        electrumIndex={140}
+                        goldIndex={142}
+                        platinumIndex={144}
+                        gemsIndex={146}
+                        jewelryIndex={148}
+
                       />
                     </div>
                   </div>

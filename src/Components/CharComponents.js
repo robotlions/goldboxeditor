@@ -1,4 +1,5 @@
 import * as CharFunctions from "../Components/CharFunctions";
+import * as InvFunctions from "../Components/InvFunctions";
 import { genders, alignments } from "./Poolrad/PoolRadData";
 
 
@@ -198,4 +199,70 @@ export const CharInfoDisplay = (props) =>{
       </div>
     </>
 )};
+
+export const CharMoneyComponent = (props) =>{
+
+  return(
+    <>
+      <div className="row">
+        <div className="col-md-3">
+          Copper:{" "}
+          <InvFunctions.ItemWeightModule 
+            dataArray={props.dataArray}
+            setDataArray={props.setDataArray}
+            value={props.copperIndex}
+          />
+        </div>
+        <div className="col-md-3">
+          Silver:{" "}
+          <InvFunctions.ItemWeightModule 
+            dataArray={props.dataArray}
+            setDataArray={props.setDataArray}
+            value={props.silverIndex}
+          />
+        </div>
+        <div className="col-md-3">
+          Electrum:{" "}
+          <InvFunctions.ItemWeightModule 
+            dataArray={props.dataArray}
+            setDataArray={props.setDataArray}
+            value={props.electrumIndex}
+          />
+        </div>
+        <div className="col-md-3">
+          Gold:{" "}
+          <InvFunctions.ItemWeightModule 
+            dataArray={props.dataArray}
+            setDataArray={props.setDataArray}
+            value={props.goldIndex}
+          />
+        </div>
+        <div className="col-md-3">
+          Platinum:{" "}
+          <InvFunctions.ItemWeightModule 
+            dataArray={props.dataArray}
+            setDataArray={props.setDataArray}
+            value={props.platinumIndex}
+          />
+        </div>
+        <div className="col-md-3">
+          Gems:{" "}
+          <InvFunctions.ItemWeightModule 
+            dataArray={props.dataArray}
+            setDataArray={props.setDataArray}
+            value={props.gemsIndex}
+          />
+        </div>
+        <div className="col-md-3">
+          Jewelry:{" "}
+          <InvFunctions.ItemWeightModule 
+            dataArray={props.dataArray}
+            setDataArray={props.setDataArray}
+            value={props.jewelryIndex}
+          />
+        </div>
+        </div>
+        </>
+  )
+}
 
