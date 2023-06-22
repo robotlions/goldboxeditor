@@ -18,7 +18,9 @@ export const CharAbilityDisplay = (props)=>{
               dataArray={props.dataArray}
               setDataArray={props.setDataArray}
               extStrIndex={props.extStrIndex}
+              extStrIndexCurrent={props.extStrIndexCurrent}
               dataArrayIndex={props.strIndex}
+              dataArrayIndexCurrent={props.strIndexCurrent}
             />
           </div>
           <div className="row">
@@ -28,6 +30,7 @@ export const CharAbilityDisplay = (props)=>{
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.intIndex}
+                dataArrayIndexCurrent={props.intIndexCurrent}
               />
             </div>
           </div>
@@ -38,6 +41,8 @@ export const CharAbilityDisplay = (props)=>{
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.wisIndex}
+                dataArrayIndexCurrent={props.wisIndexCurrent}
+
               />
             </div>
           </div>
@@ -48,6 +53,8 @@ export const CharAbilityDisplay = (props)=>{
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.dexIndex}
+                dataArrayIndexCurrent={props.dexIndexCurrent}
+
               />
             </div>
           </div>
@@ -58,6 +65,8 @@ export const CharAbilityDisplay = (props)=>{
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.conIndex}
+                dataArrayIndexCurre t={props.conIndexCurrent}
+
               />
             </div>
           </div>
@@ -68,6 +77,8 @@ export const CharAbilityDisplay = (props)=>{
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.chaIndex}
+                dataArrayIndexCurrent={props.chaIndexCurrent}
+
               />
             </div>
           </div>
@@ -94,6 +105,26 @@ export const CharAbilityDisplay = (props)=>{
               />
             </div>
           </div>
+          {props.paladinIndex && <div className="row">
+            <div className="col-6">Paladin: </div>
+            <div className="col-6">
+              <CharFunctions.LevelModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.paladinIndex}
+              />
+            </div>
+          </div> }
+          {props.rangerIndex && <div className="row">
+            <div className="col-6">Ranger: </div>
+            <div className="col-6">
+              <CharFunctions.LevelModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.rangerIndex}
+              />
+            </div>
+          </div> }
           <div className="row">
             <div className="col-6">Magic-User: </div>
             <div className="col-6">

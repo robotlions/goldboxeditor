@@ -270,7 +270,7 @@ export function StrengthModule(props) {
 
   function submitExtChange() {
     tempArray[props.extStrIndex] = extInput;
-    tempArray[props.extStrCurrent] = extInput;
+    tempArray[props.extStrIndexCurrent] = extInput;
     props.setDataArray(tempArray);
   }
 
@@ -287,7 +287,7 @@ export function StrengthModule(props) {
         />
       </div>
       <div className="col-4">
-        {inputText === 18 ? (
+        {inputText == 18 ? (
           <input
             type="number"
             max="99"

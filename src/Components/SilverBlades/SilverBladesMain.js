@@ -2,8 +2,9 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
 import { spellList } from "../../Data/Spells";
-import { alignments, statusCodes, races, genders } from "../../Data/DataLists";
+import { silverBladesStatusCodes, silverBladesRaces } from "./SilverBladesData";
 import SilverBladesInventory from "./SilverBladesInventory";
+import * as CharComponents from "../CharComponents";
 
 export default function SilverBladesMain() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -49,41 +50,7 @@ export default function SilverBladesMain() {
     setInventoryFileName(inventoryFile);
   }
 
-  function NameModule() {
-    let tempArray = dataArray;
 
-    let defaultName = assembleName();
-
-    const [inputText, setInputText] = useState(defaultName);
-    const editDisplay = (
-      <input
-        className="form-control"
-        value={inputText}
-        maxLength={15}
-        onChange={(e) => setInputText(e.target.value)}
-        onBlurCapture={() => saveName()}
-        type="text"
-      />
-    );
-
-    function assembleName() {
-      let assembledName = "";
-      for (let i = 1; i <= dataArray[0]; i++) {
-        assembledName = assembledName + String.fromCharCode(dataArray[i]);
-      }
-      return assembledName;
-    }
-
-    function saveName() {
-      tempArray[0] = inputText.length;
-      for (let i = 0; i <= inputText.length; i++) {
-        tempArray[i + 1] = inputText.toUpperCase().charCodeAt(i);
-      }
-      setDataArray(tempArray);
-    }
-
-    return editDisplay;
-  }
 
   function ScoreModule(props) {
     let tempArray = dataArray;
@@ -183,84 +150,7 @@ export default function SilverBladesMain() {
     return editDisplay;
   }
 
-  function HitPointModule(props) {
-    let tempArray = dataArray;
-
-    const [editing, setEditing] = useState(false);
-    const [inputText, setInputText] = useState(dataArray[112]);
-
-    function submitChange() {
-      tempArray[props.dataArrayIndex] = inputText;
-
-      setDataArray(tempArray);
-    }
-
-    const editDisplay = (
-      <input
-        className="form-control"
-        type="number"
-        max="255"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        onBlur={() => {
-          setEditing(!editing);
-          submitChange();
-        }}
-      />
-    );
-
-    return editDisplay;
-  }
-
-  function ExperienceModule(props) {
-    let tempArray = dataArray;
-
-    const [editing, setEditing] = useState(false);
-    const [inputText, setInputText] = useState(
-      parseInt(
-        (0 + dataArray[303].toString(16)).slice(-2) +
-          (0 + dataArray[302].toString(16)).slice(-2) +
-          (0 + dataArray[301].toString(16)).slice(-2) +
-          (0 + dataArray[300].toString(16)).slice(-2),
-        16
-      )
-    );
-
-    const editDisplay = (
-      <input
-        className="form-control"
-        type="text"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        onBlur={() => {
-          setEditing(!editing);
-          convertDecimaltoBinary();
-        }}
-      />
-    );
-
-    function convertDecimaltoBinary() {
-      let eightBit = (
-        "00000000" + parseInt(inputText).toString(16).toUpperCase()
-      ).slice(-8);
-      let eightBitSplit = eightBit.match(/.{1,2}/g) ?? [];
-      for (let i = 0; i < 3; i++) {
-        if (eightBitSplit[i] === "00") {
-          eightBitSplit[i] = "0";
-        } else if (eightBitSplit[i].charAt(0) === "0") {
-          eightBitSplit[i] = eightBitSplit[i].charAt(1);
-        }
-      }
-
-      tempArray[303] = parseInt(eightBitSplit[0], 16);
-      tempArray[302] = parseInt(eightBitSplit[1], 16);
-      tempArray[301] = parseInt(eightBitSplit[2], 16);
-      tempArray[300] = parseInt(eightBitSplit[3], 16);
-      setDataArray(tempArray);
-    }
-
-    return editDisplay;
-  }
+  
 
   function SpellCheckBox(props) {
     let tempArray = dataArray;
@@ -305,152 +195,10 @@ export default function SilverBladesMain() {
     );
   }
 
-  function SelectModule(props) {
-    let tempArray = dataArray;
+  
 
-    let dropList = Object.entries(props.dataList).map((item, index) => (
-      <option key={index} value={item[0]}>
-        {item[1]}
-      </option>
-    ));
 
-    let defaultDisplay = tempArray[props.index];
-
-    return (
-      <div className="d-flex">
-        <select
-          className="form-select"
-          defaultValue={defaultDisplay}
-          aria-label="Item value dropdown"
-          onChange={(e) => {
-            tempArray[props.index] = e.target.value;
-            setDataArray(tempArray);
-          }}
-        >
-          <option disabled value={-1}>
-            Options
-          </option>
-          {dropList}
-        </select>
-      </div>
-    );
-  }
-
-  const charInfoDisplay = (
-    <>
-      <div className="row">
-        <div className="col-md-3">
-          Character Name: <NameModule />
-        </div>
-        <div className="col-md-3">
-          Max HP: <HitPointModule dataArrayIndex={112} />
-        </div>
-        <div className="col-md-3">
-          Current HP: <HitPointModule dataArrayIndex={437} />
-        </div>
-        <div className="col-md-3">
-          Experience: <ExperienceModule />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-3">
-          Status: <SelectModule index={422} dataList={statusCodes} />
-        </div>
-        <div className="col-md-3">
-          Alignment: <SelectModule index={288} dataList={alignments} />
-        </div>
-        <div className="col-md-3">
-          Race: <SelectModule index={107} dataList={races} />
-        </div>
-        <div className="col-md-3">
-          Gender: <SelectModule index={287} dataList={genders} />
-        </div>
-      </div>
-    </>
-  );
-
-  const charAbilityDisplay = (
-    <>
-      <div className="row">
-        <div className="col-md-6">
-          <h4 style={{ textAlign: "center" }}>Ability Scores</h4>
-          <div className="row">
-            <div className="col-4">Strength:</div>
-            <StrengthModule idText="strengthScore" dataArrayIndex={16} />
-          </div>
-          <div className="row">
-            <div className="col-4">Intelligence:</div>
-            <div className="col-4">
-              <ScoreModule dataArrayIndex={18} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">Wisdom:</div>
-            <div className="col-4">
-              <ScoreModule dataArrayIndex={20} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">Dexterity:</div>
-            <div className="col-4">
-              <ScoreModule dataArrayIndex={22} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">Constitution:</div>
-            <div className="col-4">
-              <ScoreModule dataArrayIndex={24} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-4">Charisma:</div>
-            <div className="col-4">
-              <ScoreModule dataArrayIndex={26} />
-            </div>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <h4 style={{ textAlign: "center" }}>Levels</h4>
-          <div className="row">
-            <div className="col-6">Cleric: </div>
-            <div className="col-6">
-              <LevelModule dataArrayIndex={273} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">Fighter: </div>
-            <div className="col-6">
-              <LevelModule dataArrayIndex={275} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">Paladin: </div>
-            <div className="col-6">
-              <LevelModule dataArrayIndex={276} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">Ranger: </div>
-            <div className="col-6">
-              <LevelModule dataArrayIndex={277} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">Magic-User: </div>
-            <div className="col-6">
-              <LevelModule dataArrayIndex={278} />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6">Thief: </div>
-            <div className="col-6">
-              <LevelModule dataArrayIndex={279} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+  
 
   const arcaneMagicDisplay = (
     <>
@@ -606,7 +354,15 @@ export default function SilverBladesMain() {
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingOne"
                   >
-                    <div className="accordion-body">{charInfoDisplay}</div>
+                    <div className="accordion-body"><CharComponents.CharInfoDisplay
+                        dataArray={dataArray}
+                        setDataArray={setDataArray}
+                        maxHPIndex={112}
+                        currentHPIndex={437}
+                        experienceIndex={300}
+                        statusCodes={silverBladesStatusCodes}
+                        racesList={silverBladesRaces}
+                      /></div>
                   </div>
                 </div>
                 <div className="accordion-item">
@@ -627,7 +383,30 @@ export default function SilverBladesMain() {
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingTwo"
                   >
-                    <div className="accordion-body">{charAbilityDisplay}</div>
+                    <div className="accordion-body"><CharComponents.CharAbilityDisplay
+                        dataArray={dataArray}
+                        setDataArray={setDataArray}
+                        strIndex={16}
+                        strIndexCurrent={17}
+                        extStrIndex={28}
+                        extStrIndexCurrent={29}
+                        intIndex={18}
+                        intIndexCurrent={19}
+                        wisIndex={20}
+                        wisIndexCurrent={21}
+                        dexIndex={22}
+                        dexIndexCurrent={23}
+                        conIndex={24}
+                        conIndexCurrent={25}
+                        chaIndex={26}
+                        chaIndexCurrent={27}
+                        clericIndex={273}
+                        fighterIndex={275}
+                        paladinIndex={276}
+                        rangerIndex={277}
+                        magicUserIndex={278}
+                        thiefIndex={279}
+                      /></div>
                   </div>
                 </div>
                 <div className="accordion-item">
