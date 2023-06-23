@@ -37,9 +37,15 @@ export default function SilverBladesMain() {
     var reader = new FileReader();
     reader.onload = function (e) {
       let data = e.target.result;
-      let dataArray = new Uint8Array(data);
-      setDataArray(dataArray);
-      // console.log(dataArray);
+      if (data.byteLength !== 439) {
+        return alert(
+          "This doesn't appear to be a save file from Secret of the Silver Blades"
+        );
+      } else {
+        let dataArray = new Uint8Array(data);
+        console.log(data.byteLength);
+        setDataArray(dataArray);
+      }
     };
     reader.onerror = function (e) {
       console.log("Error : " + e.type);
@@ -137,22 +143,21 @@ export default function SilverBladesMain() {
     );
   }
 
-  function MoneyDisplay(props){
-
-    return(
+  function MoneyDisplay(props) {
+    return (
       <CharComponents.CharMoneyComponent
-                        dataArray={dataArray}
-                        setDataArray={setDataArray}
-                        copperIndex={259}
-                        silverIndex={261}
-                        electrumIndex={263}
-                        goldIndex={265}
-                        platinumIndex={267}
-                        gemsIndex={269}
-                        jewelryIndex={271}
-                      />
-    )
-  };
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        copperIndex={259}
+        silverIndex={261}
+        electrumIndex={263}
+        goldIndex={265}
+        platinumIndex={267}
+        gemsIndex={269}
+        jewelryIndex={271}
+      />
+    );
+  }
 
   return (
     <div className="charEditBody">
@@ -237,7 +242,6 @@ export default function SilverBladesMain() {
                   </div>
                 </div>
 
-
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingMoney">
                     <button
@@ -261,7 +265,6 @@ export default function SilverBladesMain() {
                     </div>
                   </div>
                 </div>
-
 
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingThree">

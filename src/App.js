@@ -18,7 +18,7 @@ function App() {
 
 
   return (
-    <Container>
+    <Container fluid>
       <div className="row">
           <Nav />
         </div>   
