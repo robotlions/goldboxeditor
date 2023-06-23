@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
-import { spellList } from "../../Data/Spells";
-import { silverBladesStatusCodes, silverBladesRaces } from "./SilverBladesData";
+import { silverBladesStatusCodes, silverBladesRaces, silverBladesSpellList } from "./SilverBladesData";
 import SilverBladesInventory from "./SilverBladesInventory";
 import * as CharComponents from "../CharComponents";
+import * as CharFunctions from "../CharFunctions";
 
 export default function SilverBladesMain() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -35,7 +35,7 @@ export default function SilverBladesMain() {
       let data = e.target.result;
       let dataArray = new Uint8Array(data);
       setDataArray(dataArray);
-      console.log(dataArray);
+      // console.log(dataArray);
     };
     reader.onerror = function (e) {
       console.log("Error : " + e.type);
@@ -43,225 +43,179 @@ export default function SilverBladesMain() {
     reader.readAsArrayBuffer(file);
   }
 
-  function createInventoryFile(e) {
-    let loadedFileName = e.target.files[0].name;
-    let inventoryFile =
-      loadedFileName.substr(0, loadedFileName.lastIndexOf(".")) + ".STF";
-    setInventoryFileName(inventoryFile);
-  }
+  // function createInventoryFile(e) {
+  //   let loadedFileName = e.target.files[0].name;
+  //   let inventoryFile =
+  //     loadedFileName.substr(0, loadedFileName.lastIndexOf(".")) + ".STF";
+  //   setInventoryFileName(inventoryFile);
+  // }
 
-
-
-  function ScoreModule(props) {
-    let tempArray = dataArray;
-
-    const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
-
-    function submitChange() {
-      tempArray[props.dataArrayIndex] = inputText;
-      tempArray[props.dataArrayIndex + 1] = inputText;
-      setDataArray(tempArray);
-    }
-
-    const editDisplay = (
-      <input
-        id={props.idText}
-        type="number"
-        max="99"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        onBlur={() => submitChange()}
-        style={{ maxWidth: "60%", textAlign: "center" }}
-      />
-    );
-
-    return editDisplay;
-  }
-
-  function StrengthModule(props) {
-    let tempArray = dataArray;
-
-    const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
-    const [extInput, setExtInput] = useState(dataArray[28]);
-
-    function submitChange() {
-      tempArray[props.dataArrayIndex] = inputText;
-      tempArray[props.dataArrayIndex + 1] = inputText;
-      setDataArray(tempArray);
-    }
-
-    function submitExtChange() {
-      tempArray[28] = extInput;
-      tempArray[29] = extInput;
-      setDataArray(tempArray);
-    }
-
-    const editDisplay = (
-      <>
-        <div className="col-4">
-          <input
-            type="number"
-            max="100"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            onBlur={() => submitChange()}
-            style={{ maxWidth: "60%", textAlign: "center" }}
-          />
-        </div>
-        <div className="col-4">
-          {inputText >= 18 ? (
-            <input
-              type="number"
-              max="99"
-              value={extInput}
-              onChange={(e) => setExtInput(e.target.value)}
-              onBlur={() => submitExtChange()}
-              style={{ maxWidth: "60%", textAlign: "center" }}
-            />
-          ) : null}
-        </div>
-      </>
-    );
-
-    return editDisplay;
-  }
-
-  function LevelModule(props) {
-    let tempArray = dataArray;
-
-    const [inputText, setInputText] = useState(dataArray[props.dataArrayIndex]);
-
-    function submitChange() {
-      tempArray[props.dataArrayIndex] = inputText;
-      setDataArray(tempArray);
-    }
-
-    const editDisplay = (
-      <input
-        style={{ maxWidth: "60%", textAlign: "center" }}
-        type="number"
-        max="99"
-        value={inputText}
-        onChange={(e) => setInputText(e.target.value)}
-        onBlur={() => submitChange()}
-      />
-    );
-
-    return editDisplay;
-  }
 
   
 
-  function SpellCheckBox(props) {
-    let tempArray = dataArray;
-
-    const [checked, setChecked] = useState(props.item === 1 ? true : false);
-
-    function updateChecked() {
-      let checkValue = checked === true ? 0 : 1;
-      tempArray[props.index] = parseInt(checkValue, 16);
-      setDataArray(tempArray);
-    }
+  function ArcaneMagicDisplay(props){
+    let spellArray = [0,1,2,3,4,5,6];
+    
+    
+    let spellSlots =  spellArray.map((item, index) =><div key={index} className="col-2">{item+1}: <CharFunctions.LevelModule
+    dataArray={dataArray}
+    setDataArray={setDataArray}
+    dataArrayIndex={props.startingIndex+item}
+/></div>)
 
     return (
-      <div className="col-6 col-md-3 spellEntry">
-        <input
-          style={{ marginRight: 10 }}
-          className="form-check-input"
-          type="checkbox"
-          checked={checked}
-          onChange={() => {
-            setChecked(!checked);
-            updateChecked();
-          }}
-        />
-        {spellList[props.index].spellName}
-      </div>
-    );
+      spellSlots
+    )
   }
+    
 
-  function SpellModule(props) {
-    let tempArray = Array.from(dataArray);
-    let spellDisplay = tempArray.map((item, index) =>
-      index > 112 && index < 230 && spellList[index].class === props.filter ? (
-        <SpellCheckBox item={item} index={index} key={index} />
-      ) : null
-    );
-
-    return (
-      <div style={{ marginBottom: 20 }} className="d-flex flex-wrap">
-        {spellDisplay}
-      </div>
-    );
-  }
-
-  
-
-
-  
-
-  const arcaneMagicDisplay = (
+    const arcaneMagicDisplay = 
+    
     <>
       <h4>Magic-user Spell Slots</h4>
       <div className="row">
+        
         <div className="col-2">
-          1: <LevelModule dataArrayIndex={327} />
+          1:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={327}
+          />
         </div>
         <div className="col-2">
-          2: <LevelModule dataArrayIndex={328} />
+          2:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={328}
+          />
         </div>
         <div className="col-2">
-          3: <LevelModule dataArrayIndex={329} />
+          3:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={329}
+          />
         </div>
         <div className="col-2">
-          4: <LevelModule dataArrayIndex={330} />
+          4:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={330}
+          />
         </div>
         <div className="col-2">
-          5: <LevelModule dataArrayIndex={331} />
+          5:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={331}
+          />
         </div>
         <div className="col-2">
-          6: <LevelModule dataArrayIndex={332} />
+          6:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={332}
+          />
         </div>
         <div className="col-2">
-          7: <LevelModule dataArrayIndex={333} />
+          7:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={333}
+          />
         </div>
       </div>
       <h4>Mage Spells:</h4>{" "}
       <div>
-        <SpellModule filter="Mage" />
+        <CharFunctions.SpellModule
+          dataArray={dataArray}
+          setDataArray={setDataArray}
+          dataArrayMin={112}
+          dataArrayMax={230}
+          dataList={silverBladesSpellList}
+          filter="Mage"
+        />
       </div>
-    </>
-  );
+    </>;
 
   const clericMagicDisplay = (
     <>
       <h4>Cleric Spell Slots</h4>
       <div className="row">
         <div className="col-2">
-          1: <LevelModule dataArrayIndex={306} />
+          1:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={306}
+          />
         </div>
         <div className="col-2">
-          2: <LevelModule dataArrayIndex={307} />
+          2:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={307}
+          />
         </div>
         <div className="col-2">
-          3: <LevelModule dataArrayIndex={308} />
+          3:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={308}
+          />
         </div>
         <div className="col-2">
-          4: <LevelModule dataArrayIndex={309} />
+          4:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={309}
+          />
         </div>
         <div className="col-2">
-          5: <LevelModule dataArrayIndex={310} />
+          5:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={310}
+          />
         </div>
         <div className="col-2">
-          6: <LevelModule dataArrayIndex={311} />
+          6:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={311}
+          />
         </div>
         <div className="col-2">
-          7: <LevelModule dataArrayIndex={312} />
+          7:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={312}
+          />
         </div>
       </div>
       <h4>Cleric Spells:</h4>{" "}
       <div>
-        <SpellModule filter="Cleric" />
+        <CharFunctions.SpellModule
+          dataArray={dataArray}
+          setDataArray={setDataArray}
+          dataArrayMin={112}
+          dataArrayMax={230}
+          dataList={silverBladesSpellList}
+          filter="Cleric"
+        />
       </div>
     </>
   );
@@ -271,10 +225,20 @@ export default function SilverBladesMain() {
       <h4>Druid Spell Slots</h4>
       <div className="row">
         <div className="col-2">
-          1: <LevelModule dataArrayIndex={313} />
+          1:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={313}
+          />
         </div>
         <div className="col-2">
-          2: <LevelModule dataArrayIndex={314} />
+          2:{" "}
+          <CharFunctions.LevelModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayIndex={314}
+          />
         </div>
         {/* <div className="col-2">
     3: <LevelModule dataArrayIndex={308} />
@@ -294,7 +258,14 @@ export default function SilverBladesMain() {
       </div>
       <h4>Druid Spells:</h4>{" "}
       <div>
-        <SpellModule filter="Druid" />
+        <CharFunctions.SpellModule
+          dataArray={dataArray}
+          setDataArray={setDataArray}
+          dataArrayMin={112}
+          dataArrayMax={230}
+          dataList={silverBladesSpellList}
+          filter="Druid"
+        />
       </div>
     </>
   );
@@ -316,8 +287,7 @@ export default function SilverBladesMain() {
               id="fileSelect"
               accept=".sav"
               onChange={(e) => {
-                console.log(e.target.files);
-                createInventoryFile(e);
+                // createInventoryFile(e);
                 setSelectedFile(e.target.files[0]);
                 loadFile(e.target.files[0]);
               }}
@@ -354,7 +324,8 @@ export default function SilverBladesMain() {
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingOne"
                   >
-                    <div className="accordion-body"><CharComponents.CharInfoDisplay
+                    <div className="accordion-body">
+                      <CharComponents.CharInfoDisplay
                         dataArray={dataArray}
                         setDataArray={setDataArray}
                         maxHPIndex={112}
@@ -362,7 +333,8 @@ export default function SilverBladesMain() {
                         experienceIndex={300}
                         statusCodes={silverBladesStatusCodes}
                         racesList={silverBladesRaces}
-                      /></div>
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="accordion-item">
@@ -383,7 +355,8 @@ export default function SilverBladesMain() {
                     className="accordion-collapse collapse show"
                     aria-labelledby="headingTwo"
                   >
-                    <div className="accordion-body"><CharComponents.CharAbilityDisplay
+                    <div className="accordion-body">
+                      <CharComponents.CharAbilityDisplay
                         dataArray={dataArray}
                         setDataArray={setDataArray}
                         strIndex={16}
@@ -406,7 +379,8 @@ export default function SilverBladesMain() {
                         rangerIndex={277}
                         magicUserIndex={278}
                         thiefIndex={279}
-                      /></div>
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="accordion-item">
@@ -427,7 +401,11 @@ export default function SilverBladesMain() {
                     className="accordion-collapse collapse"
                     aria-labelledby="headingThree"
                   >
-                    <div className="accordion-body">{arcaneMagicDisplay}</div>
+                    {/* <div className="accordion-body">{arcaneMagicDisplay}</div> */}
+                    <div className="accordion-body">
+                    <div className="row">
+                      <ArcaneMagicDisplay startingIndex={327} /></div>
+                      </div>
                   </div>
                 </div>
                 <div className="accordion-item">
