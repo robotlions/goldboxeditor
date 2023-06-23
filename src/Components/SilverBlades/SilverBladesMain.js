@@ -1,7 +1,11 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
-import { silverBladesStatusCodes, silverBladesRaces, silverBladesSpellList } from "./SilverBladesData";
+import {
+  silverBladesStatusCodes,
+  silverBladesRaces,
+  silverBladesSpellList,
+} from "./SilverBladesData";
 import SilverBladesInventory from "./SilverBladesInventory";
 import * as CharComponents from "../CharComponents";
 import * as CharFunctions from "../CharFunctions";
@@ -9,7 +13,7 @@ import * as CharFunctions from "../CharFunctions";
 export default function SilverBladesMain() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
-  const [inventoryFileName, setInventoryFileName] = useState(null);
+  // const [inventoryFileName, setInventoryFileName] = useState(null);
 
   function exportSaveFile() {
     if (!selectedFile) {
@@ -50,91 +54,105 @@ export default function SilverBladesMain() {
   //   setInventoryFileName(inventoryFile);
   // }
 
+  function MagicDisplay(props) {
+    let spellArray = [0, 1, 2, 3];
 
-  
-
-  function MagicDisplay(props){
-    let spellArray = [0,1,2,3];
-
-    if(props.mageFilter==="Mage"){
-      spellArray = [0,1,2,3,4,5,6]
+    if (props.mageFilter === "Mage") {
+      spellArray = [0, 1, 2, 3, 4, 5, 6];
     }
-    if(props.mageFilter==="Cleric"){
-      spellArray = [0,1,2,3,4,5]
+    if (props.mageFilter === "Cleric") {
+      spellArray = [0, 1, 2, 3, 4, 5];
     }
-    
-    let spellSlots =  spellArray.map((item, index) =><div key={index} className="col-2">{item+1}: <CharFunctions.LevelModule
-    dataArray={dataArray}
-    setDataArray={setDataArray}
-    dataArrayIndex={props.startingIndex+item}
-/></div>)
 
-    return (<>
-      {spellSlots}
-      <h4>{props.magicFilter} Spells:</h4>{" "}
-      <div>
-        <CharFunctions.SpellModule
+    let spellSlots = spellArray.map((item, index) => (
+      <div key={index} className="col-2">
+        {item + 1}:{" "}
+        <CharFunctions.LevelModule
           dataArray={dataArray}
           setDataArray={setDataArray}
-          dataArrayMin={112}
-          dataArrayMax={230}
-          dataList={silverBladesSpellList}
-          filter={props.magicFilter}
+          dataArrayIndex={props.startingIndex + item}
         />
       </div>
+    ));
+
+    return (
+      <>
+        {spellSlots}
+        <h4>{props.magicFilter} Spells:</h4>{" "}
+        <div>
+          <CharFunctions.SpellModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayMin={112}
+            dataArrayMax={230}
+            dataList={silverBladesSpellList}
+            filter={props.magicFilter}
+          />
+        </div>
       </>
-    )
+    );
   }
-    
 
-  function CharInfoDisplay(props){ 
-    
-    return(
+  function CharInfoDisplay(props) {
+    return (
       <CharComponents.CharInfoDisplay
-  dataArray={dataArray}
-  setDataArray={setDataArray}
-  maxHPIndex={112}
-  currentHPIndex={437}
-  experienceIndex={300}
-  statusCodes={silverBladesStatusCodes}
-  racesList={silverBladesRaces}
-/>
-    )
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        maxHPIndex={112}
+        currentHPIndex={437}
+        experienceIndex={300}
+        statusIndex={422}
+        statusCodes={silverBladesStatusCodes}
+        racesList={silverBladesRaces}
+      />
+    );
   }
 
-  function CharAbilityDisplay(props){
+  function CharAbilityDisplay(props) {
+    return (
+      <CharComponents.CharAbilityDisplay
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        strIndex={16}
+        strIndexCurrent={17}
+        extStrIndex={28}
+        extStrIndexCurrent={29}
+        intIndex={18}
+        intIndexCurrent={19}
+        wisIndex={20}
+        wisIndexCurrent={21}
+        dexIndex={22}
+        dexIndexCurrent={23}
+        conIndex={24}
+        conIndexCurrent={25}
+        chaIndex={26}
+        chaIndexCurrent={27}
+        clericIndex={273}
+        fighterIndex={275}
+        paladinIndex={276}
+        rangerIndex={277}
+        magicUserIndex={278}
+        thiefIndex={279}
+      />
+    );
+  }
+
+  function MoneyDisplay(props){
 
     return(
-
-      <CharComponents.CharAbilityDisplay
+      <CharComponents.CharMoneyComponent
                         dataArray={dataArray}
                         setDataArray={setDataArray}
-                        strIndex={16}
-                        strIndexCurrent={17}
-                        extStrIndex={28}
-                        extStrIndexCurrent={29}
-                        intIndex={18}
-                        intIndexCurrent={19}
-                        wisIndex={20}
-                        wisIndexCurrent={21}
-                        dexIndex={22}
-                        dexIndexCurrent={23}
-                        conIndex={24}
-                        conIndexCurrent={25}
-                        chaIndex={26}
-                        chaIndexCurrent={27}
-                        clericIndex={273}
-                        fighterIndex={275}
-                        paladinIndex={276}
-                        rangerIndex={277}
-                        magicUserIndex={278}
-                        thiefIndex={279}
+                        copperIndex={259}
+                        silverIndex={261}
+                        electrumIndex={263}
+                        goldIndex={265}
+                        platinumIndex={267}
+                        gemsIndex={269}
+                        jewelryIndex={271}
                       />
     )
-  }
-
-
-  
+  };
 
   return (
     <div className="charEditBody">
@@ -218,6 +236,33 @@ export default function SilverBladesMain() {
                     </div>
                   </div>
                 </div>
+
+
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingMoney">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseMoney"
+                      aria-expanded="true"
+                      aria-controls="collapseMoney"
+                    >
+                      Money
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseMoney"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingMoney"
+                  >
+                    <div className="accordion-body">
+                      <MoneyDisplay />
+                    </div>
+                  </div>
+                </div>
+
+
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingThree">
                     <button
@@ -238,9 +283,10 @@ export default function SilverBladesMain() {
                   >
                     {/* <div className="accordion-body">{arcaneMagicDisplay}</div> */}
                     <div className="accordion-body">
-                    <div className="row">
-                      <MagicDisplay startingIndex={327} magicFilter="Mage"/></div>
+                      <div className="row">
+                        <MagicDisplay startingIndex={327} magicFilter="Mage" />
                       </div>
+                    </div>
                   </div>
                 </div>
                 <div className="accordion-item">
@@ -262,12 +308,16 @@ export default function SilverBladesMain() {
                     aria-labelledby="headingFour"
                   >
                     <div className="accordion-body">
-                    <div className="row">
-                      <MagicDisplay startingIndex={306} magicFilter="Cleric"/></div>
+                      <div className="row">
+                        <MagicDisplay
+                          startingIndex={306}
+                          magicFilter="Cleric"
+                        />
                       </div>
                     </div>
                   </div>
-                
+                </div>
+
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingFive">
                     <button
@@ -287,10 +337,9 @@ export default function SilverBladesMain() {
                     aria-labelledby="headingFive"
                   >
                     <div className="accordion-body">
-                    <div className="row">
-                      <MagicDisplay startingIndex={313} magicFilter="Druid"/></div>
-                      
-
+                      <div className="row">
+                        <MagicDisplay startingIndex={313} magicFilter="Druid" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -301,7 +350,7 @@ export default function SilverBladesMain() {
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
 
-          <SilverBladesInventory inventoryFileName={inventoryFileName} />
+          <SilverBladesInventory />
         </div>
       </div>
     </div>
