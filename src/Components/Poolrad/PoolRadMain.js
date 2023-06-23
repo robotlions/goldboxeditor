@@ -9,7 +9,7 @@ import * as CharComponents from "../CharComponents";
 export default function PoolRadMain() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
-  const [inventoryFileName, setInventoryFileName] = useState(null);
+  // const [inventoryFileName, setInventoryFileName] = useState(null);
 
   function exportSaveFile() {
     if (!selectedFile) {
@@ -33,9 +33,14 @@ export default function PoolRadMain() {
     var reader = new FileReader();
     reader.onload = function (e) {
       let data = e.target.result;
-      let dataArray = new Uint8Array(data);
-      setDataArray(dataArray);
-      console.log(dataArray);
+      if (data.byteLength !== 285) {
+        return alert(
+          "This doesn't appear to be a save file from Pool of Radiance"
+        );
+      } else {
+        let dataArray = new Uint8Array(data);
+        setDataArray(dataArray);
+      }
     };
     reader.onerror = function (e) {
       console.log("Error : " + e.type);
@@ -43,98 +48,94 @@ export default function PoolRadMain() {
     reader.readAsArrayBuffer(file);
   }
 
-  function createInventoryFile(e) {
-    let loadedFileName = e.target.files[0].name;
-    let inventoryFile =
-      loadedFileName.substr(0, loadedFileName.lastIndexOf(".")) + ".STF";
-    setInventoryFileName(inventoryFile);
+  // function createInventoryFile(e) {
+  //   let loadedFileName = e.target.files[0].name;
+  //   let inventoryFile =
+  //     loadedFileName.substr(0, loadedFileName.lastIndexOf(".")) + ".STF";
+  //   setInventoryFileName(inventoryFile);
+  // }
+
+  function CharAbilityDisplay() {
+    return (
+      <CharComponents.CharAbilityDisplay
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        strIndex={16}
+        extStrIndex={22}
+        intIndex={17}
+        wisIndex={18}
+        dexIndex={19}
+        conIndex={20}
+        chaIndex={21}
+        clericIndex={151}
+        fighterIndex={152}
+        magicUserIndex={155}
+        thiefIndex={156}
+      />
+    );
   }
 
-  const arcaneMagicDisplay = (
-    <>
-      <h4>Magic-user Spell Slots</h4>
-      <div className="row">
-        <div className="col-2">
-          1:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={181}
-          />
-        </div>
-        <div className="col-2">
-          2:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={182}
-          />
-        </div>
-        <div className="col-2">
-          3:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={183}
-          />
-        </div>
-      </div>
-      <h4>Mage Spells:</h4>{" "}
-      <div>
-        <CharFunctions.SpellModule
-          dataArray={dataArray}
-          setDataArray={setDataArray}
-          dataArrayMin={50}
-          dataArrayMax={107}
-          dataList={poolRadSpells}
-          filter="Mage"
-        />
-      </div>
-    </>
-  );
+  function CharInfoDisplay() {
+    return (
+      <CharComponents.CharInfoDisplay
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        maxHPIndex={50}
+        currentHPIndex={283}
+        experienceIndex={172}
+        statusCodes={poolRadStatusCodes}
+        racesList={poolRadRaces}
+      />
+    );
+  }
 
-  const clericMagicDisplay = (
-    <>
-      <h4>Cleric Spell Slots</h4>
-      <div className="row">
-        <div className="col-2">
-          1:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={178}
-          />
-        </div>
-        <div className="col-2">
-          2:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={179}
-          />
-        </div>
-        <div className="col-2">
-          3:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={180}
-          />
-        </div>
-      </div>
-      <h4>Cleric Spells:</h4>{" "}
-      <div>
-        <CharFunctions.SpellModule
+  function MagicDisplay(props) {
+    let spellArray = [0, 1, 2];
+
+    let spellSlots = spellArray.map((item, index) => (
+      <div key={index} className="col-2">
+        {item + 1}:{" "}
+        <CharFunctions.LevelModule
           dataArray={dataArray}
           setDataArray={setDataArray}
-          dataArrayMin={50}
-          dataArrayMax={107}
-          dataList={poolRadSpells}
-          filter="Cleric"
+          dataArrayIndex={props.startingIndex + item}
         />
       </div>
-    </>
-  );
+    ));
+
+    return (
+      <>
+        {spellSlots}
+        <h4>{props.magicFilter} Spells:</h4>{" "}
+        <div>
+          <CharFunctions.SpellModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayMin={50}
+            dataArrayMax={107}
+            dataList={poolRadSpells}
+            filter={props.magicFilter}
+          />
+        </div>
+      </>
+    );
+  }
+
+  function MoneyDisplay() {
+    return (
+      <CharComponents.CharMoneyComponent
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        copperIndex={136}
+        silverIndex={138}
+        electrumIndex={140}
+        goldIndex={142}
+        platinumIndex={144}
+        gemsIndex={146}
+        jewelryIndex={148}
+      />
+    );
+  }
 
   return (
     <div className="charEditBody">
@@ -153,8 +154,7 @@ export default function PoolRadMain() {
               id="fileSelect"
               accept=".sav"
               onChange={(e) => {
-                console.log(e.target.files);
-                createInventoryFile(e);
+                // createInventoryFile(e);
                 setSelectedFile(e.target.files[0]);
                 loadFile(e.target.files[0]);
               }}
@@ -192,15 +192,7 @@ export default function PoolRadMain() {
                     aria-labelledby="headingOne"
                   >
                     <div className="accordion-body">
-                      <CharComponents.CharInfoDisplay
-                        dataArray={dataArray}
-                        setDataArray={setDataArray}
-                        maxHPIndex={50}
-                        currentHPIndex={283}
-                        experienceIndex={172}
-                        statusCodes={poolRadStatusCodes}
-                        racesList={poolRadRaces}
-                      />
+                      <CharInfoDisplay />
                     </div>
                   </div>
                 </div>
@@ -223,21 +215,7 @@ export default function PoolRadMain() {
                     aria-labelledby="headingTwo"
                   >
                     <div className="accordion-body">
-                      <CharComponents.CharAbilityDisplay
-                        dataArray={dataArray}
-                        setDataArray={setDataArray}
-                        strIndex={16}
-                        extStrIndex={22}
-                        intIndex={17}
-                        wisIndex={18}
-                        dexIndex={19}
-                        conIndex={20}
-                        chaIndex={21}
-                        clericIndex={151}
-                        fighterIndex={152}
-                        magicUserIndex={155}
-                        thiefIndex={156}
-                      />
+                      <CharAbilityDisplay />
                     </div>
                   </div>
                 </div>
@@ -261,17 +239,7 @@ export default function PoolRadMain() {
                     aria-labelledby="headingMoney"
                   >
                     <div className="accordion-body">
-                      <CharComponents.CharMoneyComponent
-                        dataArray={dataArray}
-                        setDataArray={setDataArray}
-                        copperIndex={136}
-                        silverIndex={138}
-                        electrumIndex={140}
-                        goldIndex={142}
-                        platinumIndex={144}
-                        gemsIndex={146}
-                        jewelryIndex={148}
-                      />
+                      <MoneyDisplay />
                     </div>
                   </div>
                 </div>
@@ -294,7 +262,11 @@ export default function PoolRadMain() {
                     className="accordion-collapse collapse"
                     aria-labelledby="headingThree"
                   >
-                    <div className="accordion-body">{arcaneMagicDisplay}</div>
+                    <div className="accordion-body">
+                      <div className="row">
+                        <MagicDisplay filter="Mage" startingIndex={181} />
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="accordion-item">
@@ -315,7 +287,11 @@ export default function PoolRadMain() {
                     className="accordion-collapse collapse"
                     aria-labelledby="headingFour"
                   >
-                    <div className="accordion-body">{clericMagicDisplay}</div>
+                    <div className="accordion-body">
+                      <div className="row">
+                        <MagicDisplay filter="Cleric" startingIndex={178} />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -325,7 +301,7 @@ export default function PoolRadMain() {
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
 
-          <PoolRadInventory inventoryFileName={inventoryFileName} />
+          <PoolRadInventory />
         </div>
       </div>
     </div>

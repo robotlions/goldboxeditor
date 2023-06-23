@@ -297,3 +297,5 @@ export const CharMoneyComponent = (props) =>{
   )
 }
 
+
+
