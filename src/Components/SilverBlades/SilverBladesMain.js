@@ -53,9 +53,15 @@ export default function SilverBladesMain() {
 
   
 
-  function ArcaneMagicDisplay(props){
-    let spellArray = [0,1,2,3,4,5,6];
-    
+  function MagicDisplay(props){
+    let spellArray = [0,1,2,3];
+
+    if(props.mageFilter==="Mage"){
+      spellArray = [0,1,2,3,4,5,6]
+    }
+    if(props.mageFilter==="Cleric"){
+      spellArray = [0,1,2,3,4,5]
+    }
     
     let spellSlots =  spellArray.map((item, index) =><div key={index} className="col-2">{item+1}: <CharFunctions.LevelModule
     dataArray={dataArray}
@@ -63,212 +69,72 @@ export default function SilverBladesMain() {
     dataArrayIndex={props.startingIndex+item}
 /></div>)
 
-    return (
-      spellSlots
+    return (<>
+      {spellSlots}
+      <h4>{props.magicFilter} Spells:</h4>{" "}
+      <div>
+        <CharFunctions.SpellModule
+          dataArray={dataArray}
+          setDataArray={setDataArray}
+          dataArrayMin={112}
+          dataArrayMax={230}
+          dataList={silverBladesSpellList}
+          filter={props.magicFilter}
+        />
+      </div>
+      </>
     )
   }
     
 
-    const arcaneMagicDisplay = 
+  function CharInfoDisplay(props){ 
     
-    <>
-      <h4>Magic-user Spell Slots</h4>
-      <div className="row">
-        
-        <div className="col-2">
-          1:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={327}
-          />
-        </div>
-        <div className="col-2">
-          2:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={328}
-          />
-        </div>
-        <div className="col-2">
-          3:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={329}
-          />
-        </div>
-        <div className="col-2">
-          4:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={330}
-          />
-        </div>
-        <div className="col-2">
-          5:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={331}
-          />
-        </div>
-        <div className="col-2">
-          6:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={332}
-          />
-        </div>
-        <div className="col-2">
-          7:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={333}
-          />
-        </div>
-      </div>
-      <h4>Mage Spells:</h4>{" "}
-      <div>
-        <CharFunctions.SpellModule
-          dataArray={dataArray}
-          setDataArray={setDataArray}
-          dataArrayMin={112}
-          dataArrayMax={230}
-          dataList={silverBladesSpellList}
-          filter="Mage"
-        />
-      </div>
-    </>;
+    return(
+      <CharComponents.CharInfoDisplay
+  dataArray={dataArray}
+  setDataArray={setDataArray}
+  maxHPIndex={112}
+  currentHPIndex={437}
+  experienceIndex={300}
+  statusCodes={silverBladesStatusCodes}
+  racesList={silverBladesRaces}
+/>
+    )
+  }
 
-  const clericMagicDisplay = (
-    <>
-      <h4>Cleric Spell Slots</h4>
-      <div className="row">
-        <div className="col-2">
-          1:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={306}
-          />
-        </div>
-        <div className="col-2">
-          2:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={307}
-          />
-        </div>
-        <div className="col-2">
-          3:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={308}
-          />
-        </div>
-        <div className="col-2">
-          4:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={309}
-          />
-        </div>
-        <div className="col-2">
-          5:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={310}
-          />
-        </div>
-        <div className="col-2">
-          6:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={311}
-          />
-        </div>
-        <div className="col-2">
-          7:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={312}
-          />
-        </div>
-      </div>
-      <h4>Cleric Spells:</h4>{" "}
-      <div>
-        <CharFunctions.SpellModule
-          dataArray={dataArray}
-          setDataArray={setDataArray}
-          dataArrayMin={112}
-          dataArrayMax={230}
-          dataList={silverBladesSpellList}
-          filter="Cleric"
-        />
-      </div>
-    </>
-  );
+  function CharAbilityDisplay(props){
 
-  const druidMagicDisplay = (
-    <>
-      <h4>Druid Spell Slots</h4>
-      <div className="row">
-        <div className="col-2">
-          1:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={313}
-          />
-        </div>
-        <div className="col-2">
-          2:{" "}
-          <CharFunctions.LevelModule
-            dataArray={dataArray}
-            setDataArray={setDataArray}
-            dataArrayIndex={314}
-          />
-        </div>
-        {/* <div className="col-2">
-    3: <LevelModule dataArrayIndex={308} />
-  </div>
-  <div className="col-2">
-    4: <LevelModule dataArrayIndex={309} />
-  </div>
-  <div className="col-2">
-    5: <LevelModule dataArrayIndex={310} />
-  </div>
-  <div className="col-2">
-    6: <LevelModule dataArrayIndex={311} />
-  </div>
-  <div className="col-2">
-    7: <LevelModule dataArrayIndex={312} />
-  </div> */}
-      </div>
-      <h4>Druid Spells:</h4>{" "}
-      <div>
-        <CharFunctions.SpellModule
-          dataArray={dataArray}
-          setDataArray={setDataArray}
-          dataArrayMin={112}
-          dataArrayMax={230}
-          dataList={silverBladesSpellList}
-          filter="Druid"
-        />
-      </div>
-    </>
-  );
+    return(
+
+      <CharComponents.CharAbilityDisplay
+                        dataArray={dataArray}
+                        setDataArray={setDataArray}
+                        strIndex={16}
+                        strIndexCurrent={17}
+                        extStrIndex={28}
+                        extStrIndexCurrent={29}
+                        intIndex={18}
+                        intIndexCurrent={19}
+                        wisIndex={20}
+                        wisIndexCurrent={21}
+                        dexIndex={22}
+                        dexIndexCurrent={23}
+                        conIndex={24}
+                        conIndexCurrent={25}
+                        chaIndex={26}
+                        chaIndexCurrent={27}
+                        clericIndex={273}
+                        fighterIndex={275}
+                        paladinIndex={276}
+                        rangerIndex={277}
+                        magicUserIndex={278}
+                        thiefIndex={279}
+                      />
+    )
+  }
+
+
+  
 
   return (
     <div className="charEditBody">
@@ -325,15 +191,7 @@ export default function SilverBladesMain() {
                     aria-labelledby="headingOne"
                   >
                     <div className="accordion-body">
-                      <CharComponents.CharInfoDisplay
-                        dataArray={dataArray}
-                        setDataArray={setDataArray}
-                        maxHPIndex={112}
-                        currentHPIndex={437}
-                        experienceIndex={300}
-                        statusCodes={silverBladesStatusCodes}
-                        racesList={silverBladesRaces}
-                      />
+                      <CharInfoDisplay />
                     </div>
                   </div>
                 </div>
@@ -356,30 +214,7 @@ export default function SilverBladesMain() {
                     aria-labelledby="headingTwo"
                   >
                     <div className="accordion-body">
-                      <CharComponents.CharAbilityDisplay
-                        dataArray={dataArray}
-                        setDataArray={setDataArray}
-                        strIndex={16}
-                        strIndexCurrent={17}
-                        extStrIndex={28}
-                        extStrIndexCurrent={29}
-                        intIndex={18}
-                        intIndexCurrent={19}
-                        wisIndex={20}
-                        wisIndexCurrent={21}
-                        dexIndex={22}
-                        dexIndexCurrent={23}
-                        conIndex={24}
-                        conIndexCurrent={25}
-                        chaIndex={26}
-                        chaIndexCurrent={27}
-                        clericIndex={273}
-                        fighterIndex={275}
-                        paladinIndex={276}
-                        rangerIndex={277}
-                        magicUserIndex={278}
-                        thiefIndex={279}
-                      />
+                      <CharAbilityDisplay />
                     </div>
                   </div>
                 </div>
@@ -404,7 +239,7 @@ export default function SilverBladesMain() {
                     {/* <div className="accordion-body">{arcaneMagicDisplay}</div> */}
                     <div className="accordion-body">
                     <div className="row">
-                      <ArcaneMagicDisplay startingIndex={327} /></div>
+                      <MagicDisplay startingIndex={327} magicFilter="Mage"/></div>
                       </div>
                   </div>
                 </div>
@@ -426,9 +261,13 @@ export default function SilverBladesMain() {
                     className="accordion-collapse collapse"
                     aria-labelledby="headingFour"
                   >
-                    <div className="accordion-body">{clericMagicDisplay}</div>
+                    <div className="accordion-body">
+                    <div className="row">
+                      <MagicDisplay startingIndex={306} magicFilter="Cleric"/></div>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingFive">
                     <button
@@ -447,7 +286,12 @@ export default function SilverBladesMain() {
                     className="accordion-collapse collapse"
                     aria-labelledby="headingFive"
                   >
-                    <div className="accordion-body">{druidMagicDisplay}</div>
+                    <div className="accordion-body">
+                    <div className="row">
+                      <MagicDisplay startingIndex={313} magicFilter="Druid"/></div>
+                      
+
+                    </div>
                   </div>
                 </div>
               </div>
