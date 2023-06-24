@@ -250,7 +250,7 @@ export function SpellModule(props) {
   );
 
   return (
-    <div style={{ marginBottom: 20 }} className="d-flex flex-wrap">
+    <div style={{ marginBottom: 10 }} className="d-flex flex-wrap">
       {spellDisplay}
     </div>
   );
@@ -270,7 +270,6 @@ export function SpellCheckBox(props) {
   return (
     <div className="col-6 col-md-3 spellEntry">
       <input
-        style={{ marginRight: 10 }}
         className="form-check-input"
         type="checkbox"
         checked={checked}

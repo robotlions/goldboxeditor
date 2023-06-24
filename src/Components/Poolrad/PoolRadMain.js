@@ -9,7 +9,6 @@ import * as CharComponents from "../CharComponents";
 export default function PoolRadMain() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
-  // const [inventoryFileName, setInventoryFileName] = useState(null);
 
   function exportSaveFile() {
     if (!selectedFile) {
@@ -93,7 +92,7 @@ export default function PoolRadMain() {
     let spellArray = [0, 1, 2];
 
     let spellSlots = spellArray.map((item, index) => (
-      <div key={index} className="col-2">
+      <div key={index} className="col-6 col-md-2">
         {item + 1}:{" "}
         <CharFunctions.LevelModule
           dataArray={dataArray}

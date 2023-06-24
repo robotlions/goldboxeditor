@@ -1,5 +1,5 @@
 import * as CharFunctions from "../Components/CharFunctions";
-import * as InvFunctions from "../Components/InvFunctions";
+import * as InvFunctions from "./InventoryFunctions";
 import { genders, alignments } from "./Poolrad/PoolRadData";
 
 

@@ -47,7 +47,6 @@ export function ItemEditModule(props) {
             value={valueState}
             onChange={(e) => setValueState(e.target.value)}
             type="text"
-            style={{ maxWidth: "30%" }}
             onBlur={() => saveValue()}
           />
         }
@@ -55,11 +54,13 @@ export function ItemEditModule(props) {
     );
   }
   function NameSelect(props) {
-    let dropList = Object.entries(props.dataList).filter((item)=>item[0] != 0 ).map((item, index) => (
-      <option key={index} value={item[0]}>
-        {item[1]}
-      </option>
-    ));
+    let dropList = Object.entries(props.dataList)
+      .filter((item) => item[0] != 0)
+      .map((item, index) => (
+        <option key={index} value={item[0]}>
+          {item[1]}
+        </option>
+      ));
 
     let defaultDisplay = tempArray[props.value];
 
@@ -75,9 +76,7 @@ export function ItemEditModule(props) {
             props.setDataArray(tempArray);
           }}
         >
-          <option value={0}>
-            {`<Blank>`} 
-          </option>
+          <option value={0}>{`<Blank>`}</option>
           {dropList}
         </select>
       </>
@@ -85,30 +84,51 @@ export function ItemEditModule(props) {
   }
 
   const mainDisplay =
-    props.loadedItem != null ? (
+    
       <div className="card">
         <div className="card-header row">
-          <div className="card-title d-flex justify-content-center">
-            <h4 style={{marginTop:10}}>
+          <div className="card-title d-flex">
+            <div className="col-md-9">
+            <h4>
               {displayName1} {displayName2} {displayName3}
             </h4>
+            </div>
+            <div className="col-md-3" style={{textAlign: "right"}}>
+            {props.editingIndex != props.index ?
+        <div>
+          <button
+            className="btn btn-light editButton"
+            onClick={() => props.setEditingIndex(props.index)}
+          >
+            Edit
+          </button>{" "}
+          <button
+            className="btn btn-light editButton"
+            onClick={() => props.duplicateItem(props.item)}
+          >
+            Duplicate
+          </button>
+        </div> : null}
           </div>
+           </div>
         </div>
+        {props.editingIndex === props.index ?
+        <>
         <div className="card-body"></div>
         <div className="row">
-          <div className="col-3 inventoryText">
+          <div className="col-6 col-md-3 inventoryText">
             Type:{" "}
             <ValueModule
               value={parseInt(Object.keys(props.loadedItem)) + props.typeIndex}
             />
           </div>
-          <div className="col-3 inventoryText">
+          <div className="col-6 col-md-3 inventoryText">
             Bonus:{" "}
             <ValueModule
               value={parseInt(Object.keys(props.loadedItem)) + props.bonusIndex}
             />
           </div>
-          <div className="col-3 inventoryText">
+          <div className="col-6 col-md-3 inventoryText">
             Charges:{" "}
             <ValueModule
               value={
@@ -116,7 +136,7 @@ export function ItemEditModule(props) {
               }
             />
           </div>
-          <div className="col-3 inventoryText">
+          <div className="col-6 col-md-3 inventoryText">
             Ammo:{" "}
             <ValueModule
               value={parseInt(Object.keys(props.loadedItem)) + props.ammoIndex}
@@ -124,7 +144,7 @@ export function ItemEditModule(props) {
           </div>
         </div>
         <div style={{ marginTop: 20 }} className="row">
-          <div className="col-3 inventoryText">
+          <div className="col-6 col-md-3 inventoryText">
             Weight:{" "}
             <ItemWeightModule
               value={
@@ -135,7 +155,7 @@ export function ItemEditModule(props) {
           </div>
         </div>
         <div style={{ marginTop: 20 }} className="row">
-          <h5 style={{textAlign:"center"}}>Rename</h5>
+          <h5 style={{ textAlign: "center" }}>Rename</h5>
         </div>
 
         <div className="row">
@@ -171,119 +191,61 @@ export function ItemEditModule(props) {
             style={{ maxWidth: 200 }}
             className="btn btn-primary shadow"
             onClick={() => {
-              props.setLoadedItem(null);
-              props.setUnsavedChanges(true);
+              props.setEditingIndex(null)
             }}
           >
             Done Editing
           </button>
         </div>
-      </div>
-    ) : null;
+        </> : null }
 
-  const emptySelect = (
-    <select
-      className="form-select"
-      defaultValue={0}
-      aria-label="Item value dropdown"
-      onChange={(e) => {
-        tempArray[props.value] = e.target.value;
-      }}
-    >
-      <option disabled value={0}></option>
-    </select>
-  );
+      </div>
+     
+  
 
-  const emptyDisplay = (
-    <div className="card">
-      <div className="card-header row">
-        <div id="cardTitle" className="card-title">
-          <h5 style={{ color: "transparent" }}>Easter Egg secret message</h5>
-        </div>
-      </div>
-      <div className="card-body"></div>
-      <div className="row">
-        <div className="col-3 inventoryText">
-          Type: <input type="text" disabled style={{ width: "30%" }} />
-        </div>
-        <div className="col-3 inventoryText">
-          Bonus: <input type="text" disabled style={{ width: "30%" }} />
-        </div>
-        <div className="col-3 inventoryText">
-          Charges: <input type="text" disabled style={{ width: "30%" }} />
-        </div>
-        <div className="col-3 inventoryText">
-          Ammo: <input type="text" disabled style={{ width: "30%" }} />
-        </div>
-      </div>
-      <div style={{ marginTop: 20 }} className="row">
-        <div className="col-3 inventoryText">
-          Weight: <input type="text" disabled style={{ width: "30%" }} />
-        </div>
-      </div>
-      <div style={{ marginTop: 20 }} className="row">
-        <h5>Rename</h5>
-      </div>
-
-      <div className="row">
-        <div className="col-4">{emptySelect}</div>
-        <div className="col-4">{emptySelect}</div>
-        <div className="col-4">{emptySelect}</div>
-      </div>
-      <br />
-      <div className="card-footer row d-flex flex-row-reverse">
-        <button className="btn" disabled style={{ maxWidth: 200 }}>
-          No Item Selected
-        </button>
-      </div>
-    </div>
-  );
-
-  return props.loadedItem ? mainDisplay : emptyDisplay;
+  return mainDisplay;
 }
 
 // props: arrayLength, nameIndex, itemValueList, loadedItem, setLoadedItem
 export function ItemListModule(props) {
   const [loading, setLoading] = useState(true);
   const [itemListArray, setItemListArray] = useState([]);
-  const [loadedIndex, setLoadedIndex] = useState(null);
 
   useEffect(() => {
     if (loading === true) {
       assembleList();
       setLoading(false);
     }
-  }, [setItemListArray, itemListArray, loading]);
-
-
+  });
 
   const defaultDisplay = itemListArray.map((item, index) => (
-    <div key={index} className="row d-flex inventoryItem">
-      <p className="col-12">
-        {Object.values(item)}{" "}
-        {!props.loadedItem ? (
-          <>
-            <button
-              className="btn btn-primary editButton"
-              onClick={() => {props.setLoadedItem(item);setLoadedIndex(index)}}
-            >
-              Edit
-            </button>{" "}
-            <button
-              className="btn btn-warning editButton"
-              onClick={() => duplicateItem(item)}
-            >
-              Duplicate
-            </button>
-          </>
-        ) : null}
-      </p>
-    </div>
+    <div key={index} className="row inventoryItem">
+      
+        
+        <ItemEditModule
+          loadedItem={item}
+          nameIndex={props.nameIndex}
+          typeIndex={props.typeIndex}
+          dataArray={props.dataArray}
+          setDataArray={props.setDataArray}
+          bonusIndex={props.bonusIndex}
+          weightIndex={props.weightIndex}
+          ammoIndex={props.ammoIndex}
+          dataList={props.dataList}
+          arrayLength={props.arrayLength}
+          editingIndex={props.editingIndex}
+          setEditingIndex={props.setEditingIndex}
+          index={index}
+          item={item}
+          duplicateItem={duplicateItem}
+        />
+      </div>
+    
   ));
 
   function duplicateItem(item) {
     let tempArray = Array.from(props.dataArray);
-    for (let i = 0; i <= props.arrayLength-1; i++) {
+    for (let i = 0; i <= props.arrayLength - 1; i++) {
       let n = tempArray[parseInt(Object.keys(item)) + i];
       tempArray.push(n);
     }
@@ -297,10 +259,10 @@ export function ItemListModule(props) {
     for (let i = 0; i < Array.from(props.dataArray).length; i++) {
       let assembledName = "";
       if (i === 0 || i % props.arrayLength === 0) {
-        let j = props.dataArray[i + props.nameIndex+2];
-        let k = props.dataArray[i + props.nameIndex+1];
+        let j = props.dataArray[i + props.nameIndex + 2];
+        let k = props.dataArray[i + props.nameIndex + 1];
         let l = props.dataArray[i + props.nameIndex];
-        assembledName = `${props.itemValueList[j]} ${props.itemValueList[k]} ${props.itemValueList[l]}`;
+        assembledName = `${props.dataList[j]} ${props.dataList[k]} ${props.dataList[l]}`;
         nameArray.push({ [i]: assembledName });
       }
     }
@@ -322,17 +284,15 @@ export function ItemWeightModule(props) {
   );
 
   const editDisplay = (
-    <>
-      {
+    
         <input
           type="text"
-          style={{ maxWidth: "30%" }}
+          style={{maxWidth:"100%"}}
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           onBlur={() => convertDecimaltoBinary()}
-        />
-      }
-    </>
+          />
+        
   );
 
   function convertDecimaltoBinary() {

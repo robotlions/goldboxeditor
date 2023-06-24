@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { poolRadItemValues } from "./PoolRadData";
-import * as InvFunctions from "../NewInventory";
+import * as InvFunctions from "../InventoryFunctions";
 
-export default function PoolRadInventory(props) {
+export default function PoolRadInventory() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
-  const [loadedItem, setLoadedItem] = useState(null);
-  const [unsavedChanges, setUnsavedChanges] = useState(false);
   const [editingIndex, setEditingIndex] = useState(null);
 
   function loadFile(file) {
@@ -17,10 +15,8 @@ export default function PoolRadInventory(props) {
 
     var reader = new FileReader();
     reader.onload = function (e) {
-      setLoadedItem(null);
       let data = e.target.result;
       let dataArray = new Uint8Array(data);
-      console.log(dataArray);
       setDataArray(dataArray);
     };
     reader.onerror = function (e) {
@@ -44,7 +40,6 @@ export default function PoolRadInventory(props) {
             chargeIndex={60}
             ammoIndex={57}
             weightIndex={55}
-            setUnsavedChanges={setUnsavedChanges}
             arrayLength={63}
             editingIndex={editingIndex}
             setEditingIndex={setEditingIndex}
@@ -56,27 +51,6 @@ export default function PoolRadInventory(props) {
   }
 
 
-  function EditDisplay(){
-
-    return(
-      <div className="row">
-        <InvFunctions.ItemEditModule
-          dataArray={dataArray}
-          setDataArray={setDataArray}
-          loadedItem={loadedItem}
-          setLoadedItem={setLoadedItem}
-          dataList={poolRadItemValues}
-          nameIndex={47}
-          typeIndex={46}
-          bonusIndex={50}
-          chargeIndex={60}
-          ammoIndex={57}
-          weightIndex={55}
-          setUnsavedChanges={setUnsavedChanges}
-        />
-      </div>
-    )
-  };
 
   function exportSaveFile() {
     const blob = new Blob([dataArray], { type: "application/octet-stream" });

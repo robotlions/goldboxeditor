@@ -63,10 +63,10 @@ export default function SilverBladesMain() {
   function MagicDisplay(props) {
     let spellArray = [0, 1, 2, 3];
 
-    if (props.mageFilter === "Mage") {
+    if (props.magicFilter === "Mage") {
       spellArray = [0, 1, 2, 3, 4, 5, 6];
     }
-    if (props.mageFilter === "Cleric") {
+    if (props.magicFilter === "Cleric") {
       spellArray = [0, 1, 2, 3, 4, 5];
     }
 
@@ -99,7 +99,7 @@ export default function SilverBladesMain() {
     );
   }
 
-  function CharInfoDisplay(props) {
+  function CharInfoDisplay() {
     return (
       <CharComponents.CharInfoDisplay
         dataArray={dataArray}
@@ -114,7 +114,7 @@ export default function SilverBladesMain() {
     );
   }
 
-  function CharAbilityDisplay(props) {
+  function CharAbilityDisplay() {
     return (
       <CharComponents.CharAbilityDisplay
         dataArray={dataArray}
@@ -143,7 +143,7 @@ export default function SilverBladesMain() {
     );
   }
 
-  function MoneyDisplay(props) {
+  function MoneyDisplay() {
     return (
       <CharComponents.CharMoneyComponent
         dataArray={dataArray}
@@ -284,7 +284,6 @@ export default function SilverBladesMain() {
                     className="accordion-collapse collapse"
                     aria-labelledby="headingThree"
                   >
-                    {/* <div className="accordion-body">{arcaneMagicDisplay}</div> */}
                     <div className="accordion-body">
                       <div className="row">
                         <MagicDisplay startingIndex={327} magicFilter="Mage" />
