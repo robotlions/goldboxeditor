@@ -16,6 +16,9 @@ export default function SilverBladesInventory(props) {
     var reader = new FileReader();
     reader.onload = function (e) {
       let data = e.target.result;
+      if(data.byteLength %67 !== 0){
+        return alert("This does not appear to be an inventory file from Secret of the Silver Blades")
+      }
       let dataArray = new Uint8Array(data);
       console.log(dataArray);
       setDataArray(dataArray);

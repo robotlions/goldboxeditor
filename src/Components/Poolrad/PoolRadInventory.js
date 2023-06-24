@@ -16,6 +16,11 @@ export default function PoolRadInventory() {
     var reader = new FileReader();
     reader.onload = function (e) {
       let data = e.target.result;
+      if (data.byteLength % 63 !== 0) {
+        return alert(
+          "This doesn't appear to be an inventory file from Pool of Radiance"
+        );
+      }
       let dataArray = new Uint8Array(data);
       setDataArray(dataArray);
     };
@@ -25,12 +30,11 @@ export default function PoolRadInventory() {
     reader.readAsArrayBuffer(file);
   }
 
-  function ListDisplay(){
-
-    return(
-    <>
-      <div className="row">
-        <InvFunctions.ItemListModule
+  function ListDisplay() {
+    return (
+      <>
+        <div className="row">
+          <InvFunctions.ItemListModule
             dataArray={dataArray}
             setDataArray={setDataArray}
             dataList={poolRadItemValues}
@@ -43,14 +47,11 @@ export default function PoolRadInventory() {
             arrayLength={63}
             editingIndex={editingIndex}
             setEditingIndex={setEditingIndex}
-        />
-      </div>
-
+          />
+        </div>
       </>
-    )
+    );
   }
-
-
 
   function exportSaveFile() {
     const blob = new Blob([dataArray], { type: "application/octet-stream" });

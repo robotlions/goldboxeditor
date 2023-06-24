@@ -1,34 +1,6 @@
 import { useState } from "react";
-import { silverBladesSpellList } from "./SilverBlades/SilverBladesData";
 
-export function ArcaneMagicDisplay(props){
-  
-  let spellArray = [0,1,2,3,4,5,6];
-  
-  
-  let spellSlots =  spellArray.map((item, index) =><div key={index} className="col-2">{item+1}: <LevelModule
-  dataArray={props.dataArray}
-  setDataArray={props.setDataArray}
-  dataArrayIndex={props.startingIndex+item}
-/></div>)
 
-  return (
-    <>
-    {spellSlots}<br/>
-    <h4>Mage Spells:</h4>{" "}
-      <div>
-        <SpellModule
-          dataArray={props.dataArray}
-          setDataArray={props.setDataArray}
-          dataArrayMin={112}
-          dataArrayMax={230}
-          dataList={silverBladesSpellList}
-          filter="Mage"
-        />
-      </div>
-    </>
-  )
-}
 
 export function ExperienceModule(props) {
   let tempArray = props.dataArray;
@@ -194,7 +166,7 @@ export function ScoreModule(props) {
       value={inputText}
       onChange={(e) => setInputText(e.target.value)}
       onBlur={() => submitChange()}
-      style={{ maxWidth: "60%", textAlign: "center" }}
+      style={{ maxWidth: "70%", textAlign: "center" }}
     />
   );
 
@@ -312,11 +284,11 @@ export function StrengthModule(props) {
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           onBlur={() => submitChange()}
-          style={{ maxWidth: "60%", textAlign: "center" }}
+          style={{ maxWidth: "70%", textAlign: "center" }}
         />
       </div>
       <div className="col-4">
-        {inputText == 18 ? (
+        {parseInt(inputText) === 18 ? (
           <input
             type="number"
             max="99"
