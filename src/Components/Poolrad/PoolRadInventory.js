@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { poolRadItemValues } from "./PoolRadData";
-import * as InvFunctions from "../InvFunctions";
+import * as InvFunctions from "../NewInventory";
 
 export default function PoolRadInventory(props) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
   const [loadedItem, setLoadedItem] = useState(null);
   const [unsavedChanges, setUnsavedChanges] = useState(false);
+  const [editingIndex, setEditingIndex] = useState(null);
 
   function loadFile(file) {
     if (document.querySelector("#inventoryFileSelect").value === "") {
@@ -34,13 +35,19 @@ export default function PoolRadInventory(props) {
     <>
       <div className="row">
         <InvFunctions.ItemListModule
-          dataArray={dataArray}
-          setDataArray={setDataArray}
-          loadedItem={loadedItem}
-          setLoadedItem={setLoadedItem}
-          arrayLength={63}
-          nameIndex={47}
-          itemValueList={poolRadItemValues}
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataList={poolRadItemValues}
+            nameIndex={47}
+            typeIndex={46}
+            bonusIndex={50}
+            chargeIndex={60}
+            ammoIndex={57}
+            weightIndex={55}
+            setUnsavedChanges={setUnsavedChanges}
+            arrayLength={63}
+            editingIndex={editingIndex}
+            setEditingIndex={setEditingIndex}
         />
       </div>
 
@@ -109,7 +116,7 @@ export default function PoolRadInventory(props) {
       </div>
       <br />
       <div className="row d-flex justify-content-center">
-        {dataArray ? <><ListDisplay /> <EditDisplay /></> : null}
+        {dataArray ? <ListDisplay /> : null}
       </div>
     </>
   );
