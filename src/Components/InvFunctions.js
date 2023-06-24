@@ -55,7 +55,7 @@ export function ItemEditModule(props) {
     );
   }
   function NameSelect(props) {
-    let dropList = Object.entries(props.dataList).map((item, index) => (
+    let dropList = Object.entries(props.dataList).filter((item)=>item[0] != 0 ).map((item, index) => (
       <option key={index} value={item[0]}>
         {item[1]}
       </option>
@@ -75,8 +75,8 @@ export function ItemEditModule(props) {
             props.setDataArray(tempArray);
           }}
         >
-          <option disabled value={-1}>
-            Select name
+          <option value={0}>
+            {`<Blank>`} 
           </option>
           {dropList}
         </select>
@@ -88,10 +88,10 @@ export function ItemEditModule(props) {
     props.loadedItem != null ? (
       <div className="card">
         <div className="card-header row">
-          <div className="card-title">
-            <h5>
+          <div className="card-title d-flex justify-content-center">
+            <h4 style={{marginTop:10}}>
               {displayName1} {displayName2} {displayName3}
-            </h5>
+            </h4>
           </div>
         </div>
         <div className="card-body"></div>
@@ -135,7 +135,7 @@ export function ItemEditModule(props) {
           </div>
         </div>
         <div style={{ marginTop: 20 }} className="row">
-          <h5>Rename</h5>
+          <h5 style={{textAlign:"center"}}>Rename</h5>
         </div>
 
         <div className="row">
@@ -240,6 +240,74 @@ export function ItemEditModule(props) {
   );
 
   return props.loadedItem ? mainDisplay : emptyDisplay;
+}
+
+// props: arrayLength, nameIndex, itemValueList, loadedItem, setLoadedItem
+export function ItemListModule(props) {
+  const [loading, setLoading] = useState(true);
+  const [itemListArray, setItemListArray] = useState([]);
+  const [loadedIndex, setLoadedIndex] = useState(null);
+
+  useEffect(() => {
+    if (loading === true) {
+      assembleList();
+      setLoading(false);
+    }
+  }, [setItemListArray, itemListArray, loading]);
+
+
+
+  const defaultDisplay = itemListArray.map((item, index) => (
+    <div key={index} className="row d-flex inventoryItem">
+      <p className="col-12">
+        {Object.values(item)}{" "}
+        {!props.loadedItem ? (
+          <>
+            <button
+              className="btn btn-primary editButton"
+              onClick={() => {props.setLoadedItem(item);setLoadedIndex(index)}}
+            >
+              Edit
+            </button>{" "}
+            <button
+              className="btn btn-warning editButton"
+              onClick={() => duplicateItem(item)}
+            >
+              Duplicate
+            </button>
+          </>
+        ) : null}
+      </p>
+    </div>
+  ));
+
+  function duplicateItem(item) {
+    let tempArray = Array.from(props.dataArray);
+    for (let i = 0; i <= props.arrayLength-1; i++) {
+      let n = tempArray[parseInt(Object.keys(item)) + i];
+      tempArray.push(n);
+    }
+    let newArray = new Uint8Array(tempArray);
+    props.setDataArray(newArray);
+    assembleList();
+  }
+
+  function assembleList() {
+    let nameArray = [];
+    for (let i = 0; i < Array.from(props.dataArray).length; i++) {
+      let assembledName = "";
+      if (i === 0 || i % props.arrayLength === 0) {
+        let j = props.dataArray[i + props.nameIndex+2];
+        let k = props.dataArray[i + props.nameIndex+1];
+        let l = props.dataArray[i + props.nameIndex];
+        assembledName = `${props.itemValueList[j]} ${props.itemValueList[k]} ${props.itemValueList[l]}`;
+        nameArray.push({ [i]: assembledName });
+      }
+    }
+    setItemListArray(nameArray);
+  }
+
+  return defaultDisplay;
 }
 
 export function ItemWeightModule(props) {
