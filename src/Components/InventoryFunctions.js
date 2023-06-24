@@ -55,7 +55,7 @@ export function ItemEditModule(props) {
   }
   function NameSelect(props) {
     let dropList = Object.entries(props.dataList)
-      .filter((item) => item[0] != 0)
+      .filter((item) => parseInt(item[0]) !== 0)
       .map((item, index) => (
         <option key={index} value={item[0]}>
           {item[1]}
@@ -88,13 +88,13 @@ export function ItemEditModule(props) {
       <div className="card">
         <div className="card-header row">
           <div className="card-title d-flex">
-            <div className="col-md-9">
+            <div className="col-md-8">
             <h4>
               {displayName1} {displayName2} {displayName3}
             </h4>
             </div>
-            <div className="col-md-3" style={{textAlign: "right"}}>
-            {props.editingIndex != props.index ?
+            <div className="col-md-4" style={{textAlign: "right"}}>
+            {props.editingIndex !== props.index ?
         <div>
           <button
             className="btn btn-light editButton"
@@ -116,19 +116,19 @@ export function ItemEditModule(props) {
         <>
         <div className="card-body"></div>
         <div className="row">
-          <div className="col-6 col-md-3 inventoryText">
+          <div className="col-6 col-md-auto inventoryText">
             Type:{" "}
             <ValueModule
               value={parseInt(Object.keys(props.loadedItem)) + props.typeIndex}
             />
           </div>
-          <div className="col-6 col-md-3 inventoryText">
+          <div className="col-6 col-md-auto inventoryText">
             Bonus:{" "}
             <ValueModule
               value={parseInt(Object.keys(props.loadedItem)) + props.bonusIndex}
             />
           </div>
-          <div className="col-6 col-md-3 inventoryText">
+          <div className="col-6 col-md-auto inventoryText">
             Charges:{" "}
             <ValueModule
               value={
@@ -136,7 +136,7 @@ export function ItemEditModule(props) {
               }
             />
           </div>
-          <div className="col-6 col-md-3 inventoryText">
+          <div className="col-6 col-md-auto inventoryText">
             Ammo:{" "}
             <ValueModule
               value={parseInt(Object.keys(props.loadedItem)) + props.ammoIndex}
@@ -144,7 +144,7 @@ export function ItemEditModule(props) {
           </div>
         </div>
         <div style={{ marginTop: 20 }} className="row">
-          <div className="col-6 col-md-3 inventoryText">
+          <div className="col-6 col-md-auto inventoryText">
             Weight:{" "}
             <ItemWeightModule
               value={
@@ -214,9 +214,10 @@ export function ItemListModule(props) {
   useEffect(() => {
     if (loading === true) {
       assembleList();
-      setLoading(false);
     }
   });
+
+  
 
   const defaultDisplay = itemListArray.map((item, index) => (
     <div key={index} className="row inventoryItem">
@@ -267,6 +268,7 @@ export function ItemListModule(props) {
       }
     }
     setItemListArray(nameArray);
+    setLoading(false);
   }
 
   return defaultDisplay;
