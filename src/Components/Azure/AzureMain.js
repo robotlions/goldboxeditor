@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as CharComponents from "../CharComponents";
-import {azureItemValues, azureRaces, azureSpellList, azureStatusCodes} from "../Azure/AzureData";
+import {azureRaces, azureSpellList, azureStatusCodes} from "../Azure/AzureData";
 import * as CharFunctions from "../CharFunctions";
 import AzureInventory from "./AzureInventory";
 
