@@ -214,7 +214,7 @@ export const CharInfoDisplay = (props) =>{
           <CharFunctions.SelectModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
-            index={46}
+            index={props.raceIndex}
             dataList={props.racesList}
           />
         </div>

@@ -84,6 +84,7 @@ export default function PoolRadMain() {
         experienceIndex={172}
         statusCodes={poolRadStatusCodes}
         racesList={poolRadRaces}
+        raceIndex={46}
       />
     );
   }

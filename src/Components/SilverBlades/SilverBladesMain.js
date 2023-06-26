@@ -110,6 +110,7 @@ export default function SilverBladesMain() {
         statusIndex={422}
         statusCodes={silverBladesStatusCodes}
         racesList={silverBladesRaces}
+        raceIndex={107}
       />
     );
   }
