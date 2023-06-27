@@ -263,7 +263,7 @@ export const azureItemValues = {
     240: "Restoring Levels",
     241: "Flame Tongue",
     242: "Fireballs",
-    243: "Spiritual Hammer",
+    243: "Spiritual",
     244: "Boulder",
     245: "Diamond",
     246: "Emerald",
