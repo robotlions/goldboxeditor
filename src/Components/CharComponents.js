@@ -2,12 +2,11 @@ import * as CharFunctions from "../Components/CharFunctions";
 import * as InvFunctions from "./InventoryFunctions";
 import { genders, alignments } from "./Poolrad/PoolRadData";
 
+export const CharAbilityDisplay = (props) => {
 
 
-export const CharAbilityDisplay = (props)=>{ 
-   
-    return(
-   <>
+  return (
+    <>
       <div className="row">
         <div className="col-md-6">
           <h4 style={{ textAlign: "center" }}>Ability Scores</h4>
@@ -42,7 +41,6 @@ export const CharAbilityDisplay = (props)=>{
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.wisIndex}
                 dataArrayIndexCurrent={props.wisIndexCurrent}
-
               />
             </div>
           </div>
@@ -54,7 +52,6 @@ export const CharAbilityDisplay = (props)=>{
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.dexIndex}
                 dataArrayIndexCurrent={props.dexIndexCurrent}
-
               />
             </div>
           </div>
@@ -65,8 +62,8 @@ export const CharAbilityDisplay = (props)=>{
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.conIndex}
-                dataArrayIndexCurre t={props.conIndexCurrent}
-
+                dataArrayIndexCurre
+                t={props.conIndexCurrent}
               />
             </div>
           </div>
@@ -78,13 +75,14 @@ export const CharAbilityDisplay = (props)=>{
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.chaIndex}
                 dataArrayIndexCurrent={props.chaIndexCurrent}
-
               />
             </div>
           </div>
         </div>
         <div className="col-md-6">
-          <h4 style={{ textAlign: "center" }}>Levels</h4>
+          <h4 style={{ textAlign: "center" }}>
+            Levels
+          </h4>
           <div className="row">
             <div className="col-6">Cleric: </div>
             <div className="col-6">
@@ -105,26 +103,30 @@ export const CharAbilityDisplay = (props)=>{
               />
             </div>
           </div>
-          {props.paladinIndex && <div className="row">
-            <div className="col-6">Paladin: </div>
-            <div className="col-6">
-              <CharFunctions.LevelModule
-                dataArray={props.dataArray}
-                setDataArray={props.setDataArray}
-                dataArrayIndex={props.paladinIndex}
-              />
+          {props.paladinIndex && (
+            <div className="row">
+              <div className="col-6">Paladin: </div>
+              <div className="col-6">
+                <CharFunctions.LevelModule
+                  dataArray={props.dataArray}
+                  setDataArray={props.setDataArray}
+                  dataArrayIndex={props.paladinIndex}
+                />
+              </div>
             </div>
-          </div> }
-          {props.rangerIndex && <div className="row">
-            <div className="col-6">Ranger: </div>
-            <div className="col-6">
-              <CharFunctions.LevelModule
-                dataArray={props.dataArray}
-                setDataArray={props.setDataArray}
-                dataArrayIndex={props.rangerIndex}
-              />
+          )}
+          {props.rangerIndex && (
+            <div className="row">
+              <div className="col-6">Ranger: </div>
+              <div className="col-6">
+                <CharFunctions.LevelModule
+                  dataArray={props.dataArray}
+                  setDataArray={props.setDataArray}
+                  dataArrayIndex={props.rangerIndex}
+                />
+              </div>
             </div>
-          </div> }
+          )}
           <div className="row">
             <div className="col-6">Magic-User: </div>
             <div className="col-6">
@@ -148,14 +150,11 @@ export const CharAbilityDisplay = (props)=>{
         </div>
       </div>
     </>
-  )};
+  );
+};
 
-
-
-
-export const CharInfoDisplay = (props) =>{
-
-    return (
+export const CharInfoDisplay = (props) => {
+  return (
     <>
       <div className="row">
         <div className="col-md-3">
@@ -229,16 +228,16 @@ export const CharInfoDisplay = (props) =>{
         </div>
       </div>
     </>
-)};
+  );
+};
 
-export const CharMoneyComponent = (props) =>{
-
-  return(
+export const CharMoneyComponent = (props) => {
+  return (
     <>
       <div className="row">
         <div className="col-md-3">
           Copper:{" "}
-          <InvFunctions.ItemWeightModule 
+          <InvFunctions.ItemWeightModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
             value={props.copperIndex}
@@ -246,7 +245,7 @@ export const CharMoneyComponent = (props) =>{
         </div>
         <div className="col-md-3">
           Silver:{" "}
-          <InvFunctions.ItemWeightModule 
+          <InvFunctions.ItemWeightModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
             value={props.silverIndex}
@@ -254,7 +253,7 @@ export const CharMoneyComponent = (props) =>{
         </div>
         <div className="col-md-3">
           Electrum:{" "}
-          <InvFunctions.ItemWeightModule 
+          <InvFunctions.ItemWeightModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
             value={props.electrumIndex}
@@ -262,7 +261,7 @@ export const CharMoneyComponent = (props) =>{
         </div>
         <div className="col-md-3">
           Gold:{" "}
-          <InvFunctions.ItemWeightModule 
+          <InvFunctions.ItemWeightModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
             value={props.goldIndex}
@@ -270,7 +269,7 @@ export const CharMoneyComponent = (props) =>{
         </div>
         <div className="col-md-3">
           Platinum:{" "}
-          <InvFunctions.ItemWeightModule 
+          <InvFunctions.ItemWeightModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
             value={props.platinumIndex}
@@ -278,7 +277,7 @@ export const CharMoneyComponent = (props) =>{
         </div>
         <div className="col-md-3">
           Gems:{" "}
-          <InvFunctions.ItemWeightModule 
+          <InvFunctions.ItemWeightModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
             value={props.gemsIndex}
@@ -286,16 +285,13 @@ export const CharMoneyComponent = (props) =>{
         </div>
         <div className="col-md-3">
           Jewelry:{" "}
-          <InvFunctions.ItemWeightModule 
+          <InvFunctions.ItemWeightModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
             value={props.jewelryIndex}
           />
         </div>
-        </div>
-        </>
-  )
-}
-
-
-
+      </div>
+    </>
+  );
+};

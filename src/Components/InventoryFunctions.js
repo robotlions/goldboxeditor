@@ -232,6 +232,7 @@ export function ItemListModule(props) {
           bonusIndex={props.bonusIndex}
           weightIndex={props.weightIndex}
           ammoIndex={props.ammoIndex}
+          chargeIndex={props.chargeIndex}
           dataList={props.dataList}
           arrayLength={props.arrayLength}
           editingIndex={props.editingIndex}
