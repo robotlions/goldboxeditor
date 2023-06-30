@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { podRaces, podStatusCodes } from "./PodData";
+import * as CharComponents from "../CharComponents";
 
-export function PodMain(){
-
-    const [selectedFile, setSelectedFile] = useState(null);
+export function PodMain() {
+  const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
 
   function exportSaveFile() {
@@ -27,15 +28,15 @@ export function PodMain(){
     var reader = new FileReader();
     reader.onload = function (e) {
       let data = e.target.result;
-    //   if (data.byteLength !== 439) {
-    //     return alert(
-    //       "This doesn't appear to be a save file from Secret of the Silver Blades"
-    //     );
-    //   } else {
+      if (data.byteLength !== 510) {
+        return alert(
+          "This doesn't appear to be a save file from Secret of the Silver Blades"
+        );
+      } else {
         let dataArray = new Uint8Array(data);
-        console.log(data.byteLength);
+        console.log(dataArray);
         setDataArray(dataArray);
-    //   }
+      }
     };
     reader.onerror = function (e) {
       console.log("Error : " + e.type);
@@ -43,13 +44,29 @@ export function PodMain(){
     reader.readAsArrayBuffer(file);
   }
 
-    return(
-        <div className="charEditBody">
+  function CharInfoDisplay() {
+    return (
+      <CharComponents.CharInfoDisplay
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        maxHPIndex={380}
+        currentHPIndex={508}
+        experienceIndex={370}
+        statusIndex={422}
+        statusCodes={podStatusCodes}
+        racesList={podRaces}
+        raceIndex={107}
+      />
+    );
+  }
+
+  return (
+    <div className="charEditBody">
       <div className="row">
         <h2 className="mainTitle">
           Advanced Dungeons and Dragons
           <br />
-          Secret of the Silver Blades
+          Pools of Darkness
         </h2>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Character Editor</h3>
@@ -76,10 +93,35 @@ export function PodMain(){
           ) : null}
           <br />
           <p></p>
-          </div>
-          <div className="col-md-6">Inventory</div>
-          </div>
-          
-          </div>
-    )
+          <div className="accordion" id="charEditAccordion">
+
+          <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingOne">
+                    <button
+                      className="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      Character Info
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    className="accordion-collapse collapse show"
+                    aria-labelledby="headingOne"
+                  >
+                    <div className="accordion-body">
+                      <CharInfoDisplay />
+                    </div>
+                  </div>
+                </div>
+                </div>
+        </div>
+        <div className="col-md-6">Inventory</div>
+      </div>
+    </div>
+  );
 }
