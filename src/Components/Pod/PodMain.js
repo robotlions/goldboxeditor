@@ -93,6 +93,8 @@ export function PodMain() {
           ) : null}
           <br />
           <p></p>
+
+          {dataArray ?
           <div className="accordion" id="charEditAccordion">
 
           <div className="accordion-item">
@@ -118,7 +120,7 @@ export function PodMain() {
                     </div>
                   </div>
                 </div>
-                </div>
+                </div> : null }
         </div>
         <div className="col-md-6">Inventory</div>
       </div>
