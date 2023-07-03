@@ -112,6 +112,7 @@ export default function SilverBladesMain() {
         racesList={silverBladesRaces}
         raceIndex={107}
         genderIndex={287}
+        alignmentIndex={288}
       />
     );
   }

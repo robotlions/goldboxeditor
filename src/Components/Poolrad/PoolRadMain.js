@@ -86,6 +86,7 @@ export default function PoolRadMain() {
         racesList={poolRadRaces}
         raceIndex={46}
         genderIndex={158}
+        alignmentIndex={160}
       />
     );
   }

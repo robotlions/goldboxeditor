@@ -129,6 +129,7 @@ export function AzureMain(props) {
         racesList={azureRaces}
         raceIndex={116}
         genderIndex={281}
+        alignmentIndex={283}
       />
     );
   }
