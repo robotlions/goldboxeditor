@@ -30,7 +30,7 @@ export function PodMain() {
       let data = e.target.result;
       if (data.byteLength !== 510) {
         return alert(
-          "This doesn't appear to be a save file from Secret of the Silver Blades"
+          "This doesn't appear to be a save file from Pools of Darkness"
         );
       } else {
         let dataArray = new Uint8Array(data);
@@ -57,6 +57,35 @@ export function PodMain() {
         racesList={podRaces}
         raceIndex={173} // done
         genderIndex={358} //80% confident
+      />
+    );
+  }
+
+  function CharAbilityDisplay() {
+    return (
+      <CharComponents.CharAbilityDisplay
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        strIndex={16}
+        strIndexCurrent={17}
+        extStrIndex={28}
+        extStrIndexCurrent={29}
+        intIndex={18}
+        intIndexCurrent={19}
+        wisIndex={20}
+        wisIndexCurrent={21}
+        dexIndex={22}
+        dexIndexCurrent={23}
+        conIndex={24}
+        conIndexCurrent={25}
+        chaIndex={26}
+        chaIndexCurrent={27}
+        clericIndex={337}
+        fighterIndex={339}
+        paladinIndex={340}
+        rangerIndex={341}
+        magicUserIndex={342}
+        thiefIndex={343}
       />
     );
   }
@@ -118,6 +147,29 @@ export function PodMain() {
                   >
                     <div className="accordion-body">
                       <CharInfoDisplay />
+                    </div>
+                  </div>
+                </div>
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingTwo">
+                    <button
+                      className="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="true"
+                      aria-controls="collapseTwo"
+                    >
+                      Ability Scores and Levels
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    className="accordion-collapse collapse show"
+                    aria-labelledby="headingTwo"
+                  >
+                    <div className="accordion-body">
+                      <CharAbilityDisplay />
                     </div>
                   </div>
                 </div>
