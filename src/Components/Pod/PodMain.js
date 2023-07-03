@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { podRaces, podStatusCodes } from "./PodData";
+import { podRaces, podStatusCodes, podSpellList } from "./PodData";
 import * as CharComponents from "../CharComponents";
+import * as CharFunctions from "../CharFunctions";
 
 export function PodMain() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -104,6 +105,45 @@ export function PodMain() {
         gemsIndex={333}
         jewelryIndex={335}
       />
+    );
+  }
+
+  function MagicDisplay(props) {
+    let spellArray = [0, 1, 2];
+
+    if (props.magicFilter === "Mage") {
+      spellArray = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    }
+    if (props.magicFilter === "Cleric") {
+      spellArray = [0, 1, 2, 3, 4, 5, 6];
+    }
+
+    let spellSlots = spellArray.map((item, index) => (
+      <div key={index} className="col-2">
+        {item + 1}:{" "}
+        <CharFunctions.LevelModule
+          dataArray={dataArray}
+          setDataArray={setDataArray}
+          dataArrayIndex={props.startingIndex + item}
+        />
+      </div>
+    ));
+
+    return (
+      <>
+        {spellSlots}
+        <h4>{props.magicFilter} Spells:</h4>{" "}
+        <div>
+          <CharFunctions.SpellModule
+            dataArray={dataArray}
+            setDataArray={setDataArray}
+            dataArrayMin={179}
+            dataArrayMax={291}
+            dataList={podSpellList}
+            filter={props.magicFilter}
+          />
+        </div>
+      </>
     );
   }
 
