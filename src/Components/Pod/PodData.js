@@ -13,13 +13,12 @@ export const podStatusCodes = {
 
 export const podRaces = {
 
-    0: "Monster",
-    1: "Dwarf",
-    2: "Elf",
+    0: "Elf",
+    1: "Half-elf",
+    2: "Dwarf",
     3: "Gnome",
-    4: "Half-elf",
-    5: "Halfling",
-    6: "Half-orc",
-    7: "Human",
+    4: "Halfling",
+    5: "Human",
+    6: "Monster",
 
 }

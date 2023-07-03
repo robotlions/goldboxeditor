@@ -49,13 +49,13 @@ export function PodMain() {
       <CharComponents.CharInfoDisplay
         dataArray={dataArray}
         setDataArray={setDataArray}
-        maxHPIndex={380}
-        currentHPIndex={508}
-        experienceIndex={370}
-        statusIndex={422}
+        maxHPIndex={380} //done
+        currentHPIndex={508} //done
+        experienceIndex={370} //done
+        statusIndex={422}  //to do
         statusCodes={podStatusCodes}
         racesList={podRaces}
-        raceIndex={107}
+        raceIndex={173} // done
       />
     );
   }
