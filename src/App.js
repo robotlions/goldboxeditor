@@ -8,6 +8,7 @@ import SilverBladesMain from './Components/SilverBlades/SilverBladesMain';
 import PoolRadMain from './Components/Poolrad/PoolRadMain';
 import { AzureMain } from './Components/Azure/AzureMain';
 import { PodMain } from './Components/Pod/PodMain';
+import { BinaryTool } from './Components/BinaryTool';
 
 
 
@@ -31,6 +32,8 @@ function App() {
 
 <Route path="/silverblades/" element={<SilverBladesMain />} />
 <Route path="/pod/" element={<PodMain/>} />
+<Route path="/binarytool/" element={<BinaryTool/>} />
+
 
 
 

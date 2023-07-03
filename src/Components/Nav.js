@@ -22,6 +22,8 @@ export default function Nav() {
               Secret of the Silver Blades
             </MyNav.Link>
             <MyNav.Link href="/pod/">Pools of Darkness</MyNav.Link>
+            <MyNav.Link href="/binarytool/">Binary File Tool</MyNav.Link>
+
 
 
             {/* <MyNav.Link href="/recipes/">Recipes</MyNav.Link>
