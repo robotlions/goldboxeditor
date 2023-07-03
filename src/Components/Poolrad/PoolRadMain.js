@@ -85,6 +85,7 @@ export default function PoolRadMain() {
         statusCodes={poolRadStatusCodes}
         racesList={poolRadRaces}
         raceIndex={46}
+        genderIndex={158}
       />
     );
   }

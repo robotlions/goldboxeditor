@@ -111,6 +111,7 @@ export default function SilverBladesMain() {
         statusCodes={silverBladesStatusCodes}
         racesList={silverBladesRaces}
         raceIndex={107}
+        genderIndex={287}
       />
     );
   }

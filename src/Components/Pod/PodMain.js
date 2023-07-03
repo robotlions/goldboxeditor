@@ -52,10 +52,11 @@ export function PodMain() {
         maxHPIndex={380} //done
         currentHPIndex={508} //done
         experienceIndex={370} //done
-        statusIndex={422}  //to do
+        statusIndex={493}  //80% confident
         statusCodes={podStatusCodes}
         racesList={podRaces}
         raceIndex={173} // done
+        genderIndex={358} //80% confident
       />
     );
   }

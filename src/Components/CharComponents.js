@@ -222,7 +222,7 @@ export const CharInfoDisplay = (props) => {
           <CharFunctions.SelectModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
-            index={158}
+            index={props.genderIndex}
             dataList={genders}
           />
         </div>
