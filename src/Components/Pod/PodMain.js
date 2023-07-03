@@ -90,6 +90,22 @@ export function PodMain() {
     );
   }
 
+  function MoneyDisplay() {
+    return (
+      <CharComponents.CharMoneyComponent
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        copperIndex={323}
+        silverIndex={325}
+        electrumIndex={327}
+        goldIndex={329}
+        platinumIndex={331}
+        gemsIndex={333}
+        jewelryIndex={335}
+      />
+    );
+  }
+
   return (
     <div className="charEditBody">
       <div className="row">
@@ -170,6 +186,29 @@ export function PodMain() {
                   >
                     <div className="accordion-body">
                       <CharAbilityDisplay />
+                    </div>
+                  </div>
+                </div>
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingMoney">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseMoney"
+                      aria-expanded="true"
+                      aria-controls="collapseMoney"
+                    >
+                      Money
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseMoney"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingMoney"
+                  >
+                    <div className="accordion-body">
+                      <MoneyDisplay />
                     </div>
                   </div>
                 </div>
