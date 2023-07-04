@@ -42,10 +42,10 @@ export function ExperienceModule(props) {
       }
     }
 
-    tempArray[175] = parseInt(eightBitSplit[0], 16);
-    tempArray[174] = parseInt(eightBitSplit[1], 16);
-    tempArray[173] = parseInt(eightBitSplit[2], 16);
-    tempArray[172] = parseInt(eightBitSplit[3], 16);
+    tempArray[props.dataArrayIndex+3] = parseInt(eightBitSplit[0], 16);
+    tempArray[props.dataArrayIndex+2] = parseInt(eightBitSplit[1], 16);
+    tempArray[props.dataArrayIndex+1] = parseInt(eightBitSplit[2], 16);
+    tempArray[props.dataArrayIndex] = parseInt(eightBitSplit[3], 16);
     props.setDataArray(tempArray);
   }
 

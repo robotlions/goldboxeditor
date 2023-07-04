@@ -137,8 +137,8 @@ export function PodMain() {
           <CharFunctions.SpellModule
             dataArray={dataArray}
             setDataArray={setDataArray}
-            dataArrayMin={179}
-            dataArrayMax={291}
+            dataArrayMin={178}
+            dataArrayMax={292}
             dataList={podSpellList}
             filter={props.magicFilter}
           />
