@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as CharComponents from "../CharComponents";
-import {azureRaces, azureSpellList, azureStatusCodes} from "../Azure/AzureData";
+import {azureRaces, azureSpellList, azureStatusCodes, azureClassList} from "../Azure/AzureData";
 import * as CharFunctions from "../CharFunctions";
 import AzureInventory from "./AzureInventory";
 
@@ -130,6 +130,8 @@ export function AzureMain(props) {
         raceIndex={116}
         genderIndex={281}
         alignmentIndex={283}
+        classIndex={117}
+        classList={azureClassList}
       />
     );
   }

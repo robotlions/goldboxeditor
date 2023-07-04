@@ -426,3 +426,25 @@ export const azureSpellList = {
     219: {spellName: "Spell", class: "UNKNOWN", level: 0},
     220: {spellName: "Bestow Curse", class: "Mage", level: 4},
 }
+
+export const azureClassList ={
+
+    0: "Cleric",
+    // 1: "Druid",
+    2: "Fighter",
+    3: "Paladin",
+    4: "Ranger",
+    5: "Magic-user",
+    6: "Thief",
+    // 7: "Monk",
+    8: "Cleric/Fighter",
+    9: "Cleric/Fighter/Magic-user",
+    10: "Cleric/Ranger",
+    11: "Cleric/Magic-user",
+    // 12: "Cleric/Thief",
+    13: "Fighter/Magic-user",
+    14: "Fighter/Thief",
+    15: "Fighter/Magic-user/Thief",
+    16: "Magic-user/Thief",
+    17: "Monster",
+}

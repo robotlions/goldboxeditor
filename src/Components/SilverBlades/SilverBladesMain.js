@@ -5,6 +5,7 @@ import {
   silverBladesStatusCodes,
   silverBladesRaces,
   silverBladesSpellList,
+  silverBladesClassList,
 } from "./SilverBladesData";
 import SilverBladesInventory from "./SilverBladesInventory";
 import * as CharComponents from "../CharComponents";
@@ -113,6 +114,8 @@ export default function SilverBladesMain() {
         raceIndex={107}
         genderIndex={287}
         alignmentIndex={288}
+        classIndex={108}
+        classList={silverBladesClassList}
       />
     );
   }

@@ -190,16 +190,18 @@ export const CharInfoDisplay = (props) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-md-3">
-          Status:{" "}
+       
+
+        <div className="col-md-6">
+          Class:{" "}
           <CharFunctions.SelectModule
             dataArray={props.dataArray}
             setDataArray={props.setDataArray}
-            index={props.statusIndex}
-            dataList={props.statusCodes}
+            index={props.classIndex}
+            dataList={props.classList}
           />
         </div>
-        <div className="col-md-3">
+        <div className="col-md-6">
           Alignment:{" "}
           <CharFunctions.SelectModule
             dataArray={props.dataArray}
@@ -208,6 +210,18 @@ export const CharInfoDisplay = (props) => {
             dataList={alignments}
           />
         </div>
+        </div>
+      <div className="row">
+         <div className="col-md-3">
+          Status:{" "}
+          <CharFunctions.SelectModule
+            dataArray={props.dataArray}
+            setDataArray={props.setDataArray}
+            index={props.statusIndex}
+            dataList={props.statusCodes}
+          />
+        </div>
+
         <div className="col-md-3">
           Race:{" "}
           <CharFunctions.SelectModule

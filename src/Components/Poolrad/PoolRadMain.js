@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
-import { poolRadStatusCodes, poolRadRaces, poolRadSpells } from "./PoolRadData";
+import { poolRadStatusCodes, poolRadRaces, poolRadSpells, poolRadClassList } from "./PoolRadData";
 import PoolRadInventory from "./PoolRadInventory";
 import * as CharFunctions from "../CharFunctions";
 import * as CharComponents from "../CharComponents";
@@ -87,6 +87,8 @@ export default function PoolRadMain() {
         raceIndex={46}
         genderIndex={158}
         alignmentIndex={160}
+        classList={poolRadClassList}
+        classIndex={47}
       />
     );
   }

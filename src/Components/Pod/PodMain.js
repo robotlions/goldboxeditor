@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { podRaces, podStatusCodes, podSpellList } from "./PodData";
+import { podRaces, podStatusCodes, podSpellList, podClassList } from "./PodData";
 import * as CharComponents from "../CharComponents";
 import * as CharFunctions from "../CharFunctions";
 
@@ -59,6 +59,8 @@ export function PodMain() {
         raceIndex={173} // done
         genderIndex={358} //done
         alignmentIndex={359}
+        classList={podClassList}
+        classIndex={174}
       />
     );
   }
