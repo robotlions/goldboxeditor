@@ -6,7 +6,7 @@ export default function Nav() {
   return (
     <Navbar bg="light" variant="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home" id="navbrandTitle">
+        <Navbar.Brand href="/home/" id="navbrandTitle">
           Curse of the Secret Pools!
         </Navbar.Brand>
         <Navbar.Toggle className="ms-auto" aria-controls="basic-navbar-nav" />
@@ -15,6 +15,8 @@ export default function Nav() {
           id="basic-navbar-nav"
         >
           <MyNav className="me-auto">
+            <MyNav.Link href="/home/">Home</MyNav.Link>
+
             <MyNav.Link href="/poolrad/">Pool of Radiance</MyNav.Link>
             <MyNav.Link href="/azure/">Curse of the Azure Bonds</MyNav.Link>
 
@@ -22,7 +24,9 @@ export default function Nav() {
               Secret of the Silver Blades
             </MyNav.Link>
             <MyNav.Link href="/pod/">Pools of Darkness</MyNav.Link>
-            <MyNav.Link style={{fontStyle:"italic"}} href="/binarytool/">Binary File Tool</MyNav.Link>
+            <MyNav.Link style={{ fontStyle: "italic" }} href="/binarytool/">
+              Binary File Tool
+            </MyNav.Link>
           </MyNav>
         </Navbar.Collapse>
       </Container>

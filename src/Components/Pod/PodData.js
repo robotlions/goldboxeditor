@@ -294,6 +294,8 @@ export const podItemValues = {
     121: "Spiritual",
     122: "Gem",
     123: "Jewelry",
-
+    124: "Blinking",
+    125: "From",
+    126: "Evil",
 
 }
