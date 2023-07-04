@@ -253,6 +253,59 @@ export function PodMain() {
                     </div>
                   </div>
                 </div>
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingThree">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      Magic-user Spells
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingThree"
+                  >
+                    <div className="accordion-body">
+                      <div className="row">
+                        <MagicDisplay startingIndex={399} magicFilter="Mage" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingFour">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                      aria-expanded="false"
+                      aria-controls="collapseFour"
+                    >
+                      Cleric Spells
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFour"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingFour"
+                  >
+                    <div className="accordion-body">
+                      <div className="row">
+                        <MagicDisplay
+                          startingIndex={381}
+                          magicFilter="Cleric"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 </div> : null }
         </div>
         <div className="col-md-6">Inventory</div>
