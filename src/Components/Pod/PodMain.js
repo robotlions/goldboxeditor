@@ -138,7 +138,7 @@ export function PodMain() {
             dataArray={dataArray}
             setDataArray={setDataArray}
             dataArrayMin={178}
-            dataArrayMax={292}
+            dataArrayMax={298}
             dataList={podSpellList}
             filter={props.magicFilter}
           />

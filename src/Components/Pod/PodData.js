@@ -141,6 +141,6 @@ export const podSpellList = {
     293: {spellName: "Delayed Blast Fireball", class: "Mage", level: 7},
     294: {spellName: "Mass Invisibility", class: "Mage", level: 7},
     295: {spellName: "Power Word Stun", class: "Mage", level: 7},
-    296: {spellName: "UNKNOWN", class: "UNKNOW", level: 0},
-    297: {spellName: "UNKNOWN", class: "UNKNOWN", level: 0},
+    296: {spellName: "Fire Touch", class: "Mage", level: 5},
+    297: {spellName: "Iron Skin", class: "Mage", level: 5},
 }
