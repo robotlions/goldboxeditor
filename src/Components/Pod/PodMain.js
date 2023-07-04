@@ -2,6 +2,7 @@ import { useState } from "react";
 import { podRaces, podStatusCodes, podSpellList, podClassList } from "./PodData";
 import * as CharComponents from "../CharComponents";
 import * as CharFunctions from "../CharFunctions";
+import PodInventory from "./PodInventory";
 
 export function PodMain() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -335,8 +336,12 @@ export function PodMain() {
                 </div>
                 </div> : null }
         </div>
-        <div className="col-md-6">Inventory</div>
-      </div>
+        <div className="col-md-6">
+          <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
+
+          <PodInventory />
+        </div>
+        </div>
     </div>
   );
 }
