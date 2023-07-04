@@ -22,12 +22,7 @@ export default function Nav() {
               Secret of the Silver Blades
             </MyNav.Link>
             <MyNav.Link href="/pod/">Pools of Darkness</MyNav.Link>
-            <MyNav.Link href="/binarytool/">Binary File Tool</MyNav.Link>
-
-
-
-            {/* <MyNav.Link href="/recipes/">Recipes</MyNav.Link>
-        <MyNav.Link href="/methods/">Methods</MyNav.Link> */}
+            <MyNav.Link style={{fontStyle:"italic"}} href="/binarytool/">Binary File Tool</MyNav.Link>
           </MyNav>
         </Navbar.Collapse>
       </Container>

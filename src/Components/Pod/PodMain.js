@@ -138,7 +138,7 @@ export function PodMain() {
             dataArray={dataArray}
             setDataArray={setDataArray}
             dataArrayMin={178}
-            dataArrayMax={298}
+            dataArrayMax={305}
             dataList={podSpellList}
             filter={props.magicFilter}
           />
@@ -302,6 +302,31 @@ export function PodMain() {
                           startingIndex={381}
                           magicFilter="Cleric"
                         />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingFive">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive"
+                      aria-expanded="false"
+                      aria-controls="collapseFive"
+                    >
+                      Druid Spells
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFive"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingFive"
+                  >
+                    <div className="accordion-body">
+                      <div className="row">
+                        <MagicDisplay startingIndex={390} magicFilter="Druid" />
                       </div>
                     </div>
                   </div>
