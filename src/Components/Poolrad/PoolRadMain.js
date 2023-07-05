@@ -1,10 +1,17 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
-import { poolRadStatusCodes, poolRadRaces, poolRadSpells, poolRadClassList } from "./PoolRadData";
+import {
+  poolRadStatusCodes,
+  poolRadRaces,
+  poolRadSpells,
+  poolRadClassList,
+} from "./PoolRadData";
 import PoolRadInventory from "./PoolRadInventory";
 import * as CharFunctions from "../CharFunctions";
 import * as CharComponents from "../CharComponents";
+import poolRadCoverImage from "../../assets/images/poolRadCover800.jpg";
+import poolRadBanner from "../../assets/images/poolRad1Crop.png";
 
 export default function PoolRadMain() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -141,14 +148,23 @@ export default function PoolRadMain() {
     );
   }
 
+  let splashImage = dataArray ? null : (
+    <img
+      style={{ height: 600 }}
+      src={poolRadCoverImage}
+      alt="pool of radiance box cover"
+    />
+  );
+
   return (
     <div className="charEditBody">
       <div className="row">
+        <img src={poolRadBanner} alt="pool of radiance orignal title screen" />
         <h2 className="mainTitle">
-          Advanced Dungeons and Dragons
-          <br />
-          Pool of Radiance
+          Advanced Dungeons and Dragons: Pool of Radiance
         </h2>
+      </div>
+      <div className="row" style={{ marginTop: 20 }}>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Character Editor</h3>
           <div className="mb-3">
@@ -307,6 +323,12 @@ export default function PoolRadMain() {
 
           <PoolRadInventory />
         </div>
+      </div>
+      <div
+        className="row g-1 d-flex justify-content-center"
+        style={{ marginTop: "5vh", textAlign: "center" }}
+      >
+        <div className="col-md-auto">{splashImage}</div>
       </div>
     </div>
   );

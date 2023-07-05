@@ -19,7 +19,7 @@ export default function Nav() {
         >
           <MyNav className="me-auto" variant="tabs">
             <LinkContainer to="/">
-              <MyNav.Link>Home</MyNav.Link>
+              <MyNav.Link eventKey={"home"}>Home</MyNav.Link>
             </LinkContainer>
             <LinkContainer to="/poolrad/">
               <MyNav.Link>Pool of Radiance</MyNav.Link>

@@ -10,6 +10,8 @@ import {
 import SilverBladesInventory from "./SilverBladesInventory";
 import * as CharComponents from "../CharComponents";
 import * as CharFunctions from "../CharFunctions";
+import silverBladesCoverImage from "../../assets/images/silverBlades800.jpg";
+import silverBladesBanner from "../../assets/images/silverBladesBannerCropped.png";
 
 export default function SilverBladesMain() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -165,14 +167,23 @@ export default function SilverBladesMain() {
     );
   }
 
+  let splashImage = dataArray ? null : (
+    <img
+      style={{ maxHeight: 600 }}
+      src={silverBladesCoverImage}
+      alt="secret of the silver blades box cover"
+    />
+  );
+
   return (
     <div className="charEditBody">
       <div className="row">
+        <img src={silverBladesBanner} alt="silver blades title screen" />
         <h2 className="mainTitle">
-          Advanced Dungeons and Dragons
-          <br />
-          Secret of the Silver Blades
+          Advanced Dungeons and Dragons: Secret of the Silver Blades
         </h2>
+      </div>
+      <div className="row" style={{ marginTop: 20 }}>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Character Editor</h3>
           <div className="mb-3">
@@ -360,6 +371,12 @@ export default function SilverBladesMain() {
 
           <SilverBladesInventory />
         </div>
+      </div>
+      <div
+        className="row g-1 d-flex justify-content-center"
+        style={{ marginTop: "5vh", textAlign: "center" }}
+      >
+        <div className="col-md-auto">{splashImage}</div>
       </div>
     </div>
   );

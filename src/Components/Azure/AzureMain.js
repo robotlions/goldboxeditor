@@ -1,8 +1,15 @@
 import { useState } from "react";
 import * as CharComponents from "../CharComponents";
-import {azureRaces, azureSpellList, azureStatusCodes, azureClassList} from "../Azure/AzureData";
+import {
+  azureRaces,
+  azureSpellList,
+  azureStatusCodes,
+  azureClassList,
+} from "../Azure/AzureData";
 import * as CharFunctions from "../CharFunctions";
 import AzureInventory from "./AzureInventory";
+import azureCoverImage from "../../assets/images/curse800.jpg";
+import azureBanner from "../../assets/images/azureBannerCropped.png";
 
 export function AzureMain(props) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -35,17 +42,16 @@ export function AzureMain(props) {
           "This doesn't appear to be a save file from Pool of Radiance"
         );
       } else {
-      let dataArray = new Uint8Array(data);
-      console.log(dataArray)
-      setDataArray(dataArray);
-    }
-}
+        let dataArray = new Uint8Array(data);
+        console.log(dataArray);
+        setDataArray(dataArray);
+      }
+    };
     reader.onerror = function (e) {
       console.log("Error : " + e.type);
     };
     reader.readAsArrayBuffer(file);
   }
-
 
   function MagicDisplay(props) {
     let spellArray = [0];
@@ -115,7 +121,6 @@ export function AzureMain(props) {
     );
   }
 
-
   function CharInfoDisplay() {
     return (
       <CharComponents.CharInfoDisplay
@@ -152,15 +157,23 @@ export function AzureMain(props) {
     );
   }
 
-  return (
+  let splashImage = dataArray ? null : (
+    <img
+      style={{ maxHeight: 600 }}
+      src={azureCoverImage}
+      alt="curse of the azure bonds box cover"
+    />
+  );
 
+  return (
     <div className="charEditBody">
       <div className="row">
+        <img src={azureBanner} alt="azure bonds title screen" />
         <h2 className="mainTitle">
-          Advanced Dungeons and Dragons
-          <br />
-          Curse of the Azure Bonds
+          Advanced Dungeons and Dragons: Curse of the Azure Bonds
         </h2>
+      </div>
+      <div className="row" style={{ marginTop: 20 }}>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Character Editor</h3>
           <div className="mb-3">
@@ -336,14 +349,21 @@ export function AzureMain(props) {
                     </div>
                   </div>
                 </div>
-          </div></> ) : null}
-          </div>
-          <div className="col-md-6">
+              </div>
+            </>
+          ) : null}
+        </div>
+        <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
-            <AzureInventory />
-          </div>
-          </div>
-          </div>
-          
-  )
+          <AzureInventory />
+        </div>
+      </div>
+      <div
+        className="row g-1 d-flex justify-content-center"
+        style={{ marginTop: "5vh", textAlign: "center" }}
+      >
+        <div className="col-md-auto">{splashImage}</div>
+      </div>
+    </div>
+  );
 }

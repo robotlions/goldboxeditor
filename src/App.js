@@ -12,8 +12,9 @@ import { Home } from "./Components/Home";
 import { About } from "./Components/About";
 
 function App() {
+
   return (
-    <Container fluid>
+    <Container>
       <div className="row">
         <Nav />
       </div>
