@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Container } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,21 +16,15 @@ function App() {
       <div className="row">
         <Nav />
       </div>
-      <Fragment>
-        <Routes>
+      <Routes>
         <Route path="/home/" element={<Home />} />
-
-          <Route path="/poolrad/" element={<PoolRadMain />} />
-          <Route path="/azure/" element={<AzureMain />} />
-
-          <Route path="/silverblades/" element={<SilverBladesMain />} />
-          <Route path="/pod/" element={<PodMain />} />
-          <Route path="/binarytool/" element={<BinaryTool />} />
+        <Route path="/poolrad/" element={<PoolRadMain />} />
+        <Route path="/azure/" element={<AzureMain />} />
+        <Route path="/silverblades/" element={<SilverBladesMain />} />
+        <Route path="/pod/" element={<PodMain />} />
+        <Route path="/binarytool/" element={<BinaryTool />} />
         <Route path="/" element={<Home />} />
-
-
-        </Routes>
-      </Fragment>
+      </Routes>
     </Container>
   );
 }

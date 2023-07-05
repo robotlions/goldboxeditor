@@ -1,8 +1,10 @@
-import React from "react";
-import { Navbar, Container } from "react-bootstrap";
+import {React} from "react";
+import { Navbar, Container} from "react-bootstrap";
 import { Nav as MyNav } from "react-bootstrap";
 
 export default function Nav() {
+
+
   return (
     <Navbar bg="light" variant="light" expand="lg">
       <Container>
@@ -14,10 +16,13 @@ export default function Nav() {
           className="justify-content-evenly"
           id="basic-navbar-nav"
         >
-          <MyNav className="me-auto">
-            <MyNav.Link href="/home/">Home</MyNav.Link>
-
-            <MyNav.Link href="/poolrad/">Pool of Radiance</MyNav.Link>
+          <MyNav onSelect={(key)=>console.log(key)}className="me-auto">
+            <MyNav.Item>
+            <MyNav.Link eventKey="home" href="/home/">Home</MyNav.Link>
+            </MyNav.Item>
+            <MyNav.Item>
+            <MyNav.Link eventKey="poolrad" href="/poolrad/">Pool of Radiance</MyNav.Link>
+            </MyNav.Item>
             <MyNav.Link href="/azure/">Curse of the Azure Bonds</MyNav.Link>
 
             <MyNav.Link href="/silverblades/">

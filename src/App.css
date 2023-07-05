@@ -10,6 +10,15 @@
     src: url(./assets/fonts/IMFellGreatPrimerSC-Regular.ttf)  format('truetype');
   }
 
+  a {
+
+    text-decoration: none;
+  }
+
+  .activeLink{
+    color: red;
+  }
+
 
 body{
     font-family: "Geologica-Regular";
@@ -44,7 +53,7 @@ select.form-select{
 }
 
 .coverImage{
-    height: 300px;
+    height: 400px;
 }
 
 .editButton{
@@ -67,6 +76,11 @@ select.form-select{
 
 .inventoryText{
     font-size: 12px;
+}
+
+.linkText{
+    color: black;
+    font-family: IM-Fell;
 }
 
 .mainTitle{
