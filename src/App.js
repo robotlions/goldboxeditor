@@ -9,6 +9,7 @@ import { AzureMain } from "./Components/Azure/AzureMain";
 import { PodMain } from "./Components/Pod/PodMain";
 import { BinaryTool } from "./Components/BinaryTool";
 import { Home } from "./Components/Home";
+import { About } from "./Components/About";
 
 function App() {
   return (
@@ -17,12 +18,13 @@ function App() {
         <Nav />
       </div>
       <Routes>
-        <Route path="/home/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/poolrad/" element={<PoolRadMain />} />
         <Route path="/azure/" element={<AzureMain />} />
         <Route path="/silverblades/" element={<SilverBladesMain />} />
         <Route path="/pod/" element={<PodMain />} />
         <Route path="/binarytool/" element={<BinaryTool />} />
+        <Route path="/about/" element={<About />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </Container>

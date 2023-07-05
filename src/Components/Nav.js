@@ -7,7 +7,7 @@ export default function Nav() {
   return (
     <Navbar bg="light" variant="light" expand="lg">
       <Container>
-        <LinkContainer to="/home/">
+        <LinkContainer to="/">
           <Navbar.Brand id="navbrandTitle">
             Curse of the Secret Pools!
           </Navbar.Brand>
@@ -18,7 +18,7 @@ export default function Nav() {
           id="basic-navbar-nav"
         >
           <MyNav className="me-auto" variant="tabs">
-            <LinkContainer to="/home/">
+            <LinkContainer to="/">
               <MyNav.Link>Home</MyNav.Link>
             </LinkContainer>
             <LinkContainer to="/poolrad/">
@@ -36,6 +36,11 @@ export default function Nav() {
             <LinkContainer to="/binarytool/">
               <MyNav.Link style={{ fontStyle: "italic" }}>
                 Binary File Tool
+              </MyNav.Link>
+            </LinkContainer>
+            <LinkContainer to="/about/">
+              <MyNav.Link>
+                About
               </MyNav.Link>
             </LinkContainer>
           </MyNav>

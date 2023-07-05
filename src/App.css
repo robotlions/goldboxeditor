@@ -29,6 +29,11 @@ p {
     font-weight: 300;
 }
 
+img{
+
+    box-shadow: 5px 2px 8px gray;
+}
+
 input.form-control{
     font-size: 12px;
 }
@@ -80,6 +85,7 @@ select.form-select{
 
 .linkText{
     color: black;
+    font-size: large;
     font-family: IM-Fell;
 }
 
