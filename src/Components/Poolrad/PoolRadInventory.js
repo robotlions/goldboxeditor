@@ -2,7 +2,7 @@ import { useState } from "react";
 import { poolRadItemValues } from "./PoolRadData";
 import * as InvFunctions from "../InventoryFunctions";
 
-export default function PoolRadInventory() {
+export default function PoolRadInventory(props) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
   const [editingIndex, setEditingIndex] = useState(null);
@@ -23,6 +23,7 @@ export default function PoolRadInventory() {
       }
       let dataArray = new Uint8Array(data);
       setDataArray(dataArray);
+      props.setInventoryLoaded(true);
     };
     reader.onerror = function (e) {
       console.log("Error : " + e.type);

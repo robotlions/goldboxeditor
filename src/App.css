@@ -1,116 +1,135 @@
+@font-face {
+  font-family: "Geologica-Regular";
+  src: url(./assets/fonts/Geologica_Cursive-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "IM-Fell";
+  src: url(./assets/fonts/IMFellGreatPrimerSC-Regular.ttf) format("truetype");
+}
 
 
-  @font-face {
-    font-family: 'Geologica-Regular';
-    src: url(./assets/fonts/Geologica_Cursive-Regular.ttf)  format('truetype');
-  }
+a {
+  text-decoration: none;
+}
 
-  @font-face {
-    font-family: 'IM-Fell';
-    src: url(./assets/fonts/IMFellGreatPrimerSC-Regular.ttf)  format('truetype');
-  }
+.activeLink {
+  color: red;
+}
 
-  a {
-
-    text-decoration: none;
-  }
-
-  .activeLink{
-    color: red;
-  }
-
-
-body{
-    font-family: "Geologica-Regular";
-    font-size: 15px;
+body {
+  font-family: "Geologica-Regular";
+  font-size: 15px;
 }
 
 p {
-    font-weight: 300;
+  font-weight: 300;
 }
 
-.coverImage{
-
-    box-shadow: 5px 2px 8px gray;
+.coverImage {
+  box-shadow: 5px 2px 8px gray;
 }
 
-input.form-control{
-    font-size: 12px;
+input.form-control {
+  font-size: 12px;
 }
 
-select.form-select{
-    font-size: 12px;
+input[type="file"]::file-selector-button {
+  background-color: #00aa00 !important;
 }
-.accordion-button::after{
-    transform: rotate(-90deg)
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #55fe55 !important;
 }
-.accordion-button:not(.collapsed)::after{
-    transform: rotate(0deg)
+
+select.form-select {
+  font-size: 12px;
+}
+
+.accordion-button:not(.collapsed) {
+background-color: #00AAAA !important;
 }
 
 
-.card-header, .card-footer{
-    background-color: #cfe2ff;
+.accordion-button::after {
+  transform: rotate(-90deg);
+}
+.accordion-button:not(.collapsed)::after {
+  transform: rotate(0deg);
 }
 
-.charEditBody{
-    margin-bottom: 20vh;
+.card-header,
+.card-footer {
+  background-color: #00AAAA;
 }
 
-.coverImage{
-    height: 400px;
+.charEditBody {
+  margin-bottom: 20vh;
 }
 
-.editButton{
-    font-size: 10px;
+.coverImage {
+  height: 400px;
 }
 
-.form-control{
-    font-weight: 300;
-    font-size: 15px;;
+.downloadButton {
+  background-color: #00aa00;
+  color: white !important;
 }
 
-.headlineRow{
-    margin-bottom: 20px;
+.downloadButton:hover {
+  background-color: #55fe55;
 }
 
-.inventoryItem{
-    margin-bottom: 10px;
-    font-size: 20px;
+.editButton {
+  font-size: 10px;
 }
 
-.inventoryText{
-    font-size: 12px;
+.form-control {
+  font-weight: 300;
+  font-size: 15px;
 }
 
-.linkText{
-    color: black;
-    font-size: large;
-    font-family: IM-Fell;
+.headlineRow {
+  margin-bottom: 20px;
 }
 
-.mainTitle{
-    font-family: IM-Fell;
-    text-align: center;
-    margin-bottom: 30px;
+.inventoryItem {
+  margin-bottom: 10px;
+  font-size: 20px;
 }
 
-#navbrandTitle{
-    font-family: IM-Fell;
-    font-size: x-large;
+.inventoryText {
+  font-size: 12px;
 }
 
-.spellEntry{
-    font-weight: 300;
-    font-size: 12px;
+.linkText {
+  color: black;
+  font-size: large;
+  font-family: IM-Fell;
+}
+
+.mainTitle {
+  font-family: IM-Fell;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#navbrandTitle {
+  font-family: IM-Fell;
+  font-size: x-large;
+}
+
+.spellEntry {
+  font-weight: 300;
+  font-size: 12px;
 }
 
 #fileSelect::file-selector-button {
-    background-color: #0d6efd;
-    color: white;
+  background-color: #0d6efd;
+  color: white;
 }
 
 #inventoryFileSelect::file-selector-button {
-    background-color: #0d6efd;
-    color: white;
+  background-color: #0d6efd;
+  color: white;
 }

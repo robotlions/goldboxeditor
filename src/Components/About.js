@@ -45,7 +45,7 @@ export function About(){
                     aria-labelledby="headingTwo"
                   >
                     <div className="accordion-body">
-                    The gold box games were a series of video role-playing games created by Strategic Simulations, Inc. in the late 1980s through early 1990s. The first four of those games - Pool of Radiance, Curse of the Azure Blades, Secret of the Silver Blades and Pools of Darkness - form roughly a single continuous story arc.
+                    The gold box games were a series of video role-playing games created by Strategic Simulations, Inc. in the late 1980s through early 1990s. Although they took place in many different settings throughout the Dungeons and Dragons campaign worlds, all of the games were based on the same engine, which gives us - hackers from the future - the ability to edit many different games with a single app.
 
                     </div>
                   </div>
@@ -69,7 +69,7 @@ export function About(){
                     aria-labelledby="headingMoney"
                   >
                     <div className="accordion-body">
-                    The Gold Box games store saved games as character files and inventory files. These are simple binary files, with each byte corresponding to an in-game value. The editor allows you to change the values of specific bytes to produce, if you wish, demi-gods with overpowered weapons and limitless wealth.<br/><br/>The naming convention is always the same: "CHRDAT"+SAVE GAME LETTER+CHARACTER'S PARTY POSITION. So, for example, the character-saved file for the fourth party member of save C of Pool of Radiance would be CHRDATC4.SAV. The inventory-save file for that character would be CHRDATC4.ITM. For Secret of the Silver blades, that file would be CHRDATAC4.STF. The inventory-file extensions change from game to game, but this app takes those changes into account.
+                    The Gold Box games store saved games as character files and inventory files. These are simple binary files, with each byte corresponding to an in-game value. The editor allows you to change the values of specific bytes to produce, if you wish, demi-gods with overpowered weapons and limitless wealth.<br/><br/>The naming convention is always the same: "CHRDAT"+SAVE GAME LETTER+CHARACTER'S PARTY POSITION. So, for example, the character-save file for the fourth party member of save C of Pool of Radiance would be CHRDATC4.SAV. The inventory-save file for that character would be CHRDATC4.ITM. For Secret of the Silver blades, that file would be CHRDATAC4.STF. The inventory-file extensions change from game to game, but this app takes those differences into account.
 
                     </div>
                   </div>

@@ -16,6 +16,7 @@ import poolRadBanner from "../../assets/images/poolRad1Crop.png";
 export default function PoolRadMain() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
+  const [inventoryLoaded, setInventoryLoaded] = useState(false);
 
   function exportSaveFile() {
     if (!selectedFile) {
@@ -148,7 +149,7 @@ export default function PoolRadMain() {
     );
   }
 
-  let splashImage = dataArray ? null : (
+  let splashImage = dataArray || inventoryLoaded===true ? null : (
     <img
       style={{ height: 600 }}
       src={poolRadCoverImage}
@@ -182,7 +183,7 @@ export default function PoolRadMain() {
           </div>
           {dataArray ? (
             <button
-              className="btn btn-success"
+              className="btn downloadButton"
               onClick={() => exportSaveFile()}
             >
               Download Character File
@@ -321,7 +322,7 @@ export default function PoolRadMain() {
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
 
-          <PoolRadInventory />
+          <PoolRadInventory inventoryLoaded={inventoryLoaded} setInventoryLoaded={setInventoryLoaded}/>
         </div>
       </div>
       <div
