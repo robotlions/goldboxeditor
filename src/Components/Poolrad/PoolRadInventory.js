@@ -82,7 +82,7 @@ export default function PoolRadInventory(props) {
 
           {dataArray ? (
             <button
-              className="btn btn-success"
+              className="btn downloadButton"
               onClick={() => exportSaveFile()}
             >
               Download Inventory File

@@ -83,19 +83,28 @@ export function ItemEditModule(props) {
     );
   }
 
-  const mainDisplay =
-    
-      <div className="card">
-        <div className="card-header row">
-          <div className="card-title d-flex">
-            <div className="col-md-8">
-            <h4>
+
+
+const mainDisplay = 
+<div className="accordion" id="inventoryAccordion">
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id={`heading${props.index}`}>
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target={`#collapse${props.index}`}
+                      aria-expanded="true"
+                      aria-controls={`collapse${props.index}`}
+                    >
+                      <div className="col-md-8">
+            <h6>
               {displayName1} {displayName2} {displayName3}
-            </h4>
+            </h6>
             </div>
             <div className="col-md-4" style={{textAlign: "right"}}>
-            {props.editingIndex !== props.index ?
-        <div>
+           
+        {/* <div>
           <button
             className="btn btn-light editButton"
             onClick={() => props.setEditingIndex(props.index)}
@@ -108,13 +117,18 @@ export function ItemEditModule(props) {
           >
             Duplicate
           </button>
-        </div> : null}
+        </div> */}
           </div>
-           </div>
-        </div>
-        {props.editingIndex === props.index ?
-        <>
-        <div className="card-body"></div>
+                    </button>
+                  </h2>
+                  <div
+                    id={`collapse${props.index}`}
+                    className="accordion-collapse collapse"
+                    aria-labelledby={`heading${props.index}`}
+                  >
+                    <div className="accordion-body">
+                    <>
+        <div className="card-body">
         <div className="row">
           <div className="col-6 col-md-auto inventoryText">
             Type:{" "}
@@ -184,6 +198,131 @@ export function ItemEditModule(props) {
               value={parseInt(Object.keys(props.loadedItem)) + props.nameIndex}
             />
           </div>
+        </div>
+        </div>
+        {/* <br />
+        <div className="card-footer row d-flex flex-row-reverse">
+          <button
+            style={{ maxWidth: 200 }}
+            className="btn btn-primary shadow"
+            onClick={() => {
+              props.setEditingIndex(null)
+            }}
+          >
+            Done Editing
+          </button>
+        </div> */}
+        </> 
+                    </div>
+                  </div>
+                </div>
+                </div>
+
+
+
+
+  const cardDisplay =
+    
+      <div className="card">
+        <div className="card-header row">
+          <div className="card-title d-flex">
+            <div className="col-md-8">
+            <h4>
+              {displayName1} {displayName2} {displayName3}
+            </h4>
+            </div>
+            <div className="col-md-4" style={{textAlign: "right"}}>
+            {props.editingIndex !== props.index ?
+        <div>
+          <button
+            className="btn btn-light editButton"
+            onClick={() => props.setEditingIndex(props.index)}
+          >
+            Edit
+          </button>{" "}
+          <button
+            className="btn btn-light editButton"
+            onClick={() => props.duplicateItem(props.item)}
+          >
+            Duplicate
+          </button>
+        </div> : null}
+          </div>
+           </div>
+        </div>
+        {props.editingIndex === props.index ?
+        <>
+        <div className="card-body">
+        <div className="row">
+          <div className="col-6 col-md-auto inventoryText">
+            Type:{" "}
+            <ValueModule
+              value={parseInt(Object.keys(props.loadedItem)) + props.typeIndex}
+            />
+          </div>
+          <div className="col-6 col-md-auto inventoryText">
+            Bonus:{" "}
+            <ValueModule
+              value={parseInt(Object.keys(props.loadedItem)) + props.bonusIndex}
+            />
+          </div>
+          <div className="col-6 col-md-auto inventoryText">
+            Charges:{" "}
+            <ValueModule
+              value={
+                parseInt(Object.keys(props.loadedItem)) + props.chargeIndex
+              }
+            />
+          </div>
+          <div className="col-6 col-md-auto inventoryText">
+            Ammo:{" "}
+            <ValueModule
+              value={parseInt(Object.keys(props.loadedItem)) + props.ammoIndex}
+            />
+          </div>
+        </div>
+        <div style={{ marginTop: 20 }} className="row">
+          <div className="col-6 col-md-auto inventoryText">
+            Weight:{" "}
+            <ItemWeightModule
+              value={
+                parseInt(Object.keys(props.loadedItem)) + props.weightIndex
+              }
+              dataArray={props.dataArray}
+            />
+          </div>
+        </div>
+        <div style={{ marginTop: 20 }} className="row">
+          <h5 style={{ textAlign: "center" }}>Rename</h5>
+        </div>
+
+        <div className="row">
+          <div className="col-4">
+            <NameSelect
+              setDataArray={props.setDataArray}
+              dataList={props.dataList}
+              value={
+                parseInt(Object.keys(props.loadedItem)) + (props.nameIndex + 2)
+              }
+            />
+          </div>
+          <div className="col-4">
+            <NameSelect
+              setDataArray={props.setDataArray}
+              dataList={props.dataList}
+              value={
+                parseInt(Object.keys(props.loadedItem)) + (props.nameIndex + 1)
+              }
+            />
+          </div>
+          <div className="col-4">
+            <NameSelect
+              setDataArray={props.setDataArray}
+              dataList={props.dataList}
+              value={parseInt(Object.keys(props.loadedItem)) + props.nameIndex}
+            />
+          </div>
+        </div>
         </div>
         <br />
         <div className="card-footer row d-flex flex-row-reverse">

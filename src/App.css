@@ -58,6 +58,13 @@ background-color: #00AAAA !important;
   transform: rotate(0deg);
 }
 
+#inventoryAccordion .accordion-button::after {
+    background-image: none;
+    content: "EDIT";
+    transform: none;
+    transform:translateX(-30px);
+  }
+
 .card-header,
 .card-footer {
   background-color: #00AAAA;
