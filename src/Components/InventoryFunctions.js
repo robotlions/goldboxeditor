@@ -102,9 +102,9 @@ const mainDisplay =
               {displayName1} {displayName2} {displayName3}
             </h6>
             </div>
-            <div className="col-md-4" style={{textAlign: "right"}}>
+            {/* <div className="col-md-4" style={{textAlign: "right"}}>
            
-        {/* <div>
+        <div>
           <button
             className="btn btn-light editButton"
             onClick={() => props.setEditingIndex(props.index)}
@@ -117,8 +117,8 @@ const mainDisplay =
           >
             Duplicate
           </button>
-        </div> */}
-          </div>
+        </div>
+          </div> */}
                     </button>
                   </h2>
                   <div
@@ -128,7 +128,7 @@ const mainDisplay =
                   >
                     <div className="accordion-body">
                     <>
-        <div className="card-body">
+        
         <div className="row">
           <div className="col-6 col-md-auto inventoryText">
             Type:{" "}
@@ -199,7 +199,7 @@ const mainDisplay =
             />
           </div>
         </div>
-        </div>
+        
         {/* <br />
         <div className="card-footer row d-flex flex-row-reverse">
           <button

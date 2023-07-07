@@ -58,12 +58,15 @@ background-color: #00AAAA !important;
   transform: rotate(0deg);
 }
 
-#inventoryAccordion .accordion-button::after {
+/* #inventoryAccordion .accordion-button::after {
     background-image: none;
-    content: "EDIT";
-    transform: none;
+    content: "Edit";
     transform:translateX(-30px);
   }
+
+  #inventoryAccordion .accordion-button:hover::after {
+    content: "EDIT";
+  } */
 
 .card-header,
 .card-footer {

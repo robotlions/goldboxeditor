@@ -34,7 +34,6 @@ export default function PoolRadInventory(props) {
   function ListDisplay() {
     return (
       <>
-        <div className="row">
           <InvFunctions.ItemListModule
             dataArray={dataArray}
             setDataArray={setDataArray}
@@ -49,7 +48,6 @@ export default function PoolRadInventory(props) {
             editingIndex={editingIndex}
             setEditingIndex={setEditingIndex}
           />
-        </div>
       </>
     );
   }
@@ -91,9 +89,7 @@ export default function PoolRadInventory(props) {
         </div>
       </div>
       <br />
-      <div className="row d-flex justify-content-center">
         {dataArray ? <ListDisplay /> : null}
-      </div>
     </>
   );
 }
