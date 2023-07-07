@@ -196,8 +196,19 @@ export function ItemEditModule(props) {
                 style={{ marginTop: 10 }}
               >
                 <button
-                  className="btn editButton downloadButton"
+                  className="btn downloadButton editButton"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#collapse${props.index}`}
+                  aria-expanded="true"
+                  aria-controls={`collapse${props.index}`}
+                >
+                  Done Editing
+                </button>
+                <button
+                  className="btn editButton duplicateButton"
                   onClick={() => props.duplicateItem(props.item)}
+                  style={{marginRight:30}}
                 >
                   Duplicate Item
                 </button>

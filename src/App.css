@@ -95,6 +95,14 @@ background-color: #00AAAA !important;
   background-color: #55fe55;
 }
 
+.duplicateButton {
+  background-color: #00AAAA;
+  color: white !important;
+}
+.duplicateButton:hover {
+  background-color: #55FFFF;
+}
+
 .editButton {
   font-size: 10px;
   max-width: 100px;

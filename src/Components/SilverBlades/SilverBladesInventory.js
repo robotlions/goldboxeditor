@@ -33,7 +33,6 @@ export default function SilverBladesInventory(props) {
   function ListDisplay() {
     return (
       <>
-        <div className="row">
           <InvFunctions.ItemListModule
             dataArray={dataArray}
             setDataArray={setDataArray}
@@ -48,7 +47,6 @@ export default function SilverBladesInventory(props) {
             editingIndex={editingIndex}
             setEditingIndex={setEditingIndex}
           />
-        </div>
       </>
     );
   }
@@ -90,9 +88,7 @@ export default function SilverBladesInventory(props) {
         </div>
       </div>
       <br />
-      <div className="row d-flex justify-content-center">
         {dataArray ? <ListDisplay /> : null}
-      </div>
     </>
   );
 }
