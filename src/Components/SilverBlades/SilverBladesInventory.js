@@ -46,6 +46,7 @@ export default function SilverBladesInventory(props) {
             arrayLength={67}
             editingIndex={editingIndex}
             setEditingIndex={setEditingIndex}
+            quantityIndex={57}
           />
       </>
     );

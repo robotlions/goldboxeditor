@@ -7,6 +7,7 @@ export function ItemEditModule(props) {
   const [displayName1, setDisplayName1] = useState("");
   const [displayName2, setDisplayName2] = useState("");
   const [displayName3, setDisplayName3] = useState("");
+  const [ammo, setAmmo] = useState("")
   const [updated, setUpdated] = useState(true);
 
   useEffect(() => {
@@ -30,14 +31,20 @@ export function ItemEditModule(props) {
           tempArray[parseInt(Object.keys(props.loadedItem)) + props.nameIndex]
         ]
       );
+      setAmmo(
+        
+          tempArray[parseInt(Object.keys(props.loadedItem)) + props.ammoIndex]
+        
+      );
     }
-  }, [tempArray, updated, props.dataList, props.loadedItem, props.nameIndex]);
+  }, [tempArray, updated, props.dataList, props.loadedItem, props.nameIndex, props.ammoIndex]);
 
   function ValueModule(props) {
     const [valueState, setValueState] = useState(tempArray[props.value]);
 
     function saveValue() {
       tempArray[props.value] = valueState;
+      setUpdated(!updated);
     }
 
     return (
@@ -97,7 +104,7 @@ export function ItemEditModule(props) {
           >
             <div className="col-md-8">
               <h6>
-                {displayName1} {displayName2} {displayName3}
+              {ammo > 0 ? ammo : null} {displayName1} {displayName2} {displayName3}
               </h6>
             </div>
           </button>
@@ -135,14 +142,14 @@ export function ItemEditModule(props) {
                     }
                   />
                 </div>
-                <div className="col-6 col-md-auto inventoryText">
+                {tempArray[parseInt(Object.keys(props.loadedItem)) + props.ammoIndex] > 0 ? <div className="col-6 col-md-auto inventoryText">
                   Ammo:{" "}
                   <ValueModule
                     value={
                       parseInt(Object.keys(props.loadedItem)) + props.ammoIndex
                     }
                   />
-                </div>
+                </div> : null}
               </div>
               <div style={{ marginTop: 20 }} className="row">
                 <div className="col-6 col-md-auto inventoryText">
@@ -250,6 +257,7 @@ export function ItemListModule(props) {
         arrayLength={props.arrayLength}
         editingIndex={props.editingIndex}
         setEditingIndex={props.setEditingIndex}
+        quantityIndex={props.quantityIndex}
         index={index}
         item={item}
         duplicateItem={duplicateItem}
