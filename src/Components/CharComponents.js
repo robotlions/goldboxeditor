@@ -147,6 +147,7 @@ export const CharAbilityDisplay = (props) => {
             </div>
           </div>
         </div>
+
       </div>
     </>
   );

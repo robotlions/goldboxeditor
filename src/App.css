@@ -58,16 +58,6 @@ background-color: #00AAAA !important;
   transform: rotate(0deg);
 }
 
-/* #inventoryAccordion .accordion-button::after {
-    background-image: none;
-    content: "Edit";
-    transform:translateX(-30px);
-  }
-
-  #inventoryAccordion .accordion-button:hover::after {
-    content: "EDIT";
-  } */
-
 .card-header,
 .card-footer {
   background-color: #00AAAA;
@@ -79,6 +69,10 @@ background-color: #00AAAA !important;
 
 .coverImage {
   height: 400px;
+}
+
+a .coverImage:hover, .coverImageFaded:hover{
+  transform: scale(1.1)
 }
 
 .coverImageFaded {
