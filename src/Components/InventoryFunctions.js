@@ -102,23 +102,23 @@ const mainDisplay =
               {displayName1} {displayName2} {displayName3}
             </h6>
             </div>
-            {/* <div className="col-md-4" style={{textAlign: "right"}}>
+            <div className="col-md-4" style={{textAlign: "right"}}>
            
         <div>
-          <button
+          {/* <button
             className="btn btn-light editButton"
             onClick={() => props.setEditingIndex(props.index)}
           >
             Edit
-          </button>{" "}
+          </button>{" "} */}
           <button
-            className="btn btn-light editButton"
+            className="btn editButton downloadButton"
             onClick={() => props.duplicateItem(props.item)}
           >
             Duplicate
           </button>
         </div>
-          </div> */}
+          </div>
                     </button>
                   </h2>
                   <div
