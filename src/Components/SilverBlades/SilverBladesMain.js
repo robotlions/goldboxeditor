@@ -49,7 +49,7 @@ export default function SilverBladesMain() {
         );
       } else {
         let dataArray = new Uint8Array(data);
-        console.log(data.byteLength);
+        console.log(dataArray);
         setDataArray(dataArray);
       }
     };

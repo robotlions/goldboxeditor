@@ -62,8 +62,7 @@ export const CharAbilityDisplay = (props) => {
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.conIndex}
-                dataArrayIndexCurre
-                t={props.conIndexCurrent}
+                dataArrayIndexCurrent={props.conIndexCurrent}
               />
             </div>
           </div>

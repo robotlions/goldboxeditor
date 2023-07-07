@@ -160,6 +160,7 @@ export function ItemEditModule(props) {
                       props.weightIndex
                     }
                     dataArray={props.dataArray}
+                    setDataArray={props.setDataArray}
                   />
                 </div>
               </div>
