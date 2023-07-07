@@ -23,6 +23,7 @@ export default function PodInventory(props) {
       let dataArray = new Uint8Array(data);
       console.log(dataArray);
       setDataArray(dataArray);
+      props.setInventoryLoaded(true);
     };
     reader.onerror = function (e) {
       console.log("Error : " + e.type);
@@ -81,7 +82,7 @@ export default function PodInventory(props) {
 
           {dataArray ? (
             <button
-              className="btn btn-success"
+              className="btn downloadButton"
               onClick={() => exportSaveFile()}
             >
               Download Inventory File

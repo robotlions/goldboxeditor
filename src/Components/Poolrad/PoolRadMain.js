@@ -10,8 +10,11 @@ import {
 import PoolRadInventory from "./PoolRadInventory";
 import * as CharFunctions from "../CharFunctions";
 import * as CharComponents from "../CharComponents";
-import poolRadCoverImage from "../../assets/images/poolRadCover800.jpg";
 import poolRadBanner from "../../assets/images/poolRad1Crop.png";
+import podCoverImage from "../../assets/images/pod800.jpg";
+import azureCoverImage from "../../assets/images/azure800.jpg";
+import silverBladesCoverImage from "../../assets/images/silverBlades800.jpg";
+import poolRadCoverImage from "../../assets/images/poolRadCover800.jpg";
 
 export default function PoolRadMain() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -149,13 +152,59 @@ export default function PoolRadMain() {
     );
   }
 
-  let splashImage = dataArray || inventoryLoaded===true ? null : (
-    <img
-      style={{ height: 600 }}
+  let splashImage =
+    dataArray || inventoryLoaded === true ? null : (
+      <>
+        <h5 style={{ marginBottom: 20 }}>
+          To begin, upload a character file (.SAV) or an inventory file (.ITM)
+          from <em>Pool of Radiance</em>.
+        </h5>
+        {/* <img
+      style={{ height: 400 }}
       src={poolRadCoverImage}
       alt="pool of radiance box cover"
-    />
-  );
+    /> */}
+        <div
+          className="row g-1 d-flex justify-content-center"
+          style={{ marginTop: "5vh", textAlign: "center" }}
+        >
+          <div className="col-md-auto">
+            <img
+              className="coverImage"
+              src={poolRadCoverImage}
+              alt="pool of radiance"
+            />
+          </div>
+          <div className="col-md-auto">
+            <a href="/azure">
+              <img
+                className="coverImageFaded"
+                src={azureCoverImage}
+                alt="curse of the azure bonds"
+              />
+            </a>
+          </div>
+          <div className="col-md-auto">
+            <a href="/silverblades">
+              <img
+                className="coverImageFaded"
+                src={silverBladesCoverImage}
+                alt="secret of the silver blades"
+              />
+            </a>
+          </div>
+          <div className="col-md-auto">
+            <a href="/pod">
+              <img
+                className="coverImageFaded"
+                src={podCoverImage}
+                alt="pools of darkness"
+              />
+            </a>
+          </div>
+        </div>
+      </>
+    );
 
   return (
     <div className="charEditBody">
@@ -322,7 +371,10 @@ export default function PoolRadMain() {
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
 
-          <PoolRadInventory inventoryLoaded={inventoryLoaded} setInventoryLoaded={setInventoryLoaded}/>
+          <PoolRadInventory
+            inventoryLoaded={inventoryLoaded}
+            setInventoryLoaded={setInventoryLoaded}
+          />
         </div>
       </div>
       <div

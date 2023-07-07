@@ -8,12 +8,16 @@ import {
 import * as CharComponents from "../CharComponents";
 import * as CharFunctions from "../CharFunctions";
 import PodInventory from "./PodInventory";
-import podCoverImage from "../../assets/images/pod800.jpg";
 import podBanner from "../../assets/images/podBannerCropped.png";
+import podCoverImage from "../../assets/images/pod800.jpg";
+import azureCoverImage from "../../assets/images/azure800.jpg";
+import silverBladesCoverImage from "../../assets/images/silverBlades800.jpg";
+import poolRadCoverImage from "../../assets/images/poolRadCover800.jpg";
 
 export function PodMain() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
+  const [inventoryLoaded, setInventoryLoaded] = useState(false);
 
   function exportSaveFile() {
     if (!selectedFile) {
@@ -157,12 +161,38 @@ export function PodMain() {
     );
   }
 
-  let splashImage = dataArray ? null : (
-    <img
+  let splashImage = dataArray || inventoryLoaded===true ? null : (
+    <>
+    <h5 style={{marginBottom:20}}>To begin, upload a character file (.SAV) or an inventory file (.THG) from <em>Pools of Darkness</em>.</h5>
+
+    {/* <img
       style={{ maxHeight: 600 }}
       src={podCoverImage}
       alt="pools of darkness box cover"
-    />
+    /> */}
+    <div className="row g-1 d-flex justify-content-center" style={{marginTop:"5vh", textAlign:"center"}}>
+      <div className="col-md-auto">
+        <a href="/poolRad">
+          <img className="coverImageFaded" src={poolRadCoverImage} alt="pool of radiance"/>
+        </a>
+      </div>
+      <div className="col-md-auto">
+        <a href="/azure">
+          <img className="coverImageFaded" src={azureCoverImage} alt="curse of the azure bonds"/>
+        </a>
+      </div>
+      <div className="col-md-auto">
+        <a href="/silverblades">
+          <img className="coverImageFaded" src={silverBladesCoverImage} alt="secret of the silver blades"/>
+        </a>
+      </div>
+      <div className="col-md-auto">
+       
+          <img className="coverImage" src={podCoverImage} alt="pools of darkness"/>
+      
+      </div>
+    </div>
+    </>
   );
 
   return (
@@ -192,7 +222,7 @@ export function PodMain() {
           </div>
           {dataArray ? (
             <button
-              className="btn btn-success"
+              className="btn downloadButton"
               onClick={() => exportSaveFile()}
             >
               Download Character File
@@ -353,7 +383,7 @@ export function PodMain() {
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
 
-          <PodInventory />
+          <PodInventory inventoryLoaded={inventoryLoaded} setInventoryLoaded={setInventoryLoaded} />
         </div>
       </div>
       <div

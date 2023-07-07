@@ -8,12 +8,17 @@ import {
 } from "../Azure/AzureData";
 import * as CharFunctions from "../CharFunctions";
 import AzureInventory from "./AzureInventory";
-import azureCoverImage from "../../assets/images/curse800.jpg";
 import azureBanner from "../../assets/images/azureBannerCropped.png";
+import podCoverImage from "../../assets/images/pod800.jpg";
+import azureCoverImage from "../../assets/images/azure800.jpg";
+import silverBladesCoverImage from "../../assets/images/silverBlades800.jpg";
+import poolRadCoverImage from "../../assets/images/poolRadCover800.jpg";
 
 export function AzureMain(props) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [dataArray, setDataArray] = useState(null);
+  const [inventoryLoaded, setInventoryLoaded] = useState(false);
+
 
   function exportSaveFile() {
     if (!selectedFile) {
@@ -157,12 +162,37 @@ export function AzureMain(props) {
     );
   }
 
-  let splashImage = dataArray ? null : (
-    <img
-      style={{ maxHeight: 600 }}
-      src={azureCoverImage}
+  let splashImage = dataArray || inventoryLoaded===true ? null : (
+    <>
+    <h5 style={{marginBottom:20}}>To begin, upload a character file (.SAV) or an inventory file (.SWG) from <em>Curse of the Azure Bonds</em>.</h5>    
+    {/* <img
+      style={{ maxHeight: 400 }}
+      src={curseCoverImage}
       alt="curse of the azure bonds box cover"
-    />
+    /> */}
+      <div className="row g-1 d-flex justify-content-center" style={{marginTop:"5vh", textAlign:"center"}}>
+      <div className="col-md-auto">
+        <a href="/poolRad">
+          <img className="coverImageFaded" src={poolRadCoverImage} alt="pool of radiance"/>
+        </a>
+      </div>
+      <div className="col-md-auto">
+       
+          <img className="coverImage" src={azureCoverImage} alt="curse of the azure bonds"/>
+          
+      </div>
+      <div className="col-md-auto">
+        <a href="/silverblades">
+          <img className="coverImageFaded" src={silverBladesCoverImage} alt="secret of the silver blades"/>
+        </a>
+      </div>
+      <div className="col-md-auto">
+        <a href="/pod">
+          <img className="coverImageFaded" src={podCoverImage} alt="pools of darkness"/>
+        </a>
+      </div>
+    </div>
+    </>
   );
 
   return (
@@ -191,7 +221,7 @@ export function AzureMain(props) {
           </div>
           {dataArray ? (
             <button
-              className="btn btn-success"
+              className="btn downloadButton"
               onClick={() => exportSaveFile()}
             >
               Download Character File
@@ -355,7 +385,7 @@ export function AzureMain(props) {
         </div>
         <div className="col-md-6">
           <h3 style={{ textAlign: "center" }}>Inventory Editor</h3>
-          <AzureInventory />
+          <AzureInventory inventoryLoaded={inventoryLoaded} setInventoryLoaded={setInventoryLoaded}/>
         </div>
       </div>
       <div
