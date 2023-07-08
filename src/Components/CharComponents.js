@@ -309,3 +309,71 @@ export const CharMoneyComponent = (props) => {
     </>
   );
 };
+
+export const CharSavesDisplay = (props) => {
+
+
+  return (
+    <>
+      <div className="row">
+        <div className="col-md-7">
+          <h4 style={{ textAlign: "center" }}>Saving Throws<br/> and Combat Values</h4>
+          <div className="row">
+            <div className="col-4">Paralyzation, Poison, Death Magic</div>
+            <div className="col-4">
+
+            <CharFunctions.ScoreModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.deathSaveIndex}
+              />
+              </div>
+          </div>
+          <div className="row">
+            <div className="col-4">Petrification and Polymorph</div>
+            <div className="col-4">
+              <CharFunctions.ScoreModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.petriPolySaveIndex}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-4">Rod, Staff, Wand</div>
+            <div className="col-4">
+              <CharFunctions.ScoreModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.rodStaffWandSaveIndex}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-4">Breath Weapon</div>
+            <div className="col-4">
+              <CharFunctions.ScoreModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.breathWeaponSaveIndex}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-4">Spell</div>
+            <div className="col-4">
+              <CharFunctions.ScoreModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.spellSaveIndex}
+              />
+            </div>
+          </div>
+
+          </div>
+          <div className="col-md-5">
+          <h4 style={{ textAlign: "center" }}>Combat Values</h4>
+          </div>
+          </div></>
+  )
+}

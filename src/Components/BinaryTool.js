@@ -19,6 +19,7 @@ export function BinaryTool() {
 
       let dataArray = new Uint8Array(data);
       setDataArray1(dataArray);
+      console.log(dataArray)
     };
     reader.onerror = function (e) {
       console.log("Error : " + e.type);

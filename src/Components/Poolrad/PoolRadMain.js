@@ -104,6 +104,20 @@ export default function PoolRadMain() {
     );
   }
 
+  function CharSavesDisplay() {
+    return (
+      <CharComponents.CharSavesDisplay
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        deathSaveIndex={109}
+        petriPolySaveIndex={110}
+        rodStaffWandSaveIndex={111}
+        breathWeaponSaveIndex={112}
+        spellSaveIndex={113}
+      />
+    );
+  }
+
   function MagicDisplay(props) {
     let spellArray = [0, 1, 2];
 
@@ -286,6 +300,30 @@ export default function PoolRadMain() {
                   >
                     <div className="accordion-body">
                       <CharAbilityDisplay />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingSaves">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSaves"
+                      aria-expanded="true"
+                      aria-controls="collapseSaves"
+                    >
+                      Saving Throws and Combat Values
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSaves"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingSaves"
+                  >
+                    <div className="accordion-body">
+                      <CharSavesDisplay />
                     </div>
                   </div>
                 </div>
