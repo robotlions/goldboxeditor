@@ -150,7 +150,7 @@ export default function SilverBladesMain() {
         rangerIndex={277}
         magicUserIndex={278}
         thiefIndex={279}
-        deathSaveIndex={232}
+       
       />
     );
   }
