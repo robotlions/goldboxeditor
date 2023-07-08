@@ -114,6 +114,25 @@ export default function PoolRadMain() {
         rodStaffWandSaveIndex={111}
         breathWeaponSaveIndex={112}
         spellSaveIndex={113}
+        saveBonusIndex={257}
+      />
+    );
+  }
+
+  function ThiefSkillsDisplay() {
+    return (
+      <CharComponents.ThiefSkillsDisplay
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        pickPocketsIndex={119}
+        openLocksIndex={120}
+        findTrapsIndex={121}
+        moveSilentlyIndex={122}
+        hideInShadowsIndex={123}
+        hearNoiseIndex={124}
+        climbWallsIndex={125}
+        readLanguagesIndex={126}
+
       />
     );
   }
@@ -314,7 +333,7 @@ export default function PoolRadMain() {
                       aria-expanded="true"
                       aria-controls="collapseSaves"
                     >
-                      Saving Throws and Combat Values
+                      Saving Throws
                     </button>
                   </h2>
                   <div
@@ -324,6 +343,30 @@ export default function PoolRadMain() {
                   >
                     <div className="accordion-body">
                       <CharSavesDisplay />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingThief">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThief"
+                      aria-expanded="true"
+                      aria-controls="collapseThief"
+                    >
+                      Thief Skills
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThief"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingThief"
+                  >
+                    <div className="accordion-body">
+                      <ThiefSkillsDisplay />
                     </div>
                   </div>
                 </div>

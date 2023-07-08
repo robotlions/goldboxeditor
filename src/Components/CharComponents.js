@@ -3,8 +3,6 @@ import * as InvFunctions from "./InventoryFunctions";
 import { genders, alignments } from "./Poolrad/PoolRadData";
 
 export const CharAbilityDisplay = (props) => {
-
-
   return (
     <>
       <div className="row">
@@ -79,9 +77,7 @@ export const CharAbilityDisplay = (props) => {
           </div>
         </div>
         <div className="col-md-6">
-          <h4 style={{ textAlign: "center" }}>
-            Levels
-          </h4>
+          <h4 style={{ textAlign: "center" }}>Levels</h4>
           <div className="row">
             <div className="col-6">Cleric: </div>
             <div className="col-6">
@@ -147,7 +143,6 @@ export const CharAbilityDisplay = (props) => {
             </div>
           </div>
         </div>
-
       </div>
     </>
   );
@@ -190,8 +185,6 @@ export const CharInfoDisplay = (props) => {
         </div>
       </div>
       <div className="row">
-       
-
         <div className="col-md-6">
           Class:{" "}
           <CharFunctions.SelectModule
@@ -210,9 +203,9 @@ export const CharInfoDisplay = (props) => {
             dataList={alignments}
           />
         </div>
-        </div>
+      </div>
       <div className="row">
-         <div className="col-md-3">
+        <div className="col-md-3">
           Status:{" "}
           <CharFunctions.SelectModule
             dataArray={props.dataArray}
@@ -311,28 +304,27 @@ export const CharMoneyComponent = (props) => {
 };
 
 export const CharSavesDisplay = (props) => {
-
-
   return (
     <>
       <div className="row">
-        <div className="col-md-7">
-          <h4 style={{ textAlign: "center" }}>Saving Throws<br/> and Combat Values</h4>
+        <h4 style={{ textAlign: "center" }}>Saving Throws</h4>
+      </div>
+      <div className="row">
+        <div className="col-md-6">
           <div className="row">
-            <div className="col-4">Paralyzation, Poison, Death Magic</div>
+            <div className="col-8">Paralyzation, Poison, Death Magic</div>
             <div className="col-4">
-
-            <CharFunctions.ScoreModule
+              <CharFunctions.ValueModule
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.deathSaveIndex}
               />
-              </div>
+            </div>
           </div>
           <div className="row">
-            <div className="col-4">Petrification and Polymorph</div>
+            <div className="col-8">Petrification and Polymorph</div>
             <div className="col-4">
-              <CharFunctions.ScoreModule
+              <CharFunctions.ValueModule
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.petriPolySaveIndex}
@@ -340,19 +332,21 @@ export const CharSavesDisplay = (props) => {
             </div>
           </div>
           <div className="row">
-            <div className="col-4">Rod, Staff, Wand</div>
+            <div className="col-8">Rod, Staff, Wand</div>
             <div className="col-4">
-              <CharFunctions.ScoreModule
+              <CharFunctions.ValueModule
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.rodStaffWandSaveIndex}
               />
             </div>
           </div>
+        </div>
+        <div className="col-md-6">
           <div className="row">
-            <div className="col-4">Breath Weapon</div>
+            <div className="col-8">Breath Weapon</div>
             <div className="col-4">
-              <CharFunctions.ScoreModule
+              <CharFunctions.ValueModule
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.breathWeaponSaveIndex}
@@ -360,20 +354,123 @@ export const CharSavesDisplay = (props) => {
             </div>
           </div>
           <div className="row">
-            <div className="col-4">Spell</div>
+            <div className="col-8">Spell</div>
             <div className="col-4">
-              <CharFunctions.ScoreModule
+              <CharFunctions.ValueModule
                 dataArray={props.dataArray}
                 setDataArray={props.setDataArray}
                 dataArrayIndex={props.spellSaveIndex}
               />
             </div>
           </div>
+          <div className="row">
+            <div className="col-8">Saving Throw Bonus</div>
+            <div className="col-4">
+              <CharFunctions.ValueModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.saveBonusIndex}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
+export const ThiefSkillsDisplay = (props) => {
+  return (
+    <>
+      <div className="row">
+        <h4 style={{ textAlign: "center" }}>Thief Skills</h4>
+      </div>
+      <div className="row">
+        <div className="col-md-6">
+          <div className="row">
+            <div className="col-8">Pick Pockets</div>
+            <div className="col-4">
+              <CharFunctions.ValueModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.pickPocketsIndex}
+              />
+            </div>
           </div>
-          <div className="col-md-5">
-          <h4 style={{ textAlign: "center" }}>Combat Values</h4>
+          <div className="row">
+            <div className="col-8">Open Locks</div>
+            <div className="col-4">
+              <CharFunctions.ValueModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.openLocksIndex}
+              />
+            </div>
           </div>
-          </div></>
-  )
-}
+          <div className="row">
+            <div className="col-8">Find/Remove Traps</div>
+            <div className="col-4">
+              <CharFunctions.ValueModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.findTrapsIndex}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-8">Move Silently</div>
+            <div className="col-4">
+              <CharFunctions.ValueModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.moveSilentlyIndex}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="row">
+            <div className="col-8">Hide in Shadows</div>
+            <div className="col-4">
+              <CharFunctions.ValueModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.hideInShadowsIndex}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-8">Hear Noise</div>
+            <div className="col-4">
+              <CharFunctions.ValueModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.hearNoiseIndex}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-8">Climb Walls</div>
+            <div className="col-4">
+              <CharFunctions.ValueModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.climbWallsIndex}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-8">Read Languages</div>
+            <div className="col-4">
+              <CharFunctions.ValueModule
+                dataArray={props.dataArray}
+                setDataArray={props.setDataArray}
+                dataArrayIndex={props.readLanguagesIndex}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};

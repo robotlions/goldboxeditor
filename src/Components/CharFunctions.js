@@ -304,3 +304,30 @@ export function StrengthModule(props) {
 
   return editDisplay;
 }
+
+export function ValueModule(props) {
+  let tempArray = props.dataArray;
+
+  const [inputText, setInputText] = useState(
+    props.dataArray[props.dataArrayIndex]
+  );
+
+  function submitChange() {
+    tempArray[props.dataArrayIndex] = inputText;
+    props.setDataArray(tempArray);
+  }
+
+  const editDisplay = (
+    <input
+      type="number"
+      max="255"
+      min="0"
+      value={inputText}
+      onChange={(e) => setInputText(e.target.value)}
+      onBlur={() => submitChange()}
+      style={{ maxWidth: "70%", textAlign: "center" }}
+    />
+  );
+
+  return editDisplay;
+}
