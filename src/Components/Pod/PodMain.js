@@ -62,7 +62,7 @@ export function PodMain() {
       <CharComponents.CharInfoDisplay
         dataArray={dataArray}
         setDataArray={setDataArray}
-        maxHPIndex={380} //done
+        maxHPIndex={178} //done
         currentHPIndex={508} //done
         experienceIndex={370} //done
         statusIndex={493} //done
