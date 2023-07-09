@@ -156,7 +156,6 @@ export function AzureMain(props) {
         rodStaffWandSaveIndex={225}
         breathWeaponSaveIndex={226}
         spellSaveIndex={227}
-        saveBonusIndex={390}
       />
     );
   }

@@ -361,16 +361,6 @@ export const CharSavesDisplay = (props) => {
               />
             </div>
           </div>
-          <div className="row">
-            <div className="col-8">Saving Throw Bonus</div>
-            <div className="col-4">
-              <CharFunctions.ValueModule
-                dataArray={props.dataArray}
-                setDataArray={props.setDataArray}
-                dataArrayIndex={props.saveBonusIndex}
-              />
-            </div>
-          </div>
         </div>
       </div>
     </>

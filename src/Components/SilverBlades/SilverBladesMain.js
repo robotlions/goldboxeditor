@@ -155,6 +155,21 @@ export default function SilverBladesMain() {
     );
   }
 
+  function CharSavesDisplay() {
+    return (
+      <CharComponents.CharSavesDisplay
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        deathSaveIndex={232}
+        petriPolySaveIndex={233}
+        rodStaffWandSaveIndex={234}
+        breathWeaponSaveIndex={235}
+        spellSaveIndex={236}
+      />
+    );
+  }
+
+
   function MoneyDisplay() {
     return (
       <CharComponents.CharMoneyComponent
@@ -167,6 +182,24 @@ export default function SilverBladesMain() {
         platinumIndex={267}
         gemsIndex={269}
         jewelryIndex={271}
+      />
+    );
+  }
+
+  function ThiefSkillsDisplay() {
+    return (
+      <CharComponents.ThiefSkillsDisplay
+        dataArray={dataArray}
+        setDataArray={setDataArray}
+        pickPocketsIndex={243}
+        openLocksIndex={244}
+        findTrapsIndex={245}
+        moveSilentlyIndex={246}
+        hideInShadowsIndex={247}
+        hearNoiseIndex={248}
+        climbWallsIndex={249}
+        readLanguagesIndex={250}
+
       />
     );
   }
@@ -285,6 +318,54 @@ export default function SilverBladesMain() {
                   >
                     <div className="accordion-body">
                       <CharAbilityDisplay />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingSaves">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSaves"
+                      aria-expanded="true"
+                      aria-controls="collapseSaves"
+                    >
+                      Saving Throws
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSaves"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingSaves"
+                  >
+                    <div className="accordion-body">
+                      <CharSavesDisplay />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingThief">
+                    <button
+                      className="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThief"
+                      aria-expanded="true"
+                      aria-controls="collapseThief"
+                    >
+                      Thief Skills
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThief"
+                    className="accordion-collapse collapse"
+                    aria-labelledby="headingThief"
+                  >
+                    <div className="accordion-body">
+                      <ThiefSkillsDisplay />
                     </div>
                   </div>
                 </div>

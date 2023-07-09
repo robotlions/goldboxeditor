@@ -114,7 +114,6 @@ export default function PoolRadMain() {
         rodStaffWandSaveIndex={111}
         breathWeaponSaveIndex={112}
         spellSaveIndex={113}
-        saveBonusIndex={257}
       />
     );
   }
