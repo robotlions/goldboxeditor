@@ -10,6 +10,7 @@ import { PodMain } from "./Components/Pod/PodMain";
 import { BinaryTool } from "./Components/BinaryTool";
 import { Home } from "./Components/Home";
 import { About } from "./Components/About";
+import adndSplash from "../src/assets/images/AdnDSplash.jpg";
 
 function App() {
 

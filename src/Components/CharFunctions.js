@@ -295,7 +295,7 @@ export function StrengthModule(props) {
             value={extInput}
             onChange={(e) => setExtInput(e.target.value)}
             onBlur={() => submitExtChange()}
-            style={{ maxWidth: "60%", textAlign: "center" }}
+            style={{ maxWidth: "70%", textAlign: "center" }}
           />
         ) : null}
       </div>
