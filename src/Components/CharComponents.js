@@ -306,9 +306,7 @@ export const CharMoneyComponent = (props) => {
 export const CharSavesDisplay = (props) => {
   return (
     <>
-      <div className="row">
-        <h4 style={{ textAlign: "center" }}>Saving Throws</h4>
-      </div>
+      
       <div className="row">
         <div className="col-md-6">
           <div className="row">
@@ -382,9 +380,7 @@ export const CharSavesDisplay = (props) => {
 export const ThiefSkillsDisplay = (props) => {
   return (
     <>
-      <div className="row">
-        <h4 style={{ textAlign: "center" }}>Thief Skills</h4>
-      </div>
+      
       <div className="row">
         <div className="col-md-6">
           <div className="row">

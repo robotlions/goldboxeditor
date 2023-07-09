@@ -77,7 +77,7 @@ export default function PoolRadMain() {
         dexIndex={19}
         conIndex={20}
         chaIndex={21}
-        clericIndex={151}
+        clericIndex={150}
         fighterIndex={152}
         magicUserIndex={155}
         thiefIndex={156}
@@ -415,7 +415,7 @@ export default function PoolRadMain() {
                   >
                     <div className="accordion-body">
                       <div className="row">
-                        <MagicDisplay filter="Mage" startingIndex={181} />
+                        <MagicDisplay magicFilter="Mage" startingIndex={181} />
                       </div>
                     </div>
                   </div>
@@ -440,7 +440,7 @@ export default function PoolRadMain() {
                   >
                     <div className="accordion-body">
                       <div className="row">
-                        <MagicDisplay filter="Cleric" startingIndex={178} />
+                        <MagicDisplay magicFilter="Cleric" startingIndex={178} />
                       </div>
                     </div>
                   </div>
