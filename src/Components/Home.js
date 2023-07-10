@@ -6,6 +6,8 @@ import podCoverImage from "../assets/images/pod800.jpg";
 export function Home() {
   return (
     <div className="row g-1 d-flex justify-content-center" style={{marginTop:"5vh", textAlign:"center"}}>
+      <h2 style={{fontFamily:"IM-Fell"}}>Curse of the Secret Pools!</h2>
+      <h4 style={{marginBottom:20}}>Online editor for the Advanced Dungeons and Dragons gold box games.</h4>
       <div className="col-md-auto">
         <a href="/poolRad">
           <img className="coverImage" src={poolRadCoverImage} alt="pool of radiance"/>
