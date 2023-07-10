@@ -1,7 +1,11 @@
 export function About() {
   return (
-    <>
-      <div className="accordion" id="charEditAccordion">
+    <div className="row" style={{ marginBottom: 100 }}>
+      <div
+        style={{ marginTop: 20 }}
+        className="accordion"
+        id="charEditAccordion"
+      >
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button
@@ -124,6 +128,11 @@ export function About() {
                   load. So even though you can change these values with this
                   editor, the game will reset them to their "correct" values.
                 </li>
+                <li>
+                  Where possible, the integer input fields have minimum and
+                  maximum values. But those are super easy to get around, so
+                  have fun.
+                </li>
                 <br />
                 <h4>Tips for editing characters</h4>
                 <li>
@@ -196,17 +205,26 @@ export function About() {
           >
             <div className="accordion-body">
               <em>Why only four of the Gold Box games?</em>
-              <p>These four seemed like the logical place to start. More to come.</p>
-              <br/>
+              <p>
+                These four seemed like the logical place to start. More to come.
+              </p>
+              <br />
               <em>Why now? Why not thirty-five years ago?</em>
-              <p>Because I was in middle school and didn't know Javascript. Also, Javascript didn't exist.</p>
-              <br/>
+              <p>
+                Because I was in middle school and wasn't a web developer and
+                didn't know JavaScript and JavaScript didn't exist.
+              </p>
+              <br />
               <em>Is the source code available?</em>
-              <p><a href="https://github.com/robotlions/goldboxeditor">Absolutely.</a></p>
+              <p>
+                <a href="https://github.com/robotlions/goldboxeditor">
+                  Absolutely.
+                </a>
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

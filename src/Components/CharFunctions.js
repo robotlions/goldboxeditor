@@ -71,6 +71,7 @@ export function HitPointModule(props) {
       className="form-control"
       type="number"
       max="255"
+      min="0"
       value={inputText}
       onChange={(e) => setInputText(e.target.value)}
       onBlur={() => {
@@ -100,6 +101,7 @@ export function LevelModule(props) {
       style={{ maxWidth: "60%", textAlign: "center" }}
       type="number"
       max="99"
+      min="0"
       value={inputText}
       onChange={(e) => setInputText(e.target.value)}
       onBlur={() => submitChange()}
@@ -163,6 +165,7 @@ export function ScoreModule(props) {
       id={props.idText}
       type="number"
       max="99"
+      min="0"
       value={inputText}
       onChange={(e) => setInputText(e.target.value)}
       onBlur={() => submitChange()}
@@ -281,6 +284,7 @@ export function StrengthModule(props) {
         <input
           type="number"
           max="100"
+          min="0"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           onBlur={() => submitChange()}
@@ -292,6 +296,7 @@ export function StrengthModule(props) {
           <input
             type="number"
             max="99"
+            min="0"
             value={extInput}
             onChange={(e) => setExtInput(e.target.value)}
             onBlur={() => submitExtChange()}
