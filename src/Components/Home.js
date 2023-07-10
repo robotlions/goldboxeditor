@@ -9,25 +9,25 @@ export function Home() {
       <h2 style={{fontFamily:"IM-Fell"}}>Curse of the Secret Pools!</h2>
       <h4 style={{marginBottom:20}}>Online editor for the Advanced Dungeons and Dragons gold box games.</h4>
       <div className="col-md-auto">
-        <a href="/poolRad">
+        <a href="/poolRad/">
           <img className="coverImage" src={poolRadCoverImage} alt="pool of radiance"/>
           <p className="linkText">Pool of Radiance</p>
         </a>
       </div>
       <div className="col-md-auto">
-        <a href="/azure">
+        <a href="/azure/">
           <img className="coverImage" src={azureCoverImage} alt="curse of the azure bonds"/>
           <p className="linkText">Curse of the Azure Bonds</p>
         </a>
       </div>
       <div className="col-md-auto">
-        <a href="/silverblades">
+        <a href="/silverblades/">
           <img className="coverImage" src={silverBladesCoverImage} alt="secret of the silver blades"/>
           <p className="linkText">Secret of the Silver Blades</p>
         </a>
       </div>
       <div className="col-md-auto">
-        <a href="/pod">
+        <a href="/pod/">
           <img className="coverImage" src={podCoverImage} alt="pools of darkness"/>
           <p className="linkText">Pools of Darkness</p>
         </a>

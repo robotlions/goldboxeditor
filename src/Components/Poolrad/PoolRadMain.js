@@ -191,11 +191,7 @@ export default function PoolRadMain() {
           To begin, upload a character file (.SAV) or an inventory file (.ITM)
           from <em>Pool of Radiance</em>.
         </h5>
-        {/* <img
-      style={{ height: 400 }}
-      src={poolRadCoverImage}
-      alt="pool of radiance box cover"
-    /> */}
+       
         <div
           className="row g-1 d-flex justify-content-center"
           style={{ marginTop: "5vh", textAlign: "center" }}
@@ -241,10 +237,13 @@ export default function PoolRadMain() {
   return (
     <div className="charEditBody">
       <div className="row">
-        <img src={poolRadBanner} alt="pool of radiance orignal title screen" />
+      <div className="col-md-12 gx-0">
+
+        <img style={{width:"100%"}}src={poolRadBanner} alt="pool of radiance orignal title screen" />
         <h2 className="mainTitle">
           Advanced Dungeons and Dragons: Pool of Radiance
         </h2>
+        </div>
       </div>
       <div className="row" style={{ marginTop: 20 }}>
         <div className="col-md-6">

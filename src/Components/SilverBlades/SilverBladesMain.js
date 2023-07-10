@@ -241,10 +241,12 @@ export default function SilverBladesMain() {
   return (
     <div className="charEditBody">
       <div className="row">
-        <img src={silverBladesBanner} alt="silver blades title screen" />
+        <div className="col-md-12 gx-0">
+        <img style={{width:"100%"}}src={silverBladesBanner} alt="silver blades title screen" />
         <h2 className="mainTitle">
           Advanced Dungeons and Dragons: Secret of the Silver Blades
         </h2>
+        </div>
       </div>
       <div className="row" style={{ marginTop: 20 }}>
         <div className="col-md-6">

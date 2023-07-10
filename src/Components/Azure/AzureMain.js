@@ -230,10 +230,13 @@ export function AzureMain(props) {
   return (
     <div className="charEditBody">
       <div className="row">
-        <img src={azureBanner} alt="azure bonds title screen" />
+      <div className="col-md-12 gx-0">
+
+        <img style={{width:"100%"}} src={azureBanner} alt="azure bonds title screen" />
         <h2 className="mainTitle">
           Advanced Dungeons and Dragons: Curse of the Azure Bonds
         </h2>
+      </div>
       </div>
       <div className="row" style={{ marginTop: 20 }}>
         <div className="col-md-6">

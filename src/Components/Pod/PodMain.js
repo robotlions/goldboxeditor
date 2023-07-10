@@ -230,11 +230,14 @@ export function PodMain() {
   return (
     <div className="charEditBody">
       <div className="row">
-        <img src={podBanner} alt="pools of darkness action" />
+      <div className="col-md-12 gx-0">
+
+        <img style={{width:"100%"}}src={podBanner} alt="pools of darkness action" />
 
         <h2 className="mainTitle">
           Advanced Dungeons and Dragons: Pools of Darkness
         </h2>
+        </div>
       </div>
       <div className="row" style={{ marginTop: 20 }}>
         <div className="col-md-6">
