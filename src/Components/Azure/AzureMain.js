@@ -44,7 +44,7 @@ export function AzureMain(props) {
       let data = e.target.result;
       if (data.byteLength !== 422) {
         return alert(
-          "This doesn't appear to be a save file from Pool of Radiance"
+          "This doesn't appear to be a save file from Curse of the Azure Bonds"
         );
       } else {
         let dataArray = new Uint8Array(data);

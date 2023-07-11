@@ -93,6 +93,7 @@ export default function PoolRadMain() {
         maxHPIndex={50}
         currentHPIndex={283}
         experienceIndex={172}
+        statusIndex={268}
         statusCodes={poolRadStatusCodes}
         racesList={poolRadRaces}
         raceIndex={46}
