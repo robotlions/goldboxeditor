@@ -224,6 +224,35 @@ export function About() {
             </div>
           </div>
         </div>
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingCredits">
+            <button
+              className="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseCredits"
+              aria-expanded="true"
+              aria-controls="collapseCredits"
+            >
+              Credits
+            </button>
+          </h2>
+          <div
+            id="collapseCredits"
+            className="accordion-collapse collapse"
+            aria-labelledby="headingCredits"
+          >
+            <div className="accordion-body">
+             <p><em>Dungons and Dragons™</em> © Wizards of the Coast</p>
+             <p><em>Advanced Dungeons and Dragons™</em> © Wizards of the Coast</p>
+            <p>All cover art © Wizards of the Coast, I assume.</p>
+            <p><em>Pool of Radiance</em> and <em>Curse of the Azure Bonds</em> cover art by <a href="https://clydecaldwell.com/">Clyde Caldwell</a></p>
+            <p><em>Secret of the Silver Blades</em> cover art by <a href="https://larryelmore.com/store/">Larry Elmore</a></p>
+            <p>Massive credit goes to Joonas Hirvonen for his mind-boggling work on <a href="https://www.gbc.zorbus.net/">Gold Box Companion</a>. Seriously, if you're into these games, install GBC. It's the gold standard of gold box.</p>
+            <p>Also, massive credit to <a href="https://gamefaqs.gamespot.com/community/ssjlee9">Stephen S. Lee</a> for his comprehensive game guides, which were indespensible for figuring out hex values.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

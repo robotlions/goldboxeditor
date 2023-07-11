@@ -29,6 +29,9 @@ function App() {
         <Route path="/about/" element={<About />} />
         <Route path="/" element={<Home />} />
       </Routes>
+      <div style={{textAlign:"center",marginTop:50}}>
+      <p>© 2023 by <a href="https://robotlions.com/">Robot Lions</a></p>
+      </div>
     </Container>
   );
 }
