@@ -129,9 +129,12 @@ export function BinaryTool() {
   return (
     <div className="container">
       <div className="row">
-        <h2 style={{textAlign: "center",marginBottom:20}}>Binary File Save Tool</h2>
+        <h2 style={{textAlign: "center",marginBottom:20}}>Binary File Tool</h2>
+        <em style={{marginBottom:20}}>To use: load a save or inventory file. Then search that file for values, or load a second file to compare the two side-by-side.</em>
+        
         <div className="col-md-6">
           <div className="mb-3">
+            <h5>File 1</h5>
             <input
               className="form-control"
               type="file"
@@ -145,6 +148,8 @@ export function BinaryTool() {
         <div className="col-md-6">
           <div className="mb-3">
             {dataArray1 ?
+            <>
+            <h5>File2</h5>
             <input
             
               className="form-control"
@@ -153,7 +158,7 @@ export function BinaryTool() {
               onChange={(e) => {
                 loadFile2(e.target.files[0]);
               }}
-            />
+            /></>
            : null }
           </div>
 
@@ -189,7 +194,7 @@ export function BinaryTool() {
         
         </div>
       </div>
-      <div className="row">
+      <div className="row" style={{marginTop:20}}>
         <div className="col-md-6">
           <h3>Comparison Results</h3>
       <CompareDisplay />

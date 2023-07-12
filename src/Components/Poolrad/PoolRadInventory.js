@@ -42,6 +42,8 @@ export default function PoolRadInventory(props) {
             typeIndex={46}
             bonusIndex={50}
             chargeIndex={60}
+            effect2Index={61}
+            effect3Index={62}
             ammoIndex={57}
             weightIndex={55}
             arrayLength={63}

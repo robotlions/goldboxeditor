@@ -16,7 +16,7 @@ export function About() {
               aria-expanded="true"
               aria-controls="collapseOne"
             >
-              What is this?
+              <strong>What is this?</strong>
             </button>
           </h2>
           <div
@@ -40,7 +40,7 @@ export function About() {
               aria-expanded="true"
               aria-controls="collapseTwo"
             >
-              What are the Gold Box games?
+              <strong>What are the Gold Box games?</strong>
             </button>
           </h2>
           <div
@@ -51,11 +51,9 @@ export function About() {
             <div className="accordion-body">
               The gold box games were a series of video role-playing games
               created by Strategic Simulations, Inc. in the late 1980s through
-              early 1990s. Although they took place in many different settings
-              throughout the Dungeons and Dragons campaign worlds, all of the
-              games were based on the same engine, which gives us - hackers from
-              the future - the ability to edit many different games with a
-              single app.
+              early 1990s. All the games were based on the same engine, which
+              gives us - hackers from the future - the ability to edit many
+              different games with a single app.
             </div>
           </div>
         </div>
@@ -69,7 +67,7 @@ export function About() {
               aria-expanded="true"
               aria-controls="collapseHow"
             >
-              How does this editor work?
+              <strong>How does this editor work?</strong>
             </button>
           </h2>
           <div
@@ -97,7 +95,7 @@ export function About() {
               aria-expanded="true"
               aria-controls="collapseFour"
             >
-              Tips
+              <strong>Tips</strong>
             </button>
           </h2>
           <div
@@ -113,8 +111,8 @@ export function About() {
                   isn't programmed to automatically scale values. Rather, the
                   game uses the original AD&D tables. For example, character
                   ability scores in AD&D max out at 18. If you give your
-                  character an 85 charisma, the game has no way to reconicile
-                  that number, because it's not on the original tables.
+                  character an 85 charisma, the game doesn't understand that
+                  number, because it's not on the original tables.
                 </li>
                 <li>
                   Most of the values can't exceed 255, unless they're obviously
@@ -166,13 +164,18 @@ export function About() {
                   dropdown menus of pre-programmed descriptors.
                 </li>
                 <li>
-                  For wands, the "charges" field determines how many times the
+                  Each item has three slots for special effects. For the most
+                  part these don't do anything, however:
+                </li>
+                <li>
+                  For wands, the "Effect1(charges)" field determines how many times the
                   wand can be used before its magic is depleted.
                 </li>
                 <li>
-                  For scrolls, the "charges" field determines which spell the
+                  For scrolls, the "Effect1(charges)" field determines which spell the
                   scroll contains. The spell is determined by an integer that
-                  will vary from game to game.
+                  will vary from game to game. Effect2 is the scroll's second
+                  spell and Effect3 is the third spell.
                 </li>
                 <li>
                   Arrows, darts and certain other items can be given an "ammo"
@@ -195,7 +198,7 @@ export function About() {
               aria-expanded="true"
               aria-controls="collapseFaq"
             >
-              FAQ
+              <strong>FAQ</strong>
             </button>
           </h2>
           <div
@@ -234,7 +237,7 @@ export function About() {
               aria-expanded="true"
               aria-controls="collapseCredits"
             >
-              Credits
+              <strong>Credits</strong>
             </button>
           </h2>
           <div
@@ -258,6 +261,13 @@ export function About() {
               <p>
                 <em>Secret of the Silver Blades</em> cover art by{" "}
                 <a href="https://larryelmore.com/store/">Larry Elmore</a>
+              </p>
+              <p>
+                <em>Pools of Darkness</em> cover art by{" "}
+                <a href="https://www.keithparkinson.com/artwork/">
+                  Keith Parkinson
+                </a>
+                .
               </p>
               <p>
                 Massive credit goes to Joonas Hirvonen for his mind-boggling

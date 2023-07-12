@@ -134,11 +134,29 @@ export function ItemEditModule(props) {
                   />
                 </div>
                 <div className="col-6 col-md-auto inventoryText">
-                  Charges:{" "}
+                  Effect1(Charges):{" "}
                   <ValueModule
                     value={
                       parseInt(Object.keys(props.loadedItem)) +
                       props.chargeIndex
+                    }
+                  />
+                </div>
+                <div className="col-6 col-md-auto inventoryText">
+                  Effect2:{" "}
+                  <ValueModule
+                    value={
+                      parseInt(Object.keys(props.loadedItem)) +
+                      props.effect2Index
+                    }
+                  />
+                </div>
+                <div className="col-6 col-md-auto inventoryText">
+                  Effect3:{" "}
+                  <ValueModule
+                    value={
+                      parseInt(Object.keys(props.loadedItem)) +
+                      props.effect3Index
                     }
                   />
                 </div>
