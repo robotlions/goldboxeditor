@@ -130,7 +130,7 @@ export function BinaryTool() {
     <div className="container">
       <div className="row">
         <h2 style={{textAlign: "center",marginBottom:20}}>Binary File Tool</h2>
-        <em style={{marginBottom:20}}>To use: load a save or inventory file. Then search that file for values, or load a second file to compare the two side-by-side.</em>
+        <em style={{marginBottom:20, textAlign:"center"}}>To use: load a save or inventory file. Then search that file for values, or load a second file to compare the two side-by-side.</em>
         
         <div className="col-md-6">
           <div className="mb-3">
