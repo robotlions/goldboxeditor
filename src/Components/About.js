@@ -228,6 +228,10 @@ export function About() {
                   Absolutely.
                 </a>
               </p>
+              <em>Why, these gold box games sound delightful! Where might I acquire them?</em>
+              <p>
+                Gog.com has several collections of the various D&D games, but <a href="https://www.gog.com/en/game/forgotten_realms_the_archives_collection_two">Forgotten Realms - The Archives: Collection Two</a> is the one to start with.
+              </p>
             </div>
           </div>
         </div>
