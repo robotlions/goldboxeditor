@@ -183,8 +183,7 @@ export function About() {
                 </li>
                 <li>
                   Arrows, darts and certain other items can be assigned an{" "}
-                  <em>ammo</em>
-                  number. This gives a single item multiple uses without taking
+                  <em>ammo</em> number. This gives a single item multiple uses without taking
                   up another inventory slot. This is not the same as duplicating
                   an item. In other words, assigning ammo to a sword won't make
                   multiple copies of that sword.
@@ -232,6 +231,41 @@ export function About() {
             </div>
           </div>
         </div>
+
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="headingContact">
+            <button
+              className="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseContact"
+              aria-expanded="true"
+              aria-controls="collapseContact"
+            >
+              <strong>Contact</strong>
+            </button>
+          </h2>
+          <div
+            id="collapseContact"
+            className="accordion-collapse collapse"
+            aria-labelledby="headingContact"
+          >
+            <div className="accordion-body">
+              <p>
+                Did something not work right? Have a suggestion? Want to chat
+                about D&D or the joys of cheating at 35-year-old games?
+              </p>
+              <p>
+                You can reach me at "info <em>-at symbol-</em> robotlions.com".
+              </p>
+              <p>
+                My main site is{" "}
+                <a href="https://robotlions.com">robotlions.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingCredits">
             <button
