@@ -26,7 +26,7 @@ export function About() {
           >
             <div className="accordion-body">
               This is a web-based app, written in React JS, for editing
-              saved-game files from the Dungeons and Dragons "Gold Box" games.
+              saved-game files from the Dungeons and Dragons "gold box" games.
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@ export function About() {
               aria-expanded="true"
               aria-controls="collapseTwo"
             >
-              <strong>What are the Gold Box games?</strong>
+              <strong>What are the gold box games?</strong>
             </button>
           </h2>
           <div
@@ -49,10 +49,10 @@ export function About() {
             aria-labelledby="headingTwo"
           >
             <div className="accordion-body">
-              The gold box games were a series of video role-playing games
-              created by Strategic Simulations, Inc. in the late 1980s through
-              early 1990s. All the games were based on the same engine, which
-              gives us - hackers from the future - the ability to edit many
+              The gold box games were a series of role-playing games created by
+              Strategic Simulations, Inc. in the late 1980s through early 1990s.
+              All the games were based on the same engine, which gives
+              us&mdash;hackers from the future&mdash;the ability to edit many
               different games with a single app.
             </div>
           </div>
@@ -76,11 +76,11 @@ export function About() {
             aria-labelledby="headingHow"
           >
             <div className="accordion-body">
-              The Gold Box games store saved games as character files and
-              inventory files. These are simple binary files, with each byte
-              corresponding to an in-game value. The editor allows you to change
-              the values of specific bytes to produce, if you wish, demi-gods
-              with overpowered weapons and limitless wealth.
+              The games store a character as one file and that character's
+              inventory as another. These are simple binary files, with each
+              byte corresponding to an in-game value. The editor allows you to
+              change the values of specific bytes to produce, if you wish,
+              demi-gods with overpowered weapons and limitless wealth.
             </div>
           </div>
         </div>
@@ -107,29 +107,28 @@ export function About() {
               <ul>
                 <li>Back up your files.</li>
                 <li>
-                  Pushing certain values too far will break the game because it
-                  isn't programmed to automatically scale values. Rather, the
-                  game uses the original AD&D tables. For example, character
-                  ability scores in AD&D max out at 18. If you give your
-                  character an 85 charisma, the game doesn't understand that
-                  number, because it's not on the original tables.
+                  Pushing certain values too far will break the game, especially
+                  if the value depends on an AD&D reference table. For example,
+                  character ability scores in AD&D max out at 18. If you give
+                  your character an 85 charisma, the game doesn't know how to
+                  handle that number because it's not on the original tables.
                 </li>
                 <li>
                   Most of the values can't exceed 255, unless they're obviously
                   meant to be large numbers, such as experience and wealth.
                 </li>
                 <li>
-                  As noted in the character editor, certain values - such as
-                  saving throws and thief skills - come directly from the AD&D
-                  tables and are determined by the character's level and
+                  As noted in the character editor, certain values&mdash;such as
+                  saving throws and thief skills&mdash;come directly from the
+                  AD&D tables and are determined by the character's level and
                   modifiers. These values are set by the game automatically on
                   load. So even though you can change these values with this
                   editor, the game will reset them to their "correct" values.
                 </li>
                 <li>
                   Where possible, the integer input fields have minimum and
-                  maximum values. But those are super easy to get around, so
-                  have fun.
+                  maximum values. But those are easy to get around, and it's
+                  your game to break.
                 </li>
                 <br />
                 <h4>Tips for editing characters</h4>
@@ -168,17 +167,18 @@ export function About() {
                   part these don't do anything, however:
                 </li>
                 <li>
-                  For wands, the "Effect1(charges)" field determines how many times the
-                  wand can be used before its magic is depleted.
+                  For wands, the "Effect1(charges)" field determines how many
+                  times the wand can be used before its magic is depleted.
                 </li>
                 <li>
-                  For scrolls, the "Effect1(charges)" field determines which spell the
-                  scroll contains. The spell is determined by an integer that
-                  will vary from game to game. Effect2 is the scroll's second
-                  spell and Effect3 is the third spell.
+                  For scrolls, the "Effect1(charges)" field determines which
+                  spell the scroll contains. The spell is determined by an
+                  integer that will vary from game to game. Effect2 is the
+                  scroll's second spell and Effect3 is the third spell.
                 </li>
                 <li>
-                  Arrows, darts and certain other items can be given an "ammo"
+                  Arrows, darts and certain other items can be assigned an{" "}
+                  <em>ammo</em>
                   number. This gives a single item multiple uses without taking
                   up another inventory slot. This is not the same as duplicating
                   an item. In other words, assigning ammo to a sword won't make
@@ -207,15 +207,15 @@ export function About() {
             aria-labelledby="headingFaq"
           >
             <div className="accordion-body">
-              <em>Why only four of the Gold Box games?</em>
+              <em>Why only four of the gold box games?</em>
               <p>
                 These four seemed like the logical place to start. More to come.
               </p>
               <br />
               <em>Why now? Why not thirty-five years ago?</em>
               <p>
-                Because I was in middle school and wasn't a web developer and
-                didn't know JavaScript and JavaScript didn't exist.
+                Because I was in middle school and I wasn't a web developer and
+                I didn't know JavaScript and JavaScript didn't exist.
               </p>
               <br />
               <em>Is the source code available?</em>
@@ -270,8 +270,8 @@ export function About() {
                 .
               </p>
               <p>
-                Massive credit goes to Joonas Hirvonen for his mind-boggling
-                work on{" "}
+                Thanks and admiration go to Joonas Hirvonen for his
+                mind-boggling work on{" "}
                 <a href="https://www.gbc.zorbus.net/">Gold Box Companion</a>.
                 Seriously, if you're into these games, install GBC. It's the
                 gold standard of gold box.

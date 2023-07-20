@@ -192,6 +192,8 @@ export default function PoolRadMain() {
           To begin, upload a character file (.SAV) or an inventory file (.ITM)
           from <em>Pool of Radiance</em>.
         </h5>
+
+        <h6>Need somewhere to start? Try the <em>Pool of Radiance</em> <a href={"/files/poolRadDefaultCharacters.zip"}>default characters</a>.</h6>
        
         <div
           className="row g-1 d-flex justify-content-center"
