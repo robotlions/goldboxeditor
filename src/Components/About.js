@@ -107,6 +107,11 @@ export function About() {
               <ul>
                 <li>Back up your files.</li>
                 <li>
+                  This app edits only character and inventory files. Each save
+                  also requires a .DAT save file to store game variables such as
+                  the party's current location.
+                </li>
+                <li>
                   Pushing certain values too far will break the game, especially
                   if the value depends on an AD&D reference table. For example,
                   character ability scores in AD&D max out at 18. If you give

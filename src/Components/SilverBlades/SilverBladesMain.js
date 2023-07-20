@@ -208,11 +208,8 @@ export default function SilverBladesMain() {
     <>
     <h5 style={{marginBottom:20}}>To begin, upload a character file (.SAV) or an inventory file (.STF) from <em>Secret of the Silver Blades</em>.</h5>
 
-    {/* <img
-      style={{ maxHeight: 400 }}
-      src={silverBladesCoverImage}
-      alt="secret of the silver blades box cover"
-    /> */}
+    <h6>Need somewhere to start? Try the <em>Secret of the Silver Blades</em> <a href={"/files/silverBladesDefaultCharacters.zip"}>default characters</a>.</h6>
+   
     <div className="row g-1 d-flex justify-content-center" style={{marginTop:"5vh", textAlign:"center"}}>
       <div className="col-md-auto">
         <a href="/poolRad">

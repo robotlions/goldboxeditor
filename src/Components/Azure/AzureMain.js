@@ -197,11 +197,9 @@ export function AzureMain(props) {
   let splashImage = dataArray || inventoryLoaded===true ? null : (
     <>
     <h5 style={{marginBottom:20}}>To begin, upload a character file (.SAV) or an inventory file (.SWG) from <em>Curse of the Azure Bonds</em>.</h5>    
-    {/* <img
-      style={{ maxHeight: 400 }}
-      src={curseCoverImage}
-      alt="curse of the azure bonds box cover"
-    /> */}
+   
+    <h6>Need somewhere to start? Try the <em>Curse of the Azure Bonds</em> <a href={"/files/azureDefaultCharacters.zip"}>default characters</a>.</h6>
+
       <div className="row g-1 d-flex justify-content-center" style={{marginTop:"5vh", textAlign:"center"}}>
       <div className="col-md-auto">
         <a href="/poolRad">

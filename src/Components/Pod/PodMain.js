@@ -197,11 +197,8 @@ export function PodMain() {
     <>
     <h5 style={{marginBottom:20}}>To begin, upload a character file (.SAV) or an inventory file (.THG) from <em>Pools of Darkness</em>.</h5>
 
-    {/* <img
-      style={{ maxHeight: 600 }}
-      src={podCoverImage}
-      alt="pools of darkness box cover"
-    /> */}
+    <h6>Need somewhere to start? Try the <em>Pools of Darkness</em> <a href={"/files/podDefaultCharacters.zip"}>default characters</a>.</h6>
+    
     <div className="row g-1 d-flex justify-content-center" style={{marginTop:"5vh", textAlign:"center"}}>
       <div className="col-md-auto">
         <a href="/poolRad">

@@ -283,7 +283,7 @@ export function StrengthModule(props) {
       <div className="col-4">
         <input
           type="number"
-          max="100"
+          max="99"
           min="0"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
@@ -295,7 +295,7 @@ export function StrengthModule(props) {
         {parseInt(inputText) === 18 ? (
           <input
             type="number"
-            max="99"
+            max="100"
             min="0"
             value={extInput}
             onChange={(e) => setExtInput(e.target.value)}

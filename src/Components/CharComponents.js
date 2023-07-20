@@ -10,6 +10,7 @@ export const CharAbilityDisplay = (props) => {
           <h4 style={{ textAlign: "center" }}>Ability Scores</h4>
           <div className="row">
             <div className="col-4">Strength:</div>
+
             <CharFunctions.StrengthModule
               idText="strengthScore"
               dataArray={props.dataArray}
