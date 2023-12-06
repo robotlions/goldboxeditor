@@ -86,6 +86,30 @@ export function About() {
         </div>
 
         <div className="accordion-item">
+          <h2 className="accordion-header" id="headingWho">
+            <button
+              className="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseWho"
+              aria-expanded="true"
+              aria-controls="collapseWho"
+            >
+              <strong>Who are you? How'd you get in here?</strong>
+            </button>
+          </h2>
+          <div
+            id="collapseWho"
+            className="accordion-collapse collapse"
+            aria-labelledby="headingWho"
+          >
+            <div className="accordion-body">
+              I'm a locksmith. And I'm a locksmith.
+            </div>
+          </div>
+        </div>
+
+        <div className="accordion-item">
           <h2 className="accordion-header" id="headingFour">
             <button
               className="accordion-button collapsed"
@@ -260,11 +284,11 @@ export function About() {
                 about D&D or the joys of cheating at 35-year-old games?
               </p>
               <p>
-                You can reach me at "info <em>-at symbol-</em> robotlions.com".
+                You can reach me at "info <em>-at symbol-</em> chadmusick.com".
               </p>
               <p>
                 My main site is{" "}
-                <a href="https://robotlions.com">robotlions.com</a>
+                <a href="https://chadmusick.com">chadmusick.com</a>
               </p>
             </div>
           </div>
