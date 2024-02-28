@@ -28,7 +28,3 @@ yarn-error.log*
 .SAV
 .SFX
 .STF
-
-.firebaserc
-.firebase
-firebase.json
