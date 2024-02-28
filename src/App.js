@@ -13,6 +13,9 @@ import { About } from "./Components/About";
 
 function App() {
 
+  const currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
+
   return (
     <Container>
       <div className="row">
@@ -29,7 +32,7 @@ function App() {
         <Route path="/" element={<Home />} />
       </Routes>
       <div style={{textAlign:"center",marginTop:50}}>
-      <p>© 2024 by <a href="https://chadmusick.com/">Chad Musick</a></p>
+      <p>© {currentYear} by <a href="https://chadmusick.com/">Chad Musick</a></p>
       </div>
     </Container>
   );
