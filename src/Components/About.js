@@ -284,7 +284,7 @@ export function About() {
                 about D&D or the joys of cheating at 35-year-old games?
               </p>
               <p>
-                You can reach me at "info <em>-at symbol-</em> chadmusick.com".
+                You can reach me at "info <em>-at symbol-</em> robotlions.com".
               </p>
               <p>
                 My main site is{" "}
